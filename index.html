@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaipuria Online PGDM</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Config for Premium Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        jMaroon: '#573865',
+                        jNavy: '#002147',
+                        jGold: '#D4AF37'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(circle at top left, rgba(212, 175, 55, 0.1), transparent),
+                linear-gradient(to bottom right, #002147, #000c1a);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 font-sans text-slate-800 antialiased">
+
+    <!-- 1. STICKY HEADER -->
+    <header id="main-header"
+        class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm py-5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <!-- Logo Area -->
+            <div class="flex items-center gap-2">
+                <div class="flex flex-col">
+                    <img src="https://online.jaipuria.ac.in/wp-content/uploads/2022/10/Jaipuria_Institute_of_management_logo.png"
+                        class="w-[230px]" alt="Jaipuria Logo">
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#about" class="hover:text-jMaroon transition-colors">About Us</a>
+                <div class="relative group cursor-pointer">
+                    <span class="hover:text-jMaroon transition-colors flex items-center gap-1">
+                        Programs <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                    </span>
+                </div>
+                <a href="#admissions" class="hover:text-jMaroon transition-colors">Admissions</a>
+                <a href="#placements" class="hover:text-jMaroon transition-colors">Placements</a>
+
+                <button
+                    class="bg-jMaroon hover:bg-[#5a0e10] text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                    Apply Now
+                </button>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-jNavy text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white pt-24 px-6 hidden md:hidden">
+        <div class="flex flex-col gap-6 text-lg font-semibold text-jNavy">
+            <a href="#about" class="mobile-link">About Us</a>
+            <a href="#programs" class="mobile-link">Programs</a>
+            <a href="#admissions" class="mobile-link">Admissions</a>
+            <button class="bg-jMaroon text-white py-3 rounded-xl mt-4 w-full">Apply Now</button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a href="#"
+        class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center text-3xl">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- 2. HERO SECTION -->
+    <section
+        class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[url('hero.jpg')] bg-cover bg-center bg-no-repeat">
+        <div class="absolute inset-0 bg-black/80 z-0"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+                <!-- Left Column - Copy -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div
+                        class="inline-block bg-white/10 border border-white/20 text-jGold px-4 py-1.5 rounded-full text-sm font-bold tracking-wide backdrop-blur-sm">
+                        EQUIVALENT TO ON-CAMPUS PGDM
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        Accelerate Your Career with <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-jGold to-yellow-200">India's Top
+                            Online PGDM</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
+                        Join Jaipuria Institute of Management's legacy. Flexible learning, world-class faculty, and
+                        assured placement support.
+                    </p>
+
+                    <div class="bg-white/5 border border-white/10 rounded-xl p-4 inline-flex items-center gap-4">
+                        <div class="w-2 h-2 rounded-full bg-jGold animate-pulse"></div>
+                        <p class="text-white font-medium">
+                            Secure <span class="text-jGold font-bold">20% Early Bird Grant</span> - Admissions Close
+                            <span class="font-bold underline decoration-jGold underline-offset-4">March 31st!</span>
+                        </p>
+                    </div>
+
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <button
+                            class="bg-white text-jNavy hover:bg-slate-100 px-8 py-3.5 rounded-full font-bold transition-all shadow-lg flex items-center gap-2">
+                            <i class="fa-solid fa-download"></i> Download Brochure
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column - Zero Junk Form -->
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-jMaroon to-jNavy rounded-2xl blur opacity-30">
+                    </div>
+                    <div
+                        class="relative bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl">
+                        <h3 class="text-2xl font-bold text-white mb-2">Start Your Journey</h3>
+                        <p class="text-slate-300 text-sm mb-6">Enter your details to access the application and
+                            brochure.</p>
+
+                        <form id="lead-form" class="space-y-4">
+                            <!-- Initial Fields -->
+                            <div id="initial-fields">
+                                <div class="mb-4">
+                                    <input type="text" required placeholder="Full Name"
+                                        class="w-full bg-white/5 border border-slate-500 text-white placeholder-slate-400 px-4 py-3 rounded-xl focus:outline-none focus:border-jGold focus:ring-1 focus:ring-jGold transition-colors" />
+                                </div>
+                                <div class="mb-4">
+                                    <input type="email" required placeholder="Email Address"
+                                        class="w-full bg-white/5 border border-slate-500 text-white placeholder-slate-400 px-4 py-3 rounded-xl focus:outline-none focus:border-jGold focus:ring-1 focus:ring-jGold transition-colors" />
+                                </div>
+                                <div class="flex gap-2 mb-4">
+                                    <div
+                                        class="w-1/4 bg-white/5 border border-slate-500 text-slate-300 px-4 py-3 rounded-xl flex items-center justify-center font-medium">
+                                        +91
+                                    </div>
+                                    <input type="tel" required placeholder="Mobile Number" pattern="[0-9]{10}"
+                                        class="w-3/4 bg-white/5 border border-slate-500 text-white placeholder-slate-400 px-4 py-3 rounded-xl focus:outline-none focus:border-jGold focus:ring-1 focus:ring-jGold transition-colors" />
+                                </div>
+                                <button type="submit"
+                                    class="w-full bg-jMaroon hover:bg-[#5a0e10] text-white font-bold py-3.5 rounded-xl transition-all shadow-lg mt-2 flex items-center justify-center gap-2">
+                                    Request OTP <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <!-- OTP Fields (Hidden by default) -->
+                            <div id="otp-fields" class="hidden">
+                                <div
+                                    class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 p-3 rounded-lg text-sm mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-check"></i> OTP sent successfully
+                                </div>
+                                <div>
+                                    <input type="text" required placeholder="Enter 6-digit OTP"
+                                        class="w-full bg-white/5 border border-slate-500 text-white placeholder-slate-400 px-4 py-3 rounded-xl focus:outline-none focus:border-jGold text-center tracking-widest text-lg font-mono" />
+                                </div>
+                                <button type="button"
+                                    class="w-full bg-jGold hover:bg-[#b8952d] text-jNavy font-bold py-3.5 rounded-xl transition-all shadow-lg mt-4">
+                                    Verify & Proceed
+                                </button>
+                                <button type="button" id="change-number-btn"
+                                    class="w-full text-slate-400 text-sm mt-3 hover:text-white transition-colors">
+                                    Change Mobile Number
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. IMMEDIATE TRUST CLUSTER -->
+    <section class="bg-white py-6 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="flex flex-wrap justify-center lg:justify-between items-center gap-8 opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="flex items-center gap-2 font-bold text-slate-800 text-lg">
+                    <i class="fa-solid fa-shield-halved text-2xl text-jNavy"></i> AICTE <span
+                        class="font-light text-slate-500">Approved</span>
+                </div>
+                <div class="flex items-center gap-2 font-bold text-slate-800 text-lg">
+                    <i class="fa-solid fa-graduation-cap text-2xl text-jNavy"></i> UGC-DEB <span
+                        class="font-light text-slate-500">Recognized</span>
+                </div>
+                <div class="flex items-center gap-2 font-bold text-slate-800 text-lg">
+                    <span class="bg-jNavy text-white px-2 py-1 rounded text-sm">NAAC</span> A+ <span
+                        class="font-light text-slate-500">Accredited</span>
+                </div>
+                <div class="flex items-center gap-2 font-bold text-slate-800 text-lg">
+                    <i class="fa-solid fa-file-contract text-2xl text-jNavy"></i> AIU <span
+                        class="font-light text-slate-500">Equivalence</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SPECIALISATION GRID -->
+    <section class="py-24 bg-slate-50" id="programs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-jNavy mb-4">Master Your Niche</h2>
+                <p class="text-slate-600 text-lg">Choose from 6 industry-aligned specialisations designed to make you
+                    functional-ready from day one.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-[#800000] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10 group-hover:bg-[#800000]/5 transition-colors duration-300">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-slate-100 text-[#800000] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#800000] group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <i class="fa-solid fa-briefcase text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Finance</h3>
+                    <p class="text-slate-600 mb-6 line-clamp-2">Master corporate finance, wealth management, and
+                        fin-tech integrations.</p>
+                    <div class="flex items-center text-[#800000] font-semibold group-hover:gap-2 transition-all">
+                        Learn More <i
+                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-slate-900 rounded-2xl p-8 shadow-lg border-t-4 border-yellow-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 group-hover:bg-yellow-500/10 transition-colors duration-300">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-white/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-yellow-500 group-hover:text-slate-900 transition-colors duration-300">
+                        <i class="fa-solid fa-chart-pie text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Marketing</h3>
+                    <p class="text-slate-300 mb-6 line-clamp-2">Drive growth with consumer behavior insights and brand
+                        management strategies.</p>
+                    <div class="flex items-center text-yellow-400 font-semibold group-hover:gap-2 transition-all">
+                        Learn More <i
+                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-[#800000] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10 group-hover:bg-[#800000]/5 transition-colors duration-300">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-slate-100 text-[#800000] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#800000] group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <i class="fa-solid fa-users text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Human Resources</h3>
+                    <p class="text-slate-600 mb-6 line-clamp-2">Lead organizational change and manage modern, diverse
+                        workforces effectively.</p>
+                    <div class="flex items-center text-[#800000] font-semibold group-hover:gap-2 transition-all">
+                        Learn More <i
+                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-slate-900 rounded-2xl p-8 shadow-lg border-t-4 border-yellow-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 group-hover:bg-yellow-500/10 transition-colors duration-300">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-white/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-yellow-500 group-hover:text-slate-900 transition-colors duration-300">
+                        <i class="fa-solid fa-chart-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Business Analytics</h3>
+                    <p class="text-slate-300 mb-6 line-clamp-2">Turn raw data into strategic decisions using AI and
+                        machine learning tools.</p>
+                    <div class="flex items-center text-yellow-400 font-semibold group-hover:gap-2 transition-all">
+                        Learn More <i
+                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-[#800000] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10 group-hover:bg-[#800000]/5 transition-colors duration-300">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-slate-100 text-[#800000] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#800000] group-hover:text-white transition-colors duration-300 shadow-sm">
+                        <i class="fa-solid fa-cogs text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Operations</h3>
+                    <p class="text-slate-600 mb-6 line-clamp-2">Optimize supply chains and streamline business processes
+                        for maximum efficiency.</p>
+                    <div class="flex items-center text-[#800000] font-semibold group-hover:gap-2 transition-all">
+                        Learn More <i
+                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-slate-900 rounded-2xl p-8 shadow-lg border-t-4 border-yellow-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-300 group cursor-pointer relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 group-hover:bg-yellow-500/10 transition-colors duration-300">
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-white/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-yellow-500 group-hover:text-slate-900 transition-colors duration-300">
+                        <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Digital Marketing</h3>
+                    <p class="text-slate-300 mb-6 line-clamp-2">Dominate the online space with advanced SEO, performance
+                        marketing, and social strategies.</p>
+                    <div class="flex items-center text-yellow-400 font-semibold group-hover:gap-2 transition-all">
+                        Learn More <i
+                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PLACEMENT PROOF -->
+    <section class="py-24 bg-jNavy text-white overflow-hidden" id="placements">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Left: Stats -->
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Proven Career Progression</h2>
+                    <p class="text-slate-300 mb-10 text-lg">Our dedicated career services cell ensures you connect with
+                        the top recruiters in the industry.</p>
+
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="border-l-4 border-jGold pl-6">
+                            <div class="text-4xl lg:text-5xl font-extrabold text-jGold mb-2">22<span
+                                    class="text-2xl">LPA</span></div>
+                            <div class="text-slate-300 font-medium">Highest Package</div>
+                        </div>
+                        <div class="border-l-4 border-jGold pl-6">
+                            <div class="text-4xl lg:text-5xl font-extrabold text-jGold mb-2">350<span
+                                    class="text-2xl">+</span></div>
+                            <div class="text-slate-300 font-medium">Recruiting Partners</div>
+                        </div>
+                        <div class="border-l-4 border-jGold pl-6">
+                            <div class="text-4xl lg:text-5xl font-extrabold text-jGold mb-2">98<span
+                                    class="text-2xl">%</span></div>
+                            <div class="text-slate-300 font-medium">Placement Assistance</div>
+                        </div>
+                        <div class="border-l-4 border-jGold pl-6">
+                            <div class="text-4xl lg:text-5xl font-extrabold text-jGold mb-2">11<span
+                                    class="text-2xl">LPA</span></div>
+                            <div class="text-slate-300 font-medium">Average Package</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Marquee & Testimonials -->
+                <div class="space-y-8">
+                    <!-- Marquee -->
+                    <div class="bg-white/5 rounded-2xl p-8 backdrop-blur-sm border border-white/10">
+                        <h4 class="text-center text-slate-400 font-semibold mb-6 tracking-widest text-sm uppercase">
+                            Marquee Recruiters</h4>
+                        <div class="flex flex-wrap justify-center gap-8 opacity-70">
+                            <span class="text-2xl font-bold font-serif">Amazon</span>
+                            <span class="text-2xl font-bold tracking-tighter">Deloitte.</span>
+                            <span class="text-2xl font-bold text-blue-400">HDFC BANK</span>
+                            <span class="text-2xl font-bold font-sans">Google</span>
+                            <span class="text-2xl font-bold italic">KPMG</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial -->
+                    <div class="bg-[#7A1315] rounded-2xl p-8 shadow-2xl relative border border-white/5">
+                        <div class="text-jGold text-6xl font-serif absolute top-4 left-6 opacity-40">"</div>
+                        <p class="text-lg italic relative z-10 mb-6 pt-4">
+                            "The online PGDM gave me the flexibility to upskill while working. The curriculum is
+                            rigorous, and the placement support helped me transition to a senior role at a Big 4 firm
+                            seamlessly."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 bg-slate-300 rounded-full flex items-center justify-center text-jNavy font-bold text-xl">
+                                R</div>
+                            <div>
+                                <div class="font-bold">Rahul Sharma</div>
+                                <div class="text-sm text-jGold">Senior Consultant, Deloitte</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. ADMISSION PROCESS -->
+    <section class="py-24 bg-white" id="admissions">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-jNavy mb-16">Simple 5-Step Admission Process</h2>
+
+            <div class="flex flex-col md:flex-row justify-between items-center relative gap-8 md:gap-0">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-100 -z-10 -translate-y-1/2">
+                </div>
+
+                <!-- Step 1 -->
+                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
+                    <div
+                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-mouse-pointer text-xl"></i>
+                    </div>
+                    <div class="absolute top-0 right-0 md:hidden w-1 h-full bg-slate-100 -z-10"></div>
+                    <h4 class="font-bold text-slate-800 text-lg">1. Apply Online</h4>
+                    <p class="text-slate-500 text-sm mt-1">Fill basic details</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
+                    <div
+                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-mobile-button text-xl"></i>
+                    </div>
+                    <div class="absolute top-0 right-0 md:hidden w-1 h-full bg-slate-100 -z-10"></div>
+                    <h4 class="font-bold text-slate-800 text-lg">2. OTP Verify</h4>
+                    <p class="text-slate-500 text-sm mt-1">Secure your account</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
+                    <div
+                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-file-arrow-up text-xl"></i>
+                    </div>
+                    <div class="absolute top-0 right-0 md:hidden w-1 h-full bg-slate-100 -z-10"></div>
+                    <h4 class="font-bold text-slate-800 text-lg">3. Submit Docs</h4>
+                    <p class="text-slate-500 text-sm mt-1">Upload marksheets</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
+                    <div
+                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-magnifying-glass-chart text-xl"></i>
+                    </div>
+                    <div class="absolute top-0 right-0 md:hidden w-1 h-full bg-slate-100 -z-10"></div>
+                    <h4 class="font-bold text-slate-800 text-lg">4. Profile Review</h4>
+                    <p class="text-slate-500 text-sm mt-1">Academic evaluation</p>
+                </div>
+                <!-- Step 5 -->
+                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
+                    <div
+                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
+                        <i class="fa-solid fa-envelope-open-text text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-lg">5. Offer Letter</h4>
+                    <p class="text-slate-500 text-sm mt-1">Welcome to Jaipuria</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FEES & SCHOLARSHIP -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+                <div class="grid md:grid-cols-2">
+
+                    <!-- Fee Side -->
+                    <div class="p-10 lg:p-14 bg-white">
+                        <h3 class="text-2xl font-bold text-jNavy mb-2">Program Investment</h3>
+                        <p class="text-slate-500 mb-8">Transparent pricing with no hidden costs.</p>
+
+                        <div class="text-5xl font-extrabold text-slate-800 mb-2">
+                            ₹1,50,000 <span class="text-lg font-medium text-slate-400">/ Total</span>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-8">Flexible EMI options starting at ₹6,250/month</p>
+
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <i class="fa-solid fa-circle-check text-emerald-500"></i> 24 Months Duration
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <i class="fa-solid fa-circle-check text-emerald-500"></i> Live Interactive Sessions
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <i class="fa-solid fa-circle-check text-emerald-500"></i> Alumni Status & Network
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700">
+                                <i class="fa-solid fa-circle-check text-emerald-500"></i> Dedicated Placement Manager
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Scholarship Side -->
+                    <div class="p-10 lg:p-14 bg-jNavy text-white">
+                        <h3 class="text-2xl font-bold text-jGold mb-2">Scholarships Available</h3>
+                        <p class="text-slate-300 mb-8">We reward merit and experience.</p>
+
+                        <div class="space-y-6 mb-8">
+                            <div class="bg-white/10 p-4 rounded-xl border border-white/10">
+                                <h4 class="font-bold text-white mb-1">Merit-Based Scholarship</h4>
+                                <p class="text-sm text-slate-300">Up to 20% off for candidates with 75%+ in graduation.
+                                </p>
+                            </div>
+                            <div class="bg-white/10 p-4 rounded-xl border border-white/10">
+                                <h4 class="font-bold text-white mb-1">Corporate Discount</h4>
+                                <p class="text-sm text-slate-300">Special grants for professionals from partner
+                                    organizations.</p>
+                            </div>
+                        </div>
+
+                        <button
+                            class="w-full bg-jGold hover:bg-[#b8952d] text-jNavy font-bold py-4 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+                            Calculate Your Scholarship
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="bg-jMaroon text-white pt-16 pb-8 border-t border-red-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+
+                        <div class="flex flex-col">
+                            <img src="https://online.jaipuria.ac.in/wp-content/uploads/2022/10/Jaipuria_Institute_of_management_logo.png"
+                                class="w-[230px] bg-white p-2 rounded" alt="Jaipuria Logo">
+                        </div>
+                    </div>
+                    <p class="text-red-100/70 text-sm leading-relaxed mb-6">
+                        Empowering tomorrow's leaders through accessible, world-class online management education.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white">Quick Links</h4>
+                    <ul class="space-y-3 text-red-100/70">
+                        <li><a href="#" class="hover:text-jGold transition-colors">About the Institute</a></li>
+                        <li><a href="#" class="hover:text-jGold transition-colors">Curriculum</a></li>
+                        <li><a href="#" class="hover:text-jGold transition-colors">Faculty</a></li>
+                        <li><a href="#" class="hover:text-jGold transition-colors">Admissions Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white">Support</h4>
+                    <ul class="space-y-3 text-red-100/70">
+                        <li><a href="#" class="hover:text-jGold transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-jGold transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-jGold transition-colors">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-jGold transition-colors">Refund Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-white">Contact Us</h4>
+                    <ul class="space-y-4 text-red-100/70">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone mt-1 text-jGold"></i>
+                            <span>1800-102-9990 <br /><span class="text-xs text-red-200/50">(Toll-Free)</span></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope mt-1 text-jGold"></i>
+                            <span>online@jaipuria.ac.in</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div
+                class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-red-200/50">
+                <p>© 2026 Jaipuria Institute of Management. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <div
+                        class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-jGold hover:text-jNavy hover:border-jGold transition-colors cursor-pointer text-white">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </div>
+                    <div
+                        class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-jGold hover:text-jNavy hover:border-jGold transition-colors cursor-pointer text-white">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </div>
+                    <div
+                        class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-jGold hover:text-jNavy hover:border-jGold transition-colors cursor-pointer text-white">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Logic for interactions (Vanilla JS) -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-white', 'shadow-md', 'py-3');
+                header.classList.remove('bg-white/95', 'backdrop-blur-sm', 'py-5');
+            } else {
+                header.classList.add('bg-white/95', 'backdrop-blur-sm', 'py-5');
+                header.classList.remove('bg-white', 'shadow-md', 'py-3');
+            }
+        });
+
+        // Mobile Menu Toggle logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+                menuIcon.classList.replace('fa-bars', 'fa-xmark');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Form OTP logic
+        const leadForm = document.getElementById('lead-form');
+        const initialFields = document.getElementById('initial-fields');
+        const otpFields = document.getElementById('otp-fields');
+        const changeNumberBtn = document.getElementById('change-number-btn');
+
+        leadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            initialFields.classList.add('hidden');
+            otpFields.classList.remove('hidden');
+        });
+
+        changeNumberBtn.addEventListener('click', () => {
+            otpFields.classList.add('hidden');
+            initialFields.classList.remove('hidden');
+        });
+    </script>
+</body>
+
+</html>
