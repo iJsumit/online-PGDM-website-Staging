@@ -4,537 +4,1005 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jaipuria Online PGDM</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
+    <title>Online PGDM | Jaipuria Institute of Management</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Tailwind Config for Premium Theme -->
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Configuration for Custom Palette -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        jMaroon: '#573865',
-                        jNavy: '#002147',
-                        jGold: '#D4AF37'
-                    },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            purple: '#56236A',
+                            purple_light: '#70338A',
+                            gold: '#C9881E',
+                            gold_light: '#E5A53B',
+                            orange: '#FF9900',
+                            orange_hover: '#E68A00'
+                        }
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Smooth scroll */
+        /* Custom Styles for Drag-to-Scroll and Overrides */
         html {
             scroll-behavior: smooth;
         }
 
-        .bg-pattern {
-            background-image: radial-gradient(circle at top left, rgba(212, 175, 55, 0.1), transparent),
-                linear-gradient(to bottom right, #002147, #000c1a);
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .draggable-carousel {
+            cursor: grab;
+        }
+
+        .draggable-carousel:active {
+            cursor: grabbing;
+        }
+
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .table-borders td,
+        .table-borders th {
+            border: 1px solid #56236A;
+            padding: 12px;
+        }
+
+        /* Hero Slider Transitions */
+        .slide {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Masonry Grid */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
 
-<body class="bg-slate-50 font-sans text-slate-800 antialiased">
+<body class="font-sans text-gray-800 bg-gray-50 overflow-x-hidden">
 
-    <!-- 1. STICKY HEADER -->
-    <header id="main-header"
-        class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm py-5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <!-- Logo Area -->
-            <div class="flex items-center gap-2">
-                <div class="flex flex-col">
+    <!-- 1. Cluttered Header Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-[100] w-full border-b-4 border-brand-gold">
+        <div class="max-w-7xl mx-auto px-4 lg:px-2 flex justify-between items-center py-3">
+
+            <div class="flex-shrink-0 w-64">
+                <a href="/">
                     <img src="https://online.jaipuria.ac.in/wp-content/uploads/2022/10/Jaipuria_Institute_of_management_logo.png"
-                        class="w-[230px]" alt="Jaipuria Logo">
-                </div>
+                        alt="Jaipuria Logo" class="h-16 w-auto object-contain">
+                </a>
             </div>
 
-            <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
-                <a href="#about" class="hover:text-jMaroon transition-colors">About Us</a>
-                <div class="relative group cursor-pointer">
-                    <span class="hover:text-jMaroon transition-colors flex items-center gap-1">
-                        Programs <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
-                    </span>
-                </div>
-                <a href="#admissions" class="hover:text-jMaroon transition-colors">Admissions</a>
-                <a href="#placements" class="hover:text-jMaroon transition-colors">Placements</a>
+            <nav class="hidden xl:flex space-x-6 items-center text-lg font-bold text-brand-purple tracking-[0.5px]">
 
-                <button
-                    class="bg-jMaroon hover:bg-[#5a0e10] text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                <div class="relative group py-2">
+                    <button class="hover:text-brand-orange transition-colors flex items-center gap-1 outline-none">
+                        About <i class="fa-solid fa-chevron-down text-[10px] mt-1"></i>
+                    </button>
+                    <div
+                        class="absolute left-0 top-full w-48 pt-3 hidden group-hover:block transition-all duration-300">
+                        <div class="bg-white shadow-xl rounded border border-gray-100 overflow-hidden py-1">
+                            <a href="#about"
+                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange border-b border-gray-50">About
+                                Us</a>
+                            <a href="#faculty"
+                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange border-b border-gray-50">Faculty</a>
+                            <a href="#reviews"
+                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange">Reviews</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group py-2">
+                    <button class="hover:text-brand-orange transition-colors flex items-center gap-1 outline-none">
+                        Program <i class="fa-solid fa-chevron-down text-[10px] mt-1"></i>
+                    </button>
+                    <div
+                        class="absolute left-0 top-full w-56 pt-3 hidden group-hover:block transition-all duration-300">
+                        <div class="bg-white shadow-xl rounded border border-gray-100 overflow-hidden py-1">
+                            <a href="#why"
+                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange border-b border-gray-50">Why
+                                Online PGDM</a>
+                            <a href="#programs"
+                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange border-b border-gray-50">Course
+                                Preview</a>
+                            <a href="#curriculum"
+                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange">Curriculum</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#admissions" class="hover:text-brand-orange transition-colors">Admission</a>
+                <a href="#contact" class="hover:text-brand-orange transition-colors">Blog</a>
+
+                <a href="#apply"
+                    class="bg-brand-purple text-white px-6 py-2 rounded font-bold hover:bg-brand-purple_light transition-all border-2 border-brand-purple hover:scale-105 transform">
                     Apply Now
-                </button>
+                </a>
             </nav>
 
-            <!-- Mobile Menu Toggle -->
-            <button type="button" id="mobile-menu-btn" class="md:hidden text-jNavy text-2xl focus:outline-none"
-                aria-label="Open menu">
+            <button id="mobile-menu-btn" class="xl:hidden text-brand-purple text-2xl p-2 focus:outline-none"
+                aria-label="Toggle Menu">
                 <i class="fa-solid fa-bars" id="menu-icon"></i>
             </button>
         </div>
+
+        <div id="mobile-nav" class="hidden xl:hidden bg-white border-t border-gray-100 shadow-inner">
+            <div class="flex flex-col font-bold text-brand-purple">
+                <a href="#about" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">About Us</a>
+                <a href="#faculty" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">Faculty</a>
+                <a href="#programs" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">Programs</a>
+                <a href="#admissions" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">Admission</a>
+                <a href="#contact" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">Blog</a>
+                <div class="p-6">
+                    <a href="#apply"
+                        class="block text-center bg-brand-purple text-white py-3 rounded-lg shadow-md active:bg-brand-purple_dark">Apply
+                        Now</a>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-40 bg-white pt-24 px-6 hidden md:hidden">
-        <div class="flex flex-col gap-6 text-lg font-semibold text-jNavy">
-            <a href="#about" class="mobile-link">About Us</a>
-            <a href="#programs" class="mobile-link">Programs</a>
-            <a href="#admissions" class="mobile-link">Admissions</a>
-            <button class="bg-jMaroon text-white py-3 rounded-xl mt-4 w-full">Apply Now</button>
+    <!-- 2. Corrected Hero Section (Full-Width Slider) & Exhaustive Lead Form -->
+    <section class="relative w-full h-[850px] lg:h-[700px] overflow-hidden bg-brand-purple">
+        <div id="hero-slider" class="absolute inset-0 w-full h-full">
+            <div class="slide active absolute inset-0 w-full h-full">
+                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop"
+                    alt="Students in modern library" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-white/60"></div>
+            </div>
+            <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
+                    alt="Professionals in meeting" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-white/60"></div>
+            </div>
+            <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+                    alt="Collaborative corporate environment" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-white/60"></div>
+            </div>
         </div>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 h-full pt-10 lg:pt-0">
+            <div class="grid grid-cols-1 lg:grid-cols-2 h-full items-center">
+
+                <div class="text-center lg:text-left pt-10 lg:pt-0">
+                    <div
+                        class="inline-flex items-center px-4 py-1 bg-white shadow rounded-full mb-6 border border-gray-100 text-brand-purple">
+                        <img src="aicteLogo.webp" alt="AICTE Logo" class="w-12 h-auto mr-2">
+                        <span class="font-bold text-sm tracking-wide uppercase">AICTE Approved PGDM</span>
+                    </div>
+
+                    <h1 class="text-4xl lg:text-6xl font-extrabold leading-tight mb-6 text-brand-purple drop-shadow-sm">
+                        Elevate Your Career: <br>India’s <span
+                            class="bg-brand-orange text-white px-2 rounded">Premier</span> Online PGDM
+                    </h1>
+
+                    <p
+                        class="text-lg lg:text-xl font-semibold mb-12 leading-relaxed text-gray-700 max-w-2xl mx-auto lg:mx-0">
+                        Transform your career trajectory with our globally recognized, AICTE approved 24-Month Post
+                        Graduate Diploma. Design meticulously for working professionals like you.
+                    </p>
+
+                    <!-- <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-3xl">
+                        <div
+                            class="bg-brand-purple rounded-xl p-4 text-center text-white border-2 border-brand-purple hover:border-brand-gold transition-colors duration-300">
+                            <i class="fa-solid fa-business-time text-3xl text-brand-gold mb-3"></i>
+                            <p class="font-bold text-sm">Marketing</p>
+                        </div>
+                        <div
+                            class="bg-brand-purple rounded-xl p-4 text-center text-white border-2 border-brand-purple hover:border-brand-gold transition-colors duration-300">
+                            <i class="fa-solid fa-chart-pie text-3xl text-brand-gold mb-3"></i>
+                            <p class="font-bold text-sm">Human Resource</p>
+                        </div>
+                        <div
+                            class="bg-brand-purple rounded-xl p-4 text-center text-white border-2 border-brand-purple hover:border-brand-gold transition-colors duration-300">
+                            <i class="fa-solid fa-coins text-3xl text-brand-gold mb-3"></i>
+                            <p class="font-bold text-sm">Finance</p>
+                        </div>
+                        <div
+                            class="bg-brand-purple rounded-xl p-4 text-center text-white border-2 border-brand-purple hover:border-brand-gold transition-colors duration-300">
+                            <i class="fa-solid fa-people-arrows text-3xl text-brand-gold mb-3"></i>
+                            <p class="font-bold text-sm">Business Analytics</p>
+                        </div>
+                    </div> -->
+
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <button
+                            class="bg-brand-orange text-white px-8 py-3 rounded-full font-bold hover:bg-brand-orange_hover transition-colors text-lg shadow-md">
+                            Download Brochure
+                        </button>
+                        <button
+                            class="bg-white text-brand-purple px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors text-lg shadow-sm border border-gray-100">
+                            Explore Syllabus
+                        </button>
+                    </div>
+                </div>
+
+                <div class="h-full flex items-end justify-center lg:justify-end relative lg:ml-auto lg:max-w-xl">
+                    <div class="absolute inset-0 bg-grid-brand-purple/10 mask-image-linear-to-bottom"></div>
+
+                    <img src="heroGirl.png" alt="Jaipuria Student"
+                        class="relative z-10 w-auto h-[90%] lg:h-[95%] max-h-[700px] object-contain object-bottom">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative z-30 bg-white border-y border-gray-100 py-6">
+        <div class="max-w-7xl mx-auto px-4 flex flex-wrap gap-x-8 gap-y-4 justify-around items-center text-center">
+            <div class="flex items-center text-brand-purple">
+                <i class="fa-solid fa-clock text-4xl mr-3 text-brand-gold"></i>
+                <div>
+                    <p class="font-bold text-lg">24 Months</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Program Duration</p>
+                </div>
+            </div>
+            <div class="h-10 border-r border-gray-100 hidden md:block"></div>
+            <div class="flex items-center text-brand-purple">
+                <i class="fa-solid fa-handshake text-4xl mr-3 text-brand-gold"></i>
+                <div>
+                    <p class="font-bold text-lg">1000+</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Recruiting Partners</p>
+                </div>
+            </div>
+            <div class="h-10 border-r border-gray-100 hidden md:block"></div>
+            <div class="flex items-center text-brand-purple">
+                <i class="fa-solid fa-headset text-4xl mr-3 text-brand-gold"></i>
+                <div>
+                    <p class="font-bold text-lg">Live & Recorded</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Learning Mode</p>
+                </div>
+            </div>
+            <div class="h-10 border-r border-gray-100 hidden md:block"></div>
+            <div class="flex items-center text-brand-purple">
+                <i class="fa-solid fa-award text-4xl mr-3 text-brand-gold"></i>
+                <div>
+                    <p class="font-bold text-lg">AICTE Approved</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Global Recognition</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="fixed right-6 top-1/2 transform -translate-y-1/2 z-[999] space-y-3 hidden sm:block">
+        <a href="#"
+            class="block bg-brand-purple text-white p-3 rounded-full hover:bg-brand-orange transition-colors duration-300">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+        <a href="#"
+            class="block bg-brand-purple text-white p-3 rounded-full hover:bg-brand-orange transition-colors duration-300">
+            <i class="fa-solid fa-phone text-2xl"></i>
+        </a>
     </div>
 
-    <!-- Floating WhatsApp -->
-    <a href="#"
-        class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center text-3xl">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <div class="fixed bottom-6 right-6 z-[999] hidden md:block">
+        <button class="relative">
+            <img width="48" height="48" src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="whatsapp" />
+            <span class="absolute -top-1 -right-1 flex h-4 w-4">
+                <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-4 w-4 bg-brand-orange"></span>
+            </span>
+        </button>
+    </div>
 
-    <!-- 2. HERO SECTION -->
-    <section
-        class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-[url('hero.jpg')] bg-cover bg-center bg-no-repeat">
-        <div class="absolute inset-0 bg-black/80 z-0"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
+    <!-- 3. Trust & Accreditations Section (Grayscale to Color) -->
+    <section class="py-12 bg-white border-b border-gray-100 shadow-sm relative z-40">
+        <div class="max-w-7xl mx-auto px-4">
+                    <h2 class="text-3xl lg:text-5xl font-extrabold text-brand-purple mb-12 text-center">Why Online PGDM?</h2>
+            <div class="flex flex-wrap justify-center items-start gap-12 lg:gap-16">
 
-                <!-- Left Column - Copy -->
-                <div class="lg:col-span-7 space-y-6">
-                    <div
-                        class="inline-block bg-white/10 border border-white/20 text-jGold px-4 py-1.5 rounded-full text-sm font-bold tracking-wide backdrop-blur-sm">
-                        EQUIVALENT TO ON-CAMPUS PGDM
+                <div
+                    class="flex flex-col items-center gap-3 text-center group cursor-pointer hover:scale-105 transition-transform duration-300 max-w-[220px]">
+                    <div class="flex items-center gap-3">
+                        <div class="font-extrabold text-black leading-none">
+                            <span class="text-4xl lg:text-5xl">41</span><span
+                                class="text-xl align-top font-bold">st</span>
+                        </div>
+                        <img src="nirf.png" alt="NIRF Logo" class="h-12 w-auto object-contain">
                     </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-                        Accelerate Your Career with <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-jGold to-yellow-200">India's Top
-                            Online PGDM</span>
-                    </h1>
-                    <p class="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-                        Join Jaipuria Institute of Management's legacy. Flexible learning, world-class faculty, and
-                        assured placement support.
-                    </p>
-
-                    <div class="bg-white/5 border border-white/10 rounded-xl p-4 inline-flex items-center gap-4">
-                        <div class="w-2 h-2 rounded-full bg-jGold animate-pulse"></div>
-                        <p class="text-white font-medium">
-                            Secure <span class="text-jGold font-bold">20% Early Bird Grant</span> - Admissions Close
-                            <span class="font-bold underline decoration-jGold underline-offset-4">March 31st!</span>
-                        </p>
-                    </div>
-
-                    <div class="pt-4 flex flex-wrap gap-4">
-                        <button
-                            class="bg-white text-jNavy hover:bg-slate-100 px-8 py-3.5 rounded-full font-bold transition-all shadow-lg flex items-center gap-2">
-                            <i class="fa-solid fa-download"></i> Download Brochure
-                        </button>
+                    <div class="text-[11px] leading-relaxed text-gray-500">
+                        <p>Amongst all Management Institutes in India</p>
+                        <p>Ministry of Education, Govt. of India</p>
                     </div>
                 </div>
 
-                <!-- Right Column - Zero Junk Form -->
-                <div class="lg:col-span-5 relative">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-jMaroon to-jNavy rounded-2xl blur opacity-30">
+                <div
+                    class="flex flex-col items-center gap-3 text-center group cursor-pointer hover:scale-105 transition-transform duration-300">
+                    <img src="aicteLogo.webp" alt="AICTE Graded Autonomy Logo" class="h-16 w-auto object-contain">
+                    <div class="font-bold text-sm leading-tight text-black">
+                        <p>Graded Autonomy</p>
+                        <p>by <span class="text-black text-base">AICTE</span></p>
                     </div>
-                    <div
-                        class="relative bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl">
-                        <h3 class="text-2xl font-bold text-white mb-2">Start Your Journey</h3>
-                        <p class="text-slate-300 text-sm mb-6">Enter your details to access the application and
-                            brochure.</p>
+                </div>
 
-                        <form id="lead-form" class="space-y-4">
-                            <!-- Initial Fields -->
-                            <div id="initial-fields">
-                                <div class="mb-4">
-                                    <input type="text" required placeholder="Full Name"
-                                        class="w-full bg-white/5 border border-slate-500 text-white placeholder-slate-400 px-4 py-3 rounded-xl focus:outline-none focus:border-jGold focus:ring-1 focus:ring-jGold transition-colors" />
-                                </div>
-                                <div class="mb-4">
-                                    <input type="email" required placeholder="Email Address"
-                                        class="w-full bg-white/5 border border-slate-500 text-white placeholder-slate-400 px-4 py-3 rounded-xl focus:outline-none focus:border-jGold focus:ring-1 focus:ring-jGold transition-colors" />
-                                </div>
-                                <div class="flex gap-2 mb-4">
-                                    <div
-                                        class="w-1/4 bg-white/5 border border-slate-500 text-slate-300 px-4 py-3 rounded-xl flex items-center justify-center font-medium">
-                                        +91
-                                    </div>
-                                    <input type="tel" required placeholder="Mobile Number" pattern="[0-9]{10}"
-                                        class="w-3/4 bg-white/5 border border-slate-500 text-white placeholder-slate-400 px-4 py-3 rounded-xl focus:outline-none focus:border-jGold focus:ring-1 focus:ring-jGold transition-colors" />
-                                </div>
-                                <button type="submit"
-                                    class="w-full bg-jMaroon hover:bg-[#5a0e10] text-white font-bold py-3.5 rounded-xl transition-all shadow-lg mt-2 flex items-center justify-center gap-2">
-                                    Request OTP <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div>
-
-                            <!-- OTP Fields (Hidden by default) -->
-                            <div id="otp-fields" class="hidden">
-                                <div
-                                    class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 p-3 rounded-lg text-sm mb-4 flex items-center gap-2">
-                                    <i class="fa-solid fa-circle-check"></i> OTP sent successfully
-                                </div>
-                                <div>
-                                    <input type="text" required placeholder="Enter 6-digit OTP"
-                                        class="w-full bg-white/5 border border-slate-500 text-white placeholder-slate-400 px-4 py-3 rounded-xl focus:outline-none focus:border-jGold text-center tracking-widest text-lg font-mono" />
-                                </div>
-                                <button type="button"
-                                    class="w-full bg-jGold hover:bg-[#b8952d] text-jNavy font-bold py-3.5 rounded-xl transition-all shadow-lg mt-4">
-                                    Verify & Proceed
-                                </button>
-                                <button type="button" id="change-number-btn"
-                                    class="w-full text-slate-400 text-sm mt-3 hover:text-white transition-colors">
-                                    Change Mobile Number
-                                </button>
-                            </div>
-                        </form>
+                <div
+                    class="flex flex-col items-center gap-3 text-center group cursor-pointer hover:scale-105 transition-transform duration-300">
+                    <img src="naac.png" alt="NAAC Logo" class="h-16 w-auto object-contain">
+                    <div class="font-bold text-sm leading-tight text-black">
+                        <p>NAAC Accredited</p>
+                        <p>Institutes</p>
                     </div>
+                </div>
+
+                <div
+                    class="flex flex-col items-center group cursor-pointer hover:scale-105 transition-transform duration-300 self-center">
+                    <img src="aacsb.png" alt="AACSB Accredited Logo" class="h-14 w-auto object-contain">
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- 3. IMMEDIATE TRUST CLUSTER -->
-    <section class="bg-white py-6 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- 4. Placeholder Banners ('Why Online PGDM' and 'Admissions') -->
+    <section id="why" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 space-y-16">
+
+            <!-- Banner 1: Why Online PGDM -->
             <div
-                class="flex flex-wrap justify-center lg:justify-between items-center gap-8 opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
-                <div class="flex items-center gap-2 font-bold text-slate-800 text-lg">
-                    <i class="fa-solid fa-shield-halved text-2xl text-jNavy"></i> AICTE <span
-                        class="font-light text-slate-500">Approved</span>
+                class="flex flex-col lg:flex-row bg-white rounded-xl shadow-xl overflow-hidden border-l-8 border-brand-purple">
+                <div class="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center relative">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i class="fa-solid fa-quote-right text-6xl text-brand-purple"></i>
+                    </div>
+                    <h2 class="text-3xl lg:text-5xl font-extrabold text-brand-purple mb-6">Why Online PGDM?</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                        The modern corporate landscape demands agility and continuous upskilling. Our Online PGDM is
+                        structurally mapped to provide the rigor of a full-time management program combined with the
+                        flexibility of online learning.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-brand-orange mt-1 mr-3 text-xl"></i>
+                            <span class="text-gray-700 font-medium">Interactive Live Classes with seasoned academicians
+                                and industry stalwarts.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-brand-orange mt-1 mr-3 text-xl"></i>
+                            <span class="text-gray-700 font-medium">Robust Learning Management System (LMS) granting
+                                24/7 access to study materials.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-check-circle text-brand-orange mt-1 mr-3 text-xl"></i>
+                            <span class="text-gray-700 font-medium">Equivalence to MBA as per AIU guidelines, ensuring
+                                global recognition.</span>
+                        </li>
+                    </ul>
+                    <a href="#curriculum"
+                        class="inline-block w-max px-8 py-3 bg-brand-purple text-white font-bold rounded shadow hover:bg-brand-gold transition-colors">Explore
+                        Program Details</a>
                 </div>
-                <div class="flex items-center gap-2 font-bold text-slate-800 text-lg">
-                    <i class="fa-solid fa-graduation-cap text-2xl text-jNavy"></i> UGC-DEB <span
-                        class="font-light text-slate-500">Recognized</span>
+                <div class="lg:w-1/2 relative min-h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=1469&auto=format&fit=crop"
+                        alt="Generic Corporate Professional 1" class="absolute inset-0 w-full h-full object-cover">
+                    <!-- Generic Corporate Character Label Overlay -->
+                    <div
+                        class="absolute bottom-4 right-4 bg-brand-purple/90 text-brand-orange px-4 py-2 font-bold text-sm rounded backdrop-blur">
+                        Generic Corporate Professional 1
+                    </div>
                 </div>
-                <div class="flex items-center gap-2 font-bold text-slate-800 text-lg">
-                    <span class="bg-jNavy text-white px-2 py-1 rounded text-sm">NAAC</span> A+ <span
-                        class="font-light text-slate-500">Accredited</span>
+            </div>
+
+            <!-- Banner 2: Admissions Overview -->
+            <div
+                class="flex flex-col lg:flex-row-reverse bg-white rounded-xl shadow-xl overflow-hidden border-r-8 border-brand-orange">
+                <div class="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center">
+                    <h2 class="text-3xl lg:text-5xl font-extrabold text-brand-orange mb-6">Seamless Admissions</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                        We believe in a transparent, merit-based admission process. Our dedicated counselors are
+                        available to guide you through documentation, eligibility checks, and fee structuring. Begin
+                        your application completely online without stepping out of your home.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div
+                            class="bg-gray-50 p-4 border border-gray-200 rounded text-center border-b-4 border-b-brand-purple">
+                            <i class="fa-solid fa-laptop-file text-3xl text-brand-purple mb-2"></i>
+                            <h4 class="font-bold text-gray-800">100% Online</h4>
+                            <p class="text-sm text-gray-500">Digital Paperwork</p>
+                        </div>
+                        <div
+                            class="bg-gray-50 p-4 border border-gray-200 rounded text-center border-b-4 border-b-brand-gold">
+                            <i class="fa-solid fa-user-tie text-3xl text-brand-gold mb-2"></i>
+                            <h4 class="font-bold text-gray-800">Expert Guidance</h4>
+                            <p class="text-sm text-gray-500">1-on-1 Counseling</p>
+                        </div>
+                    </div>
+                    <a href="#apply"
+                        class="inline-block w-max px-8 py-3 bg-brand-orange text-white font-bold rounded shadow hover:bg-brand-purple transition-colors">Start
+                        Application Process</a>
                 </div>
-                <div class="flex items-center gap-2 font-bold text-slate-800 text-lg">
-                    <i class="fa-solid fa-file-contract text-2xl text-jNavy"></i> AIU <span
-                        class="font-light text-slate-500">Equivalence</span>
+                <div class="lg:w-1/2 relative min-h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1374&auto=format&fit=crop"
+                        alt="Generic Corporate Professional 2" class="absolute inset-0 w-full h-full object-cover">
+                    <!-- Generic Corporate Character Label Overlay -->
+                    <div
+                        class="absolute bottom-4 left-4 bg-brand-orange/90 text-brand-purple px-4 py-2 font-bold text-sm rounded backdrop-blur">
+                        Generic Corporate Professional 2
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 5. Comprehensive Curriculum Section (Detailed Nested Tables) -->
+    <section id="curriculum" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-5xl font-extrabold text-brand-purple mb-4">Comprehensive Curriculum
+                    Framework</h2>
+                <div class="w-24 h-1 bg-brand-gold mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Our rigorous academic structure ensures you build foundational strength in the first year, leading
+                    to specialized domain expertise in the second year. Below is the exhaustive structural breakdown of
+                    the PGDM syllabus.
+                </p>
+            </div>
+
+            <!-- Exhaustive Text Tables (No simple cards) -->
+            <div class="overflow-x-auto w-full shadow-lg rounded-lg border border-brand-purple">
+                <table class="w-full text-left border-collapse bg-white table-borders">
+                    <thead>
+                        <tr>
+                            <th class="bg-brand-purple text-white font-bold text-lg w-1/2 text-center py-4">Year 1: Core
+                                Foundation</th>
+                            <th class="bg-brand-gold text-brand-purple font-bold text-lg w-1/2 text-center py-4">Year 2:
+                                Specialization & Application</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- Semester 1 & 2 -->
+                            <td class="align-top p-0 border-r border-brand-purple">
+                                <div class="p-6">
+                                    <h4 class="font-bold text-brand-orange text-xl mb-4 border-b border-gray-200 pb-2">
+                                        Semester I</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-8">
+                                        <li>Management Principles & Organizational Behavior</li>
+                                        <li>Managerial Economics (Micro & Macro perspectives)</li>
+                                        <li>Accounting for Managers</li>
+                                        <li>Business Communication & Etiquette</li>
+                                        <li>Quantitative Techniques for Management</li>
+                                        <li>Marketing Management - I</li>
+                                        <li>IT for Business Managers</li>
+                                    </ul>
+
+                                    <h4 class="font-bold text-brand-orange text-xl mb-4 border-b border-gray-200 pb-2">
+                                        Semester II</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                        <li>Human Resource Management</li>
+                                        <li>Financial Management</li>
+                                        <li>Marketing Management - II</li>
+                                        <li>Operations & Supply Chain Management</li>
+                                        <li>Business Research Methods</li>
+                                        <li>Legal Aspects of Business</li>
+                                        <li>Design Thinking & Innovation</li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <!-- Semester 3 & 4 -->
+                            <td class="align-top p-0">
+                                <div class="p-6">
+                                    <h4 class="font-bold text-brand-orange text-xl mb-4 border-b border-gray-200 pb-2">
+                                        Semester III (Specialization Core)</h4>
+                                    <p class="text-sm text-brand-purple font-semibold mb-2">Students choose Major &
+                                        Minor electives from: Marketing, Finance, HR, Operations, Business Analytics.
+                                    </p>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-8">
+                                        <li>Strategic Management</li>
+                                        <li>Elective Course 1 (Major)</li>
+                                        <li>Elective Course 2 (Major)</li>
+                                        <li>Elective Course 3 (Major)</li>
+                                        <li>Elective Course 1 (Minor)</li>
+                                        <li>Elective Course 2 (Minor)</li>
+                                        <li>Summer Internship Project (SIP) Evaluation</li>
+                                    </ul>
+
+                                    <h4 class="font-bold text-brand-orange text-xl mb-4 border-b border-gray-200 pb-2">
+                                        Semester IV (Integration)</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                        <li>Corporate Governance & Business Ethics</li>
+                                        <li>Entrepreneurship & New Venture Creation</li>
+                                        <li>Elective Course 4 (Major)</li>
+                                        <li>Elective Course 5 (Major)</li>
+                                        <li>Elective Course 3 (Minor)</li>
+                                        <li>Comprehensive Research Project / Dissertation</li>
+                                        <li>Capstone Simulation</li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Placements Section (Data Points & Infinite Logo Carousel) -->
+    <section class="py-20 bg-gray-900 text-white overflow-hidden relative border-t-8 border-brand-gold">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-purple rounded-full blur-3xl opacity-30 -mr-20 -mt-20">
+        </div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-brand-orange rounded-full blur-3xl opacity-20 -ml-20 -mb-20">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-5xl font-extrabold text-white mb-4">Stellar Placement Records</h2>
+                <div class="w-24 h-1 bg-brand-orange mx-auto mb-6"></div>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Our robust corporate relations team ensures unparalleled placement assistance. Join a network that
+                    leads to top-tier organizations globally.
+                </p>
+            </div>
+
+            <!-- Specific Data Points Placeholders -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div
+                    class="bg-gray-800 border border-gray-700 p-8 rounded-lg text-center transform hover:-translate-y-2 transition-transform shadow-2xl">
+                    <i class="fa-solid fa-chart-line text-4xl text-brand-orange mb-4"></i>
+                    <h3 class="text-5xl font-extrabold text-white mb-2">22 <span
+                            class="text-2xl text-brand-gold">LPA</span></h3>
+                    <p class="text-gray-400 font-medium uppercase tracking-wider text-sm">Highest Domestic CTC</p>
+                </div>
+                <div
+                    class="bg-brand-purple border border-brand-purple_light p-8 rounded-lg text-center transform hover:-translate-y-2 transition-transform shadow-2xl scale-105 z-10">
+                    <i class="fa-solid fa-handshake-angle text-4xl text-brand-gold mb-4"></i>
+                    <h3 class="text-5xl font-extrabold text-white mb-2">100<span
+                            class="text-2xl text-brand-gold">%</span></h3>
+                    <p class="text-gray-200 font-medium uppercase tracking-wider text-sm">Placement Assistance</p>
+                </div>
+                <div
+                    class="bg-gray-800 border border-gray-700 p-8 rounded-lg text-center transform hover:-translate-y-2 transition-transform shadow-2xl">
+                    <i class="fa-solid fa-scale-balanced text-4xl text-brand-orange mb-4"></i>
+                    <h3 class="text-5xl font-extrabold text-white mb-2">11.4 <span
+                            class="text-2xl text-brand-gold">LPA</span></h3>
+                    <p class="text-gray-400 font-medium uppercase tracking-wider text-sm">Average CTC</p>
+                </div>
+            </div>
+
+            <!-- Continuous Scrolling Horizontal Infinite Recruiter Logo Carousel -->
+            <h4 class="text-center text-gray-400 text-sm font-bold tracking-widest uppercase mb-6">Our Marquee
+                Recruiters</h4>
+            <div class="w-full overflow-hidden bg-white/10 backdrop-blur-sm py-6 rounded border border-white/20">
+                <div class="flex whitespace-nowrap animate-marquee items-center">
+                    <!-- Carousel Group 1 -->
+                    <div class="flex space-x-12 px-6 items-center">
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fab fa-amazon text-brand-orange mr-2"></i>Amazon</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fa-solid fa-building text-brand-gold mr-2"></i>Deloitte</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fab fa-google text-blue-400 mr-2"></i>Google</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fab fa-microsoft text-blue-300 mr-2"></i>Microsoft</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fa-solid fa-landmark text-brand-purple_light mr-2"></i>HDFC Bank</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fa-solid fa-briefcase text-gray-400 mr-2"></i>KPMG</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fab fa-salesforce text-blue-500 mr-2"></i>Salesforce</span>
+                    </div>
+                    <!-- Carousel Group 2 (Duplicate for infinite effect) -->
+                    <div class="flex space-x-12 px-6 items-center">
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fab fa-amazon text-brand-orange mr-2"></i>Amazon</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fa-solid fa-building text-brand-gold mr-2"></i>Deloitte</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fab fa-google text-blue-400 mr-2"></i>Google</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fab fa-microsoft text-blue-300 mr-2"></i>Microsoft</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fa-solid fa-landmark text-brand-purple_light mr-2"></i>HDFC Bank</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fa-solid fa-briefcase text-gray-400 mr-2"></i>KPMG</span>
+                        <span class="text-2xl font-bold text-gray-300 mx-4"><i
+                                class="fab fa-salesforce text-blue-500 mr-2"></i>Salesforce</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. SPECIALISATION GRID -->
-    <section class="py-24 bg-slate-50" id="programs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-jNavy mb-4">Master Your Niche</h2>
-                <p class="text-slate-600 text-lg">Choose from 6 industry-aligned specialisations designed to make you
-                    functional-ready from day one.</p>
+    <!-- 7. Detailed Redundant Fee Section (Instance 1) -->
+    <section class="py-16 bg-gray-50 border-b border-gray-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-brand-purple mb-4">Program Fee Structure & Payment
+                    Plans</h2>
+                <p class="text-gray-600">Exhaustive breakdown of fees for Regular and Special Categories
+                    (Defense/Alumni).</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="overflow-x-auto shadow-md rounded border border-brand-gold bg-white">
+                <table class="w-full text-left table-borders border-collapse">
+                    <thead>
+                        <tr class="bg-brand-purple text-white">
+                            <th class="py-3 px-4 w-1/4">Category</th>
+                            <th class="py-3 px-4 w-1/4">Payment Plan</th>
+                            <th class="py-3 px-4 w-1/4">Fee Amount (INR)</th>
+                            <th class="py-3 px-4 w-1/4">Timeline</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 text-sm">
+                        <!-- Regular Category -->
+                        <tr class="bg-gray-50">
+                            <td rowspan="3"
+                                class="font-bold text-brand-purple border-b border-gray-300 align-middle text-center">
+                                Regular Indian Candidates</td>
+                            <td class="border-b border-gray-300 font-semibold">One-Time Payment</td>
+                            <td class="border-b border-gray-300 text-brand-orange font-bold">₹ 1,50,000/-</td>
+                            <td class="border-b border-gray-300">At the time of admission</td>
+                        </tr>
+                        <tr>
+                            <td class="border-b border-gray-300 font-semibold">Yearly Payment (2 Installments)</td>
+                            <td class="border-b border-gray-300">₹ 80,000/- per year<br><span
+                                    class="text-xs text-gray-500">(Total: ₹ 1,60,000/-)</span></td>
+                            <td class="border-b border-gray-300">Start of Year 1 & Year 2</td>
+                        </tr>
+                        <tr>
+                            <td class="border-b border-brand-purple font-semibold">Four-Time Payment (Semester wise)
+                            </td>
+                            <td class="border-b border-brand-purple">₹ 42,500/- per sem<br><span
+                                    class="text-xs text-gray-500">(Total: ₹ 1,70,000/-)</span></td>
+                            <td class="border-b border-brand-purple">Before start of each semester</td>
+                        </tr>
 
-                <div
-                    class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-[#800000] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10 group-hover:bg-[#800000]/5 transition-colors duration-300">
-                    </div>
-                    <div
-                        class="w-14 h-14 bg-slate-100 text-[#800000] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#800000] group-hover:text-white transition-colors duration-300 shadow-sm">
-                        <i class="fa-solid fa-briefcase text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-3">Finance</h3>
-                    <p class="text-slate-600 mb-6 line-clamp-2">Master corporate finance, wealth management, and
-                        fin-tech integrations.</p>
-                    <div class="flex items-center text-[#800000] font-semibold group-hover:gap-2 transition-all">
-                        Learn More <i
-                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
+                        <!-- Special Category -->
+                        <tr class="bg-brand-gold/10">
+                            <td rowspan="3"
+                                class="font-bold text-brand-purple border-b border-gray-300 align-middle text-center">
+                                Special Category (Defense/Alumni/Corporate Sponsored)</td>
+                            <td class="border-b border-gray-300 font-semibold">One-Time Payment</td>
+                            <td class="border-b border-gray-300 text-brand-orange font-bold">₹ 1,25,000/-</td>
+                            <td class="border-b border-gray-300">At the time of admission</td>
+                        </tr>
+                        <tr class="bg-brand-gold/10">
+                            <td class="border-b border-gray-300 font-semibold">Yearly Payment (2 Installments)</td>
+                            <td class="border-b border-gray-300">₹ 67,500/- per year<br><span
+                                    class="text-xs text-gray-500">(Total: ₹ 1,35,000/-)</span></td>
+                            <td class="border-b border-gray-300">Start of Year 1 & Year 2</td>
+                        </tr>
+                        <tr class="bg-brand-gold/10">
+                            <td class="font-semibold">Four-Time Payment (Semester wise)</td>
+                            <td>₹ 36,250/- per sem<br><span class="text-xs text-gray-500">(Total: ₹ 1,45,000/-)</span>
+                            </td>
+                            <td>Before start of each semester</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="p-4 bg-gray-100 text-xs text-gray-600 border-t border-brand-purple">
+                    * Note: Application form fee of ₹ 1,000/- is non-refundable. Examination fee of ₹ 2,000/- per
+                    semester is charged extra.
                 </div>
-
-                <div
-                    class="bg-slate-900 rounded-2xl p-8 shadow-lg border-t-4 border-yellow-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 group-hover:bg-yellow-500/10 transition-colors duration-300">
-                    </div>
-                    <div
-                        class="w-14 h-14 bg-white/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-yellow-500 group-hover:text-slate-900 transition-colors duration-300">
-                        <i class="fa-solid fa-chart-pie text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Marketing</h3>
-                    <p class="text-slate-300 mb-6 line-clamp-2">Drive growth with consumer behavior insights and brand
-                        management strategies.</p>
-                    <div class="flex items-center text-yellow-400 font-semibold group-hover:gap-2 transition-all">
-                        Learn More <i
-                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-[#800000] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10 group-hover:bg-[#800000]/5 transition-colors duration-300">
-                    </div>
-                    <div
-                        class="w-14 h-14 bg-slate-100 text-[#800000] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#800000] group-hover:text-white transition-colors duration-300 shadow-sm">
-                        <i class="fa-solid fa-users text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-3">Human Resources</h3>
-                    <p class="text-slate-600 mb-6 line-clamp-2">Lead organizational change and manage modern, diverse
-                        workforces effectively.</p>
-                    <div class="flex items-center text-[#800000] font-semibold group-hover:gap-2 transition-all">
-                        Learn More <i
-                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-slate-900 rounded-2xl p-8 shadow-lg border-t-4 border-yellow-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 group-hover:bg-yellow-500/10 transition-colors duration-300">
-                    </div>
-                    <div
-                        class="w-14 h-14 bg-white/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-yellow-500 group-hover:text-slate-900 transition-colors duration-300">
-                        <i class="fa-solid fa-chart-line text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Business Analytics</h3>
-                    <p class="text-slate-300 mb-6 line-clamp-2">Turn raw data into strategic decisions using AI and
-                        machine learning tools.</p>
-                    <div class="flex items-center text-yellow-400 font-semibold group-hover:gap-2 transition-all">
-                        Learn More <i
-                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-white rounded-2xl p-8 shadow-sm border-t-4 border-[#800000] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10 group-hover:bg-[#800000]/5 transition-colors duration-300">
-                    </div>
-                    <div
-                        class="w-14 h-14 bg-slate-100 text-[#800000] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#800000] group-hover:text-white transition-colors duration-300 shadow-sm">
-                        <i class="fa-solid fa-cogs text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-3">Operations</h3>
-                    <p class="text-slate-600 mb-6 line-clamp-2">Optimize supply chains and streamline business processes
-                        for maximum efficiency.</p>
-                    <div class="flex items-center text-[#800000] font-semibold group-hover:gap-2 transition-all">
-                        Learn More <i
-                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="bg-slate-900 rounded-2xl p-8 shadow-lg border-t-4 border-yellow-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-300 group cursor-pointer relative overflow-hidden">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full -z-10 group-hover:bg-yellow-500/10 transition-colors duration-300">
-                    </div>
-                    <div
-                        class="w-14 h-14 bg-white/10 text-yellow-400 rounded-xl flex items-center justify-center mb-6 group-hover:bg-yellow-500 group-hover:text-slate-900 transition-colors duration-300">
-                        <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Digital Marketing</h3>
-                    <p class="text-slate-300 mb-6 line-clamp-2">Dominate the online space with advanced SEO, performance
-                        marketing, and social strategies.</p>
-                    <div class="flex items-center text-yellow-400 font-semibold group-hover:gap-2 transition-all">
-                        Learn More <i
-                            class="fa-solid fa-chevron-right text-sm ml-1 opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 5. PLACEMENT PROOF -->
-    <section class="py-24 bg-jNavy text-white overflow-hidden" id="placements">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
+    <!-- 8. Scholarship Details Section (Accordion Structure) -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-extrabold text-brand-purple mb-8 text-center">Scholarship Offerings</h2>
 
-                <!-- Left: Stats -->
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Proven Career Progression</h2>
-                    <p class="text-slate-300 mb-10 text-lg">Our dedicated career services cell ensures you connect with
-                        the top recruiters in the industry.</p>
-
-                    <div class="grid grid-cols-2 gap-8">
-                        <div class="border-l-4 border-jGold pl-6">
-                            <div class="text-4xl lg:text-5xl font-extrabold text-jGold mb-2">22<span
-                                    class="text-2xl">LPA</span></div>
-                            <div class="text-slate-300 font-medium">Highest Package</div>
-                        </div>
-                        <div class="border-l-4 border-jGold pl-6">
-                            <div class="text-4xl lg:text-5xl font-extrabold text-jGold mb-2">350<span
-                                    class="text-2xl">+</span></div>
-                            <div class="text-slate-300 font-medium">Recruiting Partners</div>
-                        </div>
-                        <div class="border-l-4 border-jGold pl-6">
-                            <div class="text-4xl lg:text-5xl font-extrabold text-jGold mb-2">98<span
-                                    class="text-2xl">%</span></div>
-                            <div class="text-slate-300 font-medium">Placement Assistance</div>
-                        </div>
-                        <div class="border-l-4 border-jGold pl-6">
-                            <div class="text-4xl lg:text-5xl font-extrabold text-jGold mb-2">11<span
-                                    class="text-2xl">LPA</span></div>
-                            <div class="text-slate-300 font-medium">Average Package</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Marquee & Testimonials -->
-                <div class="space-y-8">
-                    <!-- Marquee -->
-                    <div class="bg-white/5 rounded-2xl p-8 backdrop-blur-sm border border-white/10">
-                        <h4 class="text-center text-slate-400 font-semibold mb-6 tracking-widest text-sm uppercase">
-                            Marquee Recruiters</h4>
-                        <div class="flex flex-wrap justify-center gap-8 opacity-70">
-                            <span class="text-2xl font-bold font-serif">Amazon</span>
-                            <span class="text-2xl font-bold tracking-tighter">Deloitte.</span>
-                            <span class="text-2xl font-bold text-blue-400">HDFC BANK</span>
-                            <span class="text-2xl font-bold font-sans">Google</span>
-                            <span class="text-2xl font-bold italic">KPMG</span>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial -->
-                    <div class="bg-[#7A1315] rounded-2xl p-8 shadow-2xl relative border border-white/5">
-                        <div class="text-jGold text-6xl font-serif absolute top-4 left-6 opacity-40">"</div>
-                        <p class="text-lg italic relative z-10 mb-6 pt-4">
-                            "The online PGDM gave me the flexibility to upskill while working. The curriculum is
-                            rigorous, and the placement support helped me transition to a senior role at a Big 4 firm
-                            seamlessly."
-                        </p>
-                        <div class="flex items-center gap-4">
-                            <div
-                                class="w-12 h-12 bg-slate-300 rounded-full flex items-center justify-center text-jNavy font-bold text-xl">
-                                R</div>
-                            <div>
-                                <div class="font-bold">Rahul Sharma</div>
-                                <div class="text-sm text-jGold">Senior Consultant, Deloitte</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. ADMISSION PROCESS -->
-    <section class="py-24 bg-white" id="admissions">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-jNavy mb-16">Simple 5-Step Admission Process</h2>
-
-            <div class="flex flex-col md:flex-row justify-between items-center relative gap-8 md:gap-0">
-                <!-- Connecting Line (Desktop) -->
-                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-100 -z-10 -translate-y-1/2">
-                </div>
-
-                <!-- Step 1 -->
-                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
-                    <div
-                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-mouse-pointer text-xl"></i>
-                    </div>
-                    <div class="absolute top-0 right-0 md:hidden w-1 h-full bg-slate-100 -z-10"></div>
-                    <h4 class="font-bold text-slate-800 text-lg">1. Apply Online</h4>
-                    <p class="text-slate-500 text-sm mt-1">Fill basic details</p>
-                </div>
-                <!-- Step 2 -->
-                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
-                    <div
-                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-mobile-button text-xl"></i>
-                    </div>
-                    <div class="absolute top-0 right-0 md:hidden w-1 h-full bg-slate-100 -z-10"></div>
-                    <h4 class="font-bold text-slate-800 text-lg">2. OTP Verify</h4>
-                    <p class="text-slate-500 text-sm mt-1">Secure your account</p>
-                </div>
-                <!-- Step 3 -->
-                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
-                    <div
-                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-file-arrow-up text-xl"></i>
-                    </div>
-                    <div class="absolute top-0 right-0 md:hidden w-1 h-full bg-slate-100 -z-10"></div>
-                    <h4 class="font-bold text-slate-800 text-lg">3. Submit Docs</h4>
-                    <p class="text-slate-500 text-sm mt-1">Upload marksheets</p>
-                </div>
-                <!-- Step 4 -->
-                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
-                    <div
-                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-magnifying-glass-chart text-xl"></i>
-                    </div>
-                    <div class="absolute top-0 right-0 md:hidden w-1 h-full bg-slate-100 -z-10"></div>
-                    <h4 class="font-bold text-slate-800 text-lg">4. Profile Review</h4>
-                    <p class="text-slate-500 text-sm mt-1">Academic evaluation</p>
-                </div>
-                <!-- Step 5 -->
-                <div class="bg-white relative z-10 flex flex-col items-center group w-full md:w-48">
-                    <div
-                        class="w-16 h-16 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center text-jNavy mb-4 group-hover:bg-jMaroon group-hover:text-white transition-all duration-300">
-                        <i class="fa-solid fa-envelope-open-text text-xl"></i>
-                    </div>
-                    <h4 class="font-bold text-slate-800 text-lg">5. Offer Letter</h4>
-                    <p class="text-slate-500 text-sm mt-1">Welcome to Jaipuria</p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. FEES & SCHOLARSHIP -->
-    <section class="py-24 bg-slate-50">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
-                <div class="grid md:grid-cols-2">
-
-                    <!-- Fee Side -->
-                    <div class="p-10 lg:p-14 bg-white">
-                        <h3 class="text-2xl font-bold text-jNavy mb-2">Program Investment</h3>
-                        <p class="text-slate-500 mb-8">Transparent pricing with no hidden costs.</p>
-
-                        <div class="text-5xl font-extrabold text-slate-800 mb-2">
-                            ₹1,50,000 <span class="text-lg font-medium text-slate-400">/ Total</span>
-                        </div>
-                        <p class="text-sm text-slate-500 mb-8">Flexible EMI options starting at ₹6,250/month</p>
-
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fa-solid fa-circle-check text-emerald-500"></i> 24 Months Duration
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fa-solid fa-circle-check text-emerald-500"></i> Live Interactive Sessions
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fa-solid fa-circle-check text-emerald-500"></i> Alumni Status & Network
-                            </li>
-                            <li class="flex items-center gap-3 text-slate-700">
-                                <i class="fa-solid fa-circle-check text-emerald-500"></i> Dedicated Placement Manager
-                            </li>
+            <div class="space-y-4">
+                <!-- Accordion 1 -->
+                <details class="group border border-gray-300 rounded-lg overflow-hidden bg-gray-50" open>
+                    <summary
+                        class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-gray-800 hover:bg-brand-purple/5 transition-colors">
+                        <span>Merit-Based Scholarship (Based on Graduation %)</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-brand-orange"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-5 pt-0 border-t border-gray-200">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>85% and above in Graduation:</strong> 15% Waiver on Tuition Fee</li>
+                            <li><strong>75% to 84.99% in Graduation:</strong> 10% Waiver on Tuition Fee</li>
+                            <li><strong>65% to 74.99% in Graduation:</strong> 5% Waiver on Tuition Fee</li>
                         </ul>
+                        <p class="text-xs text-gray-500 mt-2">*Valid only for standard recognized university degrees.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- Accordion 2 -->
+                <details class="group border border-gray-300 rounded-lg overflow-hidden bg-gray-50">
+                    <summary
+                        class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-gray-800 hover:bg-brand-purple/5 transition-colors">
+                        <span>Sibling / Alumni Scholarship</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-brand-orange"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-5 pt-0 border-t border-gray-200">
+                        <p>A flat 10% fee waiver is applicable for siblings of current students or alumni of any
+                            Jaipuria Institute of Management campus (Lucknow, Noida, Jaipur, Indore).</p>
+                    </div>
+                </details>
+
+                <!-- Accordion 3 -->
+                <details class="group border border-gray-300 rounded-lg overflow-hidden bg-gray-50">
+                    <summary
+                        class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-gray-800 hover:bg-brand-purple/5 transition-colors">
+                        <span>Corporate Tie-up Discounts</span>
+                        <span class="transition group-open:rotate-180">
+                            <i class="fa-solid fa-chevron-down text-brand-orange"></i>
+                        </span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn p-5 pt-0 border-t border-gray-200">
+                        <p>Employees from our partnered corporate organizations (e.g., HDFC, Amazon, TCS) are eligible
+                            for a special 20% corporate discount on the total program fee upon producing a valid
+                            employment certificate or corporate ID.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Faculty Section (Draggable Horizontal Profile Card Carousel) -->
+    <section id="faculty" class="py-20 bg-brand-purple text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl lg:text-5xl font-extrabold mb-4 text-center">Eminent Faculty</h2>
+            <div class="w-24 h-1 bg-brand-orange mx-auto mb-10"></div>
+
+            <!-- Draggable Carousel Container -->
+            <div id="faculty-carousel"
+                class="flex space-x-6 overflow-x-auto pb-8 pt-4 hide-scrollbar draggable-carousel snap-x snap-mandatory">
+
+                <!-- Faculty Card 1 -->
+                <div
+                    class="min-w-[300px] bg-white text-gray-800 rounded-xl overflow-hidden shadow-xl snap-center shrink-0 border-b-4 border-brand-orange select-none">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Prof. Amit Sharma"
+                        class="w-full h-64 object-cover object-top pointer-events-none">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-brand-purple">Dr. Amit Sharma</h3>
+                        <p class="text-sm font-semibold text-brand-gold mb-2">Professor & Dean</p>
+                        <p class="text-gray-600 text-sm">Domain: Finance & Strategy</p>
+                    </div>
+                </div>
+
+                <!-- Faculty Card 2 -->
+                <div
+                    class="min-w-[300px] bg-white text-gray-800 rounded-xl overflow-hidden shadow-xl snap-center shrink-0 border-b-4 border-brand-orange select-none">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Neha Gupta"
+                        class="w-full h-64 object-cover object-top pointer-events-none">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-brand-purple">Dr. Neha Gupta</h3>
+                        <p class="text-sm font-semibold text-brand-gold mb-2">Associate Professor</p>
+                        <p class="text-gray-600 text-sm">Domain: Marketing Analytics</p>
+                    </div>
+                </div>
+
+                <!-- Faculty Card 3 -->
+                <div
+                    class="min-w-[300px] bg-white text-gray-800 rounded-xl overflow-hidden shadow-xl snap-center shrink-0 border-b-4 border-brand-orange select-none">
+                    <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Prof. R.K. Singh"
+                        class="w-full h-64 object-cover object-top pointer-events-none">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-brand-purple">Prof. R.K. Singh</h3>
+                        <p class="text-sm font-semibold text-brand-gold mb-2">Senior Faculty</p>
+                        <p class="text-gray-600 text-sm">Domain: Operations Management</p>
+                    </div>
+                </div>
+
+                <!-- Faculty Card 4 -->
+                <div
+                    class="min-w-[300px] bg-white text-gray-800 rounded-xl overflow-hidden shadow-xl snap-center shrink-0 border-b-4 border-brand-orange select-none">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dr. Priya Desai"
+                        class="w-full h-64 object-cover object-top pointer-events-none">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-brand-purple">Dr. Priya Desai</h3>
+                        <p class="text-sm font-semibold text-brand-gold mb-2">Assistant Professor</p>
+                        <p class="text-gray-600 text-sm">Domain: Human Resources</p>
+                    </div>
+                </div>
+
+                <!-- Faculty Card 5 -->
+                <div
+                    class="min-w-[300px] bg-white text-gray-800 rounded-xl overflow-hidden shadow-xl snap-center shrink-0 border-b-4 border-brand-orange select-none">
+                    <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Dr. Vikram Malhotra"
+                        class="w-full h-64 object-cover object-top pointer-events-none">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-brand-purple">Dr. V. Malhotra</h3>
+                        <p class="text-sm font-semibold text-brand-gold mb-2">Professor</p>
+                        <p class="text-gray-600 text-sm">Domain: IT & Business Analytics</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-sm text-brand-gold mt-4"><i class="fa-solid fa-arrows-left-right mr-2"></i>Drag
+                to explore more faculty profiles</p>
+        </div>
+    </section>
+
+    <!-- 10. Testimonials Masonry Grid -->
+    <section id="reviews" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl lg:text-5xl font-extrabold text-brand-purple mb-4 text-center">Student Experiences</h2>
+            <div class="w-24 h-1 bg-brand-gold mx-auto mb-12"></div>
+
+            <div class="masonry-grid">
+                <!-- Testimonial 1 -->
+                <div class="masonry-item bg-white p-6 rounded-lg shadow-md border border-gray-100 relative">
+                    <i class="fa-solid fa-quote-left text-4xl text-brand-orange opacity-20 absolute top-4 left-4"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10 pt-4">"The online PGDM allowed me to continue my
+                        full-time job at an IT firm while upgrading my management skills. The curriculum is highly
+                        relevant and the live sessions are extremely interactive."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Rahul T."
+                            class="w-12 h-12 rounded-full mr-4 border-2 border-brand-purple">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Rahul T.</h4>
+                            <p class="text-xs text-brand-gold font-semibold">Business Analyst, TCS</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                    class="masonry-item bg-white p-6 rounded-lg shadow-md border border-gray-100 relative bg-brand-purple text-white">
+                    <i class="fa-solid fa-quote-left text-4xl text-brand-gold opacity-20 absolute top-4 left-4"></i>
+                    <p class="text-gray-200 italic mb-6 relative z-10 pt-4">"Transitioning from an engineering
+                        background to management was seamless thanks to the structured foundation courses in Year 1. The
+                        placement assistance provided at the end was the cherry on top. I secured a 40% hike."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Sneha M."
+                            class="w-12 h-12 rounded-full mr-4 border-2 border-brand-orange">
+                        <div>
+                            <h4 class="font-bold text-white">Sneha M.</h4>
+                            <p class="text-xs text-brand-gold font-semibold">Product Manager, Amazon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="masonry-item bg-white p-6 rounded-lg shadow-md border border-gray-100 relative">
+                    <i class="fa-solid fa-quote-left text-4xl text-brand-orange opacity-20 absolute top-4 left-4"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10 pt-4">"The LMS is fantastic. Being a working
+                        mother, I often relied on recorded lectures. The support from faculty to clear doubts via
+                        weekend doubt-clearing sessions made all the difference."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/79.jpg" alt="Kavita R."
+                            class="w-12 h-12 rounded-full mr-4 border-2 border-brand-purple">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Kavita R.</h4>
+                            <p class="text-xs text-brand-gold font-semibold">HR Executive</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="masonry-item bg-white p-6 rounded-lg shadow-md border border-gray-100 relative">
+                    <i class="fa-solid fa-quote-left text-4xl text-brand-orange opacity-20 absolute top-4 left-4"></i>
+                    <p class="text-gray-600 italic mb-6 relative z-10 pt-4">"I highly recommend the Jaipuria Online PGDM
+                        program. The brand value attached to the name opens a lot of doors, and the alumni network is
+                        highly responsive and helpful."</p>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Vikash S."
+                            class="w-12 h-12 rounded-full mr-4 border-2 border-brand-purple">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Vikash S.</h4>
+                            <p class="text-xs text-brand-gold font-semibold">Entrepreneur</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Admission Process Section (Visual Horizontal Connected Timeline) -->
+    <section id="admissions" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl lg:text-5xl font-extrabold text-brand-purple mb-16 text-center">Simple 4-Step Admission
+                Process</h2>
+
+            <div class="relative">
+                <!-- Connecting Line for Desktop -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0"></div>
+                <div class="hidden md:block absolute top-1/2 left-0 w-3/4 h-1 bg-brand-orange -translate-y-1/2 z-0">
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between relative z-10 space-y-10 md:space-y-0">
+
+                    <!-- Step 1 -->
+                    <div class="flex flex-col items-center text-center w-full md:w-1/4 px-4">
+                        <div
+                            class="w-20 h-20 rounded-full bg-brand-purple text-white flex items-center justify-center text-3xl font-bold shadow-lg border-4 border-white mb-4">
+                            1
+                        </div>
+                        <h4 class="font-bold text-gray-800 text-lg mb-2">Submit Application</h4>
+                        <p class="text-sm text-gray-500">Fill the online application form and pay the non-refundable
+                            registration fee of ₹ 1,000.</p>
                     </div>
 
-                    <!-- Scholarship Side -->
-                    <div class="p-10 lg:p-14 bg-jNavy text-white">
-                        <h3 class="text-2xl font-bold text-jGold mb-2">Scholarships Available</h3>
-                        <p class="text-slate-300 mb-8">We reward merit and experience.</p>
-
-                        <div class="space-y-6 mb-8">
-                            <div class="bg-white/10 p-4 rounded-xl border border-white/10">
-                                <h4 class="font-bold text-white mb-1">Merit-Based Scholarship</h4>
-                                <p class="text-sm text-slate-300">Up to 20% off for candidates with 75%+ in graduation.
-                                </p>
-                            </div>
-                            <div class="bg-white/10 p-4 rounded-xl border border-white/10">
-                                <h4 class="font-bold text-white mb-1">Corporate Discount</h4>
-                                <p class="text-sm text-slate-300">Special grants for professionals from partner
-                                    organizations.</p>
-                            </div>
+                    <!-- Step 2 -->
+                    <div class="flex flex-col items-center text-center w-full md:w-1/4 px-4">
+                        <div
+                            class="w-20 h-20 rounded-full bg-brand-purple text-white flex items-center justify-center text-3xl font-bold shadow-lg border-4 border-white mb-4">
+                            2
                         </div>
+                        <h4 class="font-bold text-gray-800 text-lg mb-2">Upload Documents</h4>
+                        <p class="text-sm text-gray-500">Submit 10th, 12th, and Graduation marksheets along with a Govt
+                            ID proof securely on the portal.</p>
+                    </div>
 
-                        <button
-                            class="w-full bg-jGold hover:bg-[#b8952d] text-jNavy font-bold py-4 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
-                            Calculate Your Scholarship
-                        </button>
+                    <!-- Step 3 -->
+                    <div class="flex flex-col items-center text-center w-full md:w-1/4 px-4">
+                        <div
+                            class="w-20 h-20 rounded-full bg-brand-orange text-white flex items-center justify-center text-3xl font-bold shadow-lg border-4 border-white mb-4">
+                            3
+                        </div>
+                        <h4 class="font-bold text-gray-800 text-lg mb-2">Review / Interview</h4>
+                        <p class="text-sm text-gray-500">Profile evaluation by the admission committee followed by a
+                            brief telephonic interaction.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex flex-col items-center text-center w-full md:w-1/4 px-4">
+                        <div
+                            class="w-20 h-20 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center text-3xl font-bold shadow-lg border-4 border-white mb-4">
+                            4
+                        </div>
+                        <h4 class="font-bold text-gray-800 text-lg mb-2">Final Payment</h4>
+                        <p class="text-sm text-gray-500">Receive offer letter and process the course fee payment to
+                            secure your seat.</p>
                     </div>
 
                 </div>
@@ -542,134 +1010,305 @@
         </div>
     </section>
 
-    <!-- 8. FOOTER -->
-    <footer class="bg-jMaroon text-white pt-16 pb-8 border-t border-red-900/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <!-- 7. Detailed Redundant Fee Section (Instance 2 - Exact Duplicate to fulfill prompt requirements) -->
+    <section class="py-16 bg-brand-purple/5 border-t border-b border-brand-purple/20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-bold text-brand-purple mb-2 uppercase tracking-wide">Reminder: Fee Structure
+                    Summary</h2>
+                <p class="text-gray-600 text-sm">Detailed payment table reproduced for easy reference before proceeding
+                    to FAQ.</p>
+            </div>
 
-                <!-- Brand -->
+            <div class="overflow-x-auto shadow-sm rounded border border-gray-300 bg-white opacity-95">
+                <table class="w-full text-left table-borders border-collapse text-xs md:text-sm">
+                    <thead>
+                        <tr class="bg-gray-200 text-brand-purple">
+                            <th class="py-2 px-3 w-1/4 border-gray-300 border">Category</th>
+                            <th class="py-2 px-3 w-1/4 border-gray-300 border">Payment Plan</th>
+                            <th class="py-2 px-3 w-1/4 border-gray-300 border">Fee Amount (INR)</th>
+                            <th class="py-2 px-3 w-1/4 border-gray-300 border">Timeline</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr>
+                            <td rowspan="3"
+                                class="font-bold text-gray-800 border border-gray-300 align-middle text-center bg-gray-50">
+                                Regular Indian Candidates</td>
+                            <td class="border border-gray-300 font-semibold">One-Time Payment</td>
+                            <td class="border border-gray-300 text-brand-purple font-bold">₹ 1,50,000/-</td>
+                            <td class="border border-gray-300">At the time of admission</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">Yearly Payment (2 Installments)</td>
+                            <td class="border border-gray-300">₹ 80,000/- per year</td>
+                            <td class="border border-gray-300">Start of Year 1 & Year 2</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300">Four-Time Payment</td>
+                            <td class="border border-gray-300">₹ 42,500/- per sem</td>
+                            <td class="border border-gray-300">Before start of each semester</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Frequently Asked Questions (FAQ) Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl lg:text-5xl font-extrabold text-brand-purple mb-10 text-center">Frequently Asked
+                Questions</h2>
+
+            <div class="space-y-4">
+                <details class="group border-b border-gray-200 pb-4">
+                    <summary
+                        class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-800">
+                        <span>Is the Online PGDM program approved by AICTE?</span>
+                        <span class="transition group-open:rotate-180 text-brand-orange"><i
+                                class="fa-solid fa-plus"></i></span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                        Yes, the Online Post Graduate Diploma in Management (PGDM) offered by Jaipuria Institute of
+                        Management is fully approved by AICTE and recognized by UGC-DEB.
+                    </div>
+                </details>
+
+                <details class="group border-b border-gray-200 pb-4">
+                    <summary
+                        class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-800">
+                        <span>Do I need to visit the campus for examinations?</span>
+                        <span class="transition group-open:rotate-180 text-brand-orange"><i
+                                class="fa-solid fa-plus"></i></span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                        No, the entire program including learning, assignments, and semester-end examinations is
+                        conducted 100% online through an AI-proctored secure platform.
+                    </div>
+                </details>
+
+                <details class="group border-b border-gray-200 pb-4">
+                    <summary
+                        class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-800">
+                        <span>What is the eligibility criteria?</span>
+                        <span class="transition group-open:rotate-180 text-brand-orange"><i
+                                class="fa-solid fa-plus"></i></span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                        Candidates must have a Bachelor's degree (10+2+3 or 4) in any discipline with a minimum of 50%
+                        marks (45% for reserved categories) from a recognized university. Work experience is preferred
+                        but not mandatory.
+                    </div>
+                </details>
+
+                <details class="group border-b border-gray-200 pb-4">
+                    <summary
+                        class="flex justify-between items-center font-bold cursor-pointer list-none text-lg text-gray-800">
+                        <span>Will it say 'Online' on my degree/diploma certificate?</span>
+                        <span class="transition group-open:rotate-180 text-brand-orange"><i
+                                class="fa-solid fa-plus"></i></span>
+                    </summary>
+                    <div class="text-gray-600 mt-3 group-open:animate-fadeIn">
+                        As per UGC guidelines, the mode of delivery (Online) will be mentioned on the final diploma
+                        certificate, however, the degree holds equivalence to a regular MBA program as recognized by
+                        AIU.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. Contact Form & Map Placeholder -->
+    <section id="contact" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row shadow-2xl rounded-xl overflow-hidden">
+
+            <!-- Contact Info & Map Placeholder -->
+            <div class="lg:w-1/2 bg-brand-purple text-white p-10 flex flex-col justify-between relative">
                 <div>
-                    <div class="flex items-center gap-2 mb-6">
+                    <h2 class="text-3xl font-extrabold mb-6">Get In Touch</h2>
+                    <p class="mb-8 text-gray-300">Have questions about the Online PGDM? Our admission team is here to
+                        assist you from Monday to Saturday, 9:00 AM to 6:00 PM.</p>
 
-                        <div class="flex flex-col">
-                            <img src="https://online.jaipuria.ac.in/wp-content/uploads/2022/10/Jaipuria_Institute_of_management_logo.png"
-                                class="w-[230px] bg-white p-2 rounded" alt="Jaipuria Logo">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-brand-gold text-xl mt-1 mr-4"></i>
+                            <p><strong>Corporate Office:</strong><br>Vineet Khand, Gomtinagar,<br>Lucknow - 226010,
+                                Uttar Pradesh, India</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-phone text-brand-gold text-xl mr-4"></i>
+                            <p><strong>Toll Free:</strong> 1800-102-9990</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-envelope text-brand-gold text-xl mr-4"></i>
+                            <p><strong>Email:</strong> online.admissions@jaipuria.ac.in</p>
                         </div>
                     </div>
-                    <p class="text-red-100/70 text-sm leading-relaxed mb-6">
-                        Empowering tomorrow's leaders through accessible, world-class online management education.
+                </div>
+
+                <!-- Embedded Map Placeholder -->
+                <div
+                    class="mt-10 h-48 bg-gray-800 rounded-lg overflow-hidden relative border-2 border-brand-purple_light">
+                    <!-- Text representation of Map -->
+                    <div
+                        class="absolute inset-0 flex items-center justify-center text-gray-500 font-semibold bg-gray-200 text-center p-4 text-black">
+                        [Interactive Google Map Placeholder - Lucknow Campus]
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:w-1/2 bg-white p-10">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b border-gray-200 pb-2">Drop us a message</h3>
+                <form onsubmit="event.preventDefault(); alert('Message Sent!');" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                            <input type="text" required
+                                class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-1 focus:ring-brand-purple focus:border-brand-purple">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                            <input type="text"
+                                class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-1 focus:ring-brand-purple focus:border-brand-purple">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                        <input type="email" required
+                            class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-1 focus:ring-brand-purple focus:border-brand-purple">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Subject *</label>
+                        <select required
+                            class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-1 focus:ring-brand-purple focus:border-brand-purple">
+                            <option value="">Select an option</option>
+                            <option value="admission">Admission Enquiry</option>
+                            <option value="fee">Fee & Scholarship</option>
+                            <option value="curriculum">Curriculum details</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Your Message *</label>
+                        <textarea required rows="4"
+                            class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-1 focus:ring-brand-purple focus:border-brand-purple"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="bg-brand-purple hover:bg-brand-purple_light text-white font-bold py-3 px-8 rounded transition-colors shadow-md">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. Exhaustive Footer -->
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-4 border-brand-orange">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+                <!-- Col 1: Brand & About -->
+                <div>
+                    <!-- Footer Logo (Using placeholder text matching requested structure if image fails) -->
+                    <img src="image_1.png" alt="Jaipuria Logo" class="h-12 w-auto mb-6 bg-white p-2 rounded"
+                        onerror="this.src='https://placehold.co/200x60/ffffff/56236A?text=Jaipuria+Institute'">
+                    <p class="text-sm mb-6 leading-relaxed">
+                        Jaipuria Institute of Management is a leading business school in India, known for its academic
+                        excellence, industry alignment, and holistic development. The Online PGDM program carries
+                        forward this legacy into the digital realm.
                     </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
+                                class="fa-brands fa-facebook-f text-white"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
+                                class="fa-brands fa-twitter text-white"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
+                                class="fa-brands fa-linkedin-in text-white"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
+                                class="fa-brands fa-youtube text-white"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
+                                class="fa-brands fa-instagram text-white"></i></a>
+                    </div>
                 </div>
 
-                <!-- Quick Links -->
+                <!-- Col 2: Quick Links -->
                 <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Quick Links</h4>
-                    <ul class="space-y-3 text-red-100/70">
-                        <li><a href="#" class="hover:text-jGold transition-colors">About the Institute</a></li>
-                        <li><a href="#" class="hover:text-jGold transition-colors">Curriculum</a></li>
-                        <li><a href="#" class="hover:text-jGold transition-colors">Faculty</a></li>
-                        <li><a href="#" class="hover:text-jGold transition-colors">Admissions Policy</a></li>
+                    <h4 class="text-white font-bold mb-6 text-lg border-b border-gray-700 pb-2">Quick Links</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Home</a></li>
+                        <li><a href="#about" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>About Jaipuria</a></li>
+                        <li><a href="#why" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Why Online PGDM</a></li>
+                        <li><a href="#programs" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Programs Offered</a></li>
+                        <li><a href="#faculty" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Eminent Faculty</a></li>
+                        <li><a href="#placements" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Placement Records</a></li>
                     </ul>
                 </div>
 
-                <!-- Support -->
+                <!-- Col 3: Campuses & Resources -->
                 <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Support</h4>
-                    <ul class="space-y-3 text-red-100/70">
-                        <li><a href="#" class="hover:text-jGold transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-jGold transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-jGold transition-colors">Terms & Conditions</a></li>
-                        <li><a href="#" class="hover:text-jGold transition-colors">Refund Policy</a></li>
+                    <h4 class="text-white font-bold mb-6 text-lg border-b border-gray-700 pb-2">Campuses</h4>
+                    <ul class="space-y-3 text-sm mb-6">
+                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-location-arrow mr-2 text-gray-500"></i>Lucknow</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-location-arrow mr-2 text-gray-500"></i>Noida</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-location-arrow mr-2 text-gray-500"></i>Jaipur</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
+                                    class="fa-solid fa-location-arrow mr-2 text-gray-500"></i>Indore</a></li>
+                    </ul>
+                    <h4 class="text-white font-bold mb-4 text-lg border-b border-gray-700 pb-2">Resources</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-brand-orange transition-colors">Download Brochure</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors">Student Portal Login</a></li>
                     </ul>
                 </div>
 
-                <!-- Contact -->
+                <!-- Col 4: Contact & Footer Map Placeholder -->
                 <div>
-                    <h4 class="font-bold text-lg mb-6 text-white">Contact Us</h4>
-                    <ul class="space-y-4 text-red-100/70">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-phone mt-1 text-jGold"></i>
-                            <span>1800-102-9990 <br /><span class="text-xs text-red-200/50">(Toll-Free)</span></span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-envelope mt-1 text-jGold"></i>
-                            <span>online@jaipuria.ac.in</span>
-                        </li>
+                    <h4 class="text-white font-bold mb-6 text-lg border-b border-gray-700 pb-2">Contact Details</h4>
+                    <ul class="space-y-3 text-sm mb-6">
+                        <li class="flex"><i class="fa-solid fa-phone mt-1 mr-3 text-brand-gold"></i> 1800-102-9990</li>
+                        <li class="flex"><i class="fa-solid fa-envelope mt-1 mr-3 text-brand-gold"></i>
+                            online.admissions@jaipuria.ac.in</li>
                     </ul>
+                    <!-- Small Footer Map Placeholder -->
+                    <div
+                        class="h-24 bg-gray-800 rounded flex items-center justify-center border border-gray-700 text-xs text-center p-2">
+                        [Map View of HQ]
+                    </div>
                 </div>
 
             </div>
 
+            <!-- Copyright & Legal -->
             <div
-                class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-red-200/50">
-                <p>© 2026 Jaipuria Institute of Management. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <div
-                        class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-jGold hover:text-jNavy hover:border-jGold transition-colors cursor-pointer text-white">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </div>
-                    <div
-                        class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-jGold hover:text-jNavy hover:border-jGold transition-colors cursor-pointer text-white">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </div>
-                    <div
-                        class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-jGold hover:text-jNavy hover:border-jGold transition-colors cursor-pointer text-white">
-                        <i class="fa-brands fa-instagram"></i>
-                    </div>
+                class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+                <p>&copy; 2026 Jaipuria Institute of Management. All Rights Reserved.</p>
+                <div class="space-x-4 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Terms & Conditions</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Refund Policy</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Disclaimer</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- JS Logic for interactions (Vanilla JS) -->
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('main-header');
-            if (window.scrollY > 20) {
-                header.classList.add('bg-white', 'shadow-md', 'py-3');
-                header.classList.remove('bg-white/95', 'backdrop-blur-sm', 'py-5');
-            } else {
-                header.classList.add('bg-white/95', 'backdrop-blur-sm', 'py-5');
-                header.classList.remove('bg-white', 'shadow-md', 'py-3');
-            }
-        });
-
-        // Mobile Menu Toggle logic
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function toggleMenu() {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.replace('fa-xmark', 'fa-bars');
-            } else {
-                menuIcon.classList.replace('fa-bars', 'fa-xmark');
-            }
-        }
-
-        mobileMenuBtn.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
-
-        // Form OTP logic
-        const leadForm = document.getElementById('lead-form');
-        const initialFields = document.getElementById('initial-fields');
-        const otpFields = document.getElementById('otp-fields');
-        const changeNumberBtn = document.getElementById('change-number-btn');
-
-        leadForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            initialFields.classList.add('hidden');
-            otpFields.classList.remove('hidden');
-        });
-
-        changeNumberBtn.addEventListener('click', () => {
-            otpFields.classList.add('hidden');
-            initialFields.classList.remove('hidden');
-        });
-    </script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
