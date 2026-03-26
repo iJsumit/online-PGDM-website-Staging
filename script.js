@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFacultyCarousel();
     initMobileMenu();
     initWhyPgdmCarousel();
+    initConvocationCarousel();
 });
 
 /* ==========================================
@@ -141,8 +142,8 @@ function initWhyPgdmCarousel() {
     function getVisibleSlides() {
         if (window.innerWidth >= 1280) return 5;
         if (window.innerWidth >= 1024) return 4;
-        if (window.innerWidth >= 640) return 2;  
-        return 1;                                
+        if (window.innerWidth >= 640) return 2;
+        return 1;
     }
 
     // Slider ko move karne ka logic
@@ -222,4 +223,165 @@ function initWhyPgdmCarousel() {
     // Initial load setup
     createDots();
     updateCarousel();
+}
+
+/* ====================================
+   5. CONVOCATION CAROUSEL (AUTOPLAY + MIN GAP)
+==================================== */
+function initConvocationCarousel() {
+    const track = document.getElementById('convocationTrack');
+    const prevBtn = document.getElementById('convoPrevBtn');
+    const nextBtn = document.getElementById('convoNextBtn');
+    const dotsContainer = document.getElementById('convoDots');
+
+    // Agar section nahi mila to return
+    if (!track) return;
+
+    // 1. Image URLs
+    const imageUrls = [
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-1.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-2.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-3.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-4.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-5.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-6.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-7.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-8.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-9.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-10.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-11.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Online-PGDM-Convocation-2025-Image-12.jpg",
+        "https://online.jaipuria.ac.in/wp-content/uploads/2025/05/Untitled-design-10.jpg"
+    ];
+
+    // 2. HTML Generate Karna (px-1 lagaya hai minimum gap ke liye)
+    let slidesHTML = '';
+    imageUrls.forEach((url) => {
+        slidesHTML += `
+            <div class="convo-slide w-full sm:w-1/2 lg:w-1/4 flex-shrink-0 px-1">
+                <div class="group relative overflow-hidden rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 h-64 md:h-72 bg-gray-100 cursor-pointer">
+                    <img src="${url}" alt="Convocation Highlight" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" loading="lazy">
+                    <div class="absolute inset-0 bg-brand-purple/0 group-hover:bg-brand-purple/20 transition-colors duration-300"></div>
+                </div>
+            </div>
+        `;
+    });
+
+    track.innerHTML = slidesHTML;
+
+    // 3. Carousel Logic
+    const slides = Array.from(document.querySelectorAll('.convo-slide'));
+    let currentIndex = 0;
+    let visibleSlides = getVisibleSlides();
+    let autoPlayTimer; // Autoplay ke liye variable
+
+    function getVisibleSlides() {
+        if (window.innerWidth >= 1024) return 4;
+        if (window.innerWidth >= 640) return 2;
+        return 1;
+    }
+
+    function updateCarousel() {
+        if (slides.length === 0) return;
+        const slideWidth = slides[0].offsetWidth;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        updateButtons();
+        updateDots();
+    }
+
+    function updateButtons() {
+        // Autoplay mein loop hota hai, isliye disabled condition hata di ya modify kar sakte hain
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex >= slides.length - visibleSlides;
+    }
+
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        const totalDots = slides.length - visibleSlides + 1;
+
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.className = `h-3 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-8 bg-brand-purple' : 'w-3 bg-gray-300 hover:bg-brand-purple/50'}`;
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                updateCarousel();
+                resetAutoPlay(); // Dot click karne par timer reset ho jaye
+            });
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        const dots = Array.from(dotsContainer.children);
+        dots.forEach((dot, index) => {
+            dot.className = `h-3 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 bg-brand-purple' : 'w-3 bg-gray-300 hover:bg-brand-purple/50'}`;
+        });
+    }
+
+    // --- AUTOPLAY LOGIC YAHAN HAI ---
+    function nextSlide() {
+        if (currentIndex < slides.length - visibleSlides) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Aakhri slide ke baad wapas shuru se
+        }
+        updateCarousel();
+    }
+
+    function startAutoPlay() {
+        autoPlayTimer = setInterval(nextSlide, 1500);
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayTimer);
+    }
+
+    function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+
+    // Hover karne par auto-play rook dena
+    track.addEventListener('mouseenter', stopAutoPlay);
+    track.addEventListener('mouseleave', startAutoPlay);
+
+    // Button Events
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+                resetAutoPlay();
+            }
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoPlay();
+        });
+    }
+
+    // Responsive hone par
+    window.addEventListener('resize', () => {
+        const newVisibleSlides = getVisibleSlides();
+        if (newVisibleSlides !== visibleSlides) {
+            visibleSlides = newVisibleSlides;
+            if (currentIndex > slides.length - visibleSlides) {
+                currentIndex = Math.max(0, slides.length - visibleSlides);
+            }
+            createDots();
+        }
+        updateCarousel();
+    });
+
+    // Initial load call
+    createDots();
+    updateCarousel();
+    startAutoPlay(); // Autoplay start karna
 }

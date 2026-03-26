@@ -207,19 +207,19 @@
                 <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop"
                     alt="Students in modern library" class="w-full h-full object-cover">
                 <!-- <div class="absolute inset-0 bg-white/60"></div> -->
-                 <div class="absolute inset-0 bg-gradient-to-r from-white via-white/70 via-50% to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/70 via-50% to-transparent"></div>
             </div>
             <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
                     alt="Professionals in meeting" class="w-full h-full object-cover">
                 <!-- <div class="absolute inset-0 bg-white/60"></div> -->
-                 <div class="absolute inset-0 bg-gradient-to-r from-white via-white/70 via-50% to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/70 via-50% to-transparent"></div>
             </div>
             <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
                     alt="Collaborative corporate environment" class="w-full h-full object-cover">
                 <!-- <div class="absolute inset-0 bg-white/60"></div> -->
-                 <div class="absolute inset-0 bg-gradient-to-r from-white via-white/70 via-50% to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/70 via-50% to-transparent"></div>
             </div>
         </div>
 
@@ -521,7 +521,10 @@
             <!-- Banner 2: Admissions Overview -->
             <div
                 class="flex flex-col lg:flex-row-reverse bg-white rounded-xl shadow-xl overflow-hidden border-r-8 border-brand-orange">
-                <div class="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center">
+                <div class="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center relative">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i class="fa-solid fa-quote-right text-6xl text-brand-purple"></i>
+                    </div>
                     <h2 class="text-2xl lg:text-4xl font-extrabold text-brand-orange mb-6">Tutor on Demand</h2>
                     <p class="text-gray-600 mb-6 leading-relaxed text-lg">
                         To ease your learning, Jaipuria offers tutor on demand to groups. This customised approach
@@ -550,6 +553,44 @@
                     <img src="https://img.freepik.com/free-photo/young-woman-sitting-online-meeting-outdoor-cafe-talking-laptop-camera-explaining-something_1258-190936.jpg?t=st=1774509044~exp=1774512644~hmac=29c53b65af6d95ec4df34eb555f4ce1ef41cd4bf1e68442287233ce4ea755d4a&w=1480"
                         alt="Generic Corporate Professional 1" class="absolute inset-0 w-full h-full object-cover">
                 </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-t border-gray-100 shadow-sm relative z-40 overflow-hidden">
+        <div class="w-full px-4 md:px-10 lg:px-24 mx-auto relative">
+
+            <h2 class="text-3xl lg:text-5xl font-extrabold text-brand-purple mb-4 text-center">
+                Celebrating Excellence: Online PGDM Convocation Highlights
+            </h2>
+            <div class="w-24 h-1 bg-brand-gold mx-auto mb-6"></div>
+
+            <div class="relative w-full">
+
+                <div class="overflow-hidden px-2 py-4">
+                    <div id="convocationTrack" class="flex transition-transform duration-500 ease-in-out">
+                    </div>
+                </div>
+
+                <button id="convoPrevBtn"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 bg-brand-purple/80 hover:bg-brand-purple text-white rounded-full p-2 md:p-3 backdrop-blur-sm transition z-10 disabled:opacity-30 disabled:cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <button id="convoNextBtn"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 bg-brand-purple/80 hover:bg-brand-purple text-white rounded-full p-2 md:p-3 backdrop-blur-sm transition z-10 disabled:opacity-30 disabled:cursor-not-allowed">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+
+            </div>
+
+            <div id="convoDots" class="flex justify-center items-center gap-2 mt-8">
             </div>
 
         </div>
