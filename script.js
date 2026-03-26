@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize all functions
     initHeroSlider();
     initFacultyCarousel();
     initMobileMenu();
+    initWhyPgdmCarousel();
 });
 
 /* ==========================================
@@ -119,4 +119,107 @@ function initFacultyCarousel() {
         const walk = (x - startX) * 2;
         slider.scrollLeft = scrollLeft - walk;
     });
+}
+
+/* ====================================
+   4. WHY PGDM CAROUSEL
+==================================== */
+function initWhyPgdmCarousel() {
+    const track = document.getElementById('carouselTrack');
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('carouselDots');
+
+    // Safety check: Agar ye section page par nahi hai toh function exit kar de
+    if (!track || slides.length === 0) return;
+
+    let currentIndex = 0;
+    let visibleSlides = getVisibleSlides();
+
+    // Screen size ke hisaab se cards kitne dikhenge
+    function getVisibleSlides() {
+        if (window.innerWidth >= 1280) return 5;
+        if (window.innerWidth >= 1024) return 4;
+        if (window.innerWidth >= 640) return 2;  
+        return 1;                                
+    }
+
+    // Slider ko move karne ka logic
+    function updateCarousel() {
+        const slideWidth = slides[0].offsetWidth;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        updateButtons();
+        updateDots();
+    }
+
+    // Left/Right buttons ko disable/enable karna
+    function updateButtons() {
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex >= slides.length - visibleSlides;
+    }
+
+    // Pagination Dots banana
+    function createDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        const totalDots = slides.length - visibleSlides + 1;
+
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.className = `h-3 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-8 bg-white' : 'w-3 bg-white/50 hover:bg-white/80'}`;
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+
+            dot.addEventListener('click', () => {
+                currentIndex = i;
+                updateCarousel();
+            });
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    // Active dot ko update karna
+    function updateDots() {
+        if (!dotsContainer) return;
+        const dots = Array.from(dotsContainer.children);
+        dots.forEach((dot, index) => {
+            dot.className = `h-3 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 bg-white' : 'w-3 bg-white/50 hover:bg-white/80'}`;
+        });
+    }
+
+    // Button Click Events
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < slides.length - visibleSlides) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+    }
+
+    // Responsive hone par adjust karna
+    window.addEventListener('resize', () => {
+        const newVisibleSlides = getVisibleSlides();
+        if (newVisibleSlides !== visibleSlides) {
+            visibleSlides = newVisibleSlides;
+            if (currentIndex > slides.length - visibleSlides) {
+                currentIndex = Math.max(0, slides.length - visibleSlides);
+            }
+            createDots();
+        }
+        updateCarousel();
+    });
+
+    // Initial load setup
+    createDots();
+    updateCarousel();
 }
