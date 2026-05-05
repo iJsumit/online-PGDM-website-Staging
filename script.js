@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initHeroSlider();
     initFacultyCarousel();
-    initMobileMenu();
+    stickyMenu();
     initWhyPgdmCarousel();
     initConvocationCarousel();
 });
@@ -9,42 +9,22 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ==========================================
    1. MOBILE MENU LOGIC (New & Optimized)
    ========================================== */
-function initMobileMenu() {
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const mobileNav = document.getElementById('mobile-nav');
-    const menuIcon = document.getElementById('menu-icon');
+function stickyMenu() {
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-    if (!menuBtn || !mobileNav) return;
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
 
-    // Toggle Menu on Click
-    menuBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isHidden = mobileNav.classList.contains('hidden');
-
-        if (isHidden) {
-            mobileNav.classList.remove('hidden');
-            menuIcon.classList.replace('fa-bars', 'fa-xmark');
+    // Sticky navbar
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('fixed', 'top-0', 'left-0', 'z-50', 'shadow-md', 'py-4');
         } else {
-            mobileNav.classList.add('hidden');
-            menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            navbar.classList.remove('fixed', 'top-0', 'left-0', 'z-50', 'shadow-md', 'py-4');
         }
-    });
-
-    // Close menu if user clicks anywhere outside the header
-    document.addEventListener('click', (e) => {
-        if (!mobileNav.contains(e.target) && !menuBtn.contains(e.target)) {
-            mobileNav.classList.add('hidden');
-            menuIcon.classList.replace('fa-xmark', 'fa-bars');
-        }
-    });
-
-    // Close menu when clicking a link
-    const mobileLinks = mobileNav.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileNav.classList.add('hidden');
-            menuIcon.classList.replace('fa-xmark', 'fa-bars');
-        });
     });
 }
 

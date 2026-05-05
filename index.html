@@ -7,7 +7,7 @@
     <title>Online MBA/PGDM Program, Fees, Admission | Jaipuria Noida</title>
     <link rel="icon" type="image/png" href="https://online.jaipuria.ac.in/wp-content/uploads/2022/10/favicon.png">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -19,7 +19,7 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Montserrat', 'sans-serif'],
                     },
                     colors: {
                         brand: {
@@ -119,175 +119,149 @@
 
 <body class="font-sans text-gray-800 bg-gray-50 overflow-x-hidden">
 
-    <!-- 1. Cluttered Header Navigation -->
-    <header class="bg-white shadow-md sticky top-0 z-[100] w-full border-b-4 border-brand-gold">
-        <div class="max-w-7xl mx-auto px-4 lg:px-2 flex justify-between items-center py-3">
+    <header class="w-full bg-white">
+        <!-- TOP BAR -->
+        <div class="w-full border-b border-gray-200 hidden md:block">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
 
-            <div class="flex-shrink-0 w-64">
-                <a href="/">
-                    <img src="https://online.jaipuria.ac.in/wp-content/uploads/2022/10/Jaipuria_Institute_of_management_logo.png"
-                        alt="Jaipuria Logo" class="h-16 w-auto object-contain">
-                </a>
-            </div>
-
-            <nav class="hidden xl:flex space-x-6 items-center text-lg font-bold text-brand-purple tracking-[0.5px]">
-
-                <div class="relative group py-2">
-                    <button class="hover:text-brand-orange transition-colors flex items-center gap-1 outline-none">
-                        About <i class="fa-solid fa-chevron-down text-[10px] mt-1"></i>
-                    </button>
-                    <div
-                        class="absolute left-0 top-full w-48 pt-3 hidden group-hover:block transition-all duration-300">
-                        <div class="bg-white shadow-xl rounded border border-gray-100 overflow-hidden py-1">
-                            <a href="#about"
-                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange border-b border-gray-50">About
-                                Us</a>
-                            <a href="#faculty"
-                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange border-b border-gray-50">Faculty</a>
-                            <a href="#reviews"
-                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange">Reviews</a>
-                        </div>
-                    </div>
+                <!-- LEFT LOGO -->
+                <div class="flex items-center gap-3">
+                    <img src="images/JIM_Logo.png" alt="Logo" class="h-10 md:h-14 object-contain">
                 </div>
 
-                <div class="relative group py-2">
-                    <button class="hover:text-brand-orange transition-colors flex items-center gap-1 outline-none">
-                        Program <i class="fa-solid fa-chevron-down text-[10px] mt-1"></i>
-                    </button>
-                    <div
-                        class="absolute left-0 top-full w-56 pt-3 hidden group-hover:block transition-all duration-300">
-                        <div class="bg-white shadow-xl rounded border border-gray-100 overflow-hidden py-1">
-                            <a href="#why"
-                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange border-b border-gray-50">Why
-                                Online PGDM</a>
-                            <a href="#programs"
-                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange border-b border-gray-50">Course
-                                Preview</a>
-                            <a href="#curriculum"
-                                class="block px-4 py-3 text-[15px] hover:bg-gray-100 hover:text-brand-orange">Curriculum</a>
-                        </div>
-                    </div>
+                <!-- RIGHT BADGES -->
+                <div class="hidden md:flex items-center gap-4">
+                    <img src="https://online.jaipuria.ac.in/wp-content/uploads/2025/06/ai-image.png"
+                        class="h-12 object-contain">
+                    <img src="https://online.jaipuria.ac.in/wp-content/uploads/2025/06/AACSB-Accredited-1.webp"
+                        class="h-12 object-contain">
+                    <img src="https://online.jaipuria.ac.in/wp-content/uploads/2022/10/Best-place-to-work-with-logo.png"
+                        class="h-12 object-contain">
                 </div>
 
-                <a href="#admissions" class="hover:text-brand-orange transition-colors">Admission</a>
-                <a href="#contact" class="hover:text-brand-orange transition-colors">Blog</a>
-
-                <a href="#apply"
-                    class="bg-brand-purple text-white px-6 py-2 rounded font-bold hover:bg-brand-purple_light transition-all border-2 border-brand-purple hover:scale-105 transform">
-                    Apply Now
-                </a>
-            </nav>
-
-            <button id="mobile-menu-btn" class="xl:hidden text-brand-purple text-2xl p-2 focus:outline-none"
-                aria-label="Toggle Menu">
-                <i class="fa-solid fa-bars" id="menu-icon"></i>
-            </button>
-        </div>
-
-        <div id="mobile-nav" class="hidden xl:hidden bg-white border-t border-gray-100 shadow-inner">
-            <div class="flex flex-col font-bold text-brand-purple">
-                <a href="#about" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">About Us</a>
-                <a href="#faculty" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">Faculty</a>
-                <a href="#programs" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">Programs</a>
-                <a href="#admissions" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">Admission</a>
-                <a href="#contact" class="px-6 py-4 border-b border-gray-50 hover:bg-gray-50">Blog</a>
-                <div class="p-6">
-                    <a href="#apply"
-                        class="block text-center bg-brand-purple text-white py-3 rounded-lg shadow-md active:bg-brand-purple_dark">Apply
-                        Now</a>
-                </div>
             </div>
         </div>
+
+        <!-- NAVBAR -->
+        <div id="navbar" class="w-full bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4">
+
+                <div class="flex items-center justify-between py-4">
+
+                    <!-- MOBILE LOGO -->
+                    <div class="md:hidden">
+                        <img src="images/JIM_Logo.png" class="h-10">
+                    </div>
+
+                    <!-- MENU -->
+                    <nav class="hidden md:flex items-center gap-6 font-semibold text-gray-800">
+                        <a href="#" class="hover:text-brand-orange transition">About Us</a>
+                        <a href="#" class="hover:text-brand-orange transition">Why Online PGDM?</a>
+                        <a href="#" class="hover:text-brand-orange transition">Curriculum</a>
+                        <a href="#" class="hover:text-brand-orange transition">Course Preview</a>
+                        <a href="#" class="hover:text-brand-orange transition">Admission</a>
+                        <a href="#" class="hover:text-brand-orange transition">Faculty</a>
+                        <a href="#" class="hover:text-brand-orange transition">Reviews</a>
+                    </nav>
+
+                    <!-- CTA -->
+                    <div class="hidden md:block">
+                        <a href="#"
+                            class="bg-brand-orange text-white px-5 py-2 rounded-md font-semibold hover:bg-brand-purple transition">
+                            Apply Now
+                        </a>
+                    </div>
+
+                    <!-- HAMBURGER -->
+                    <button id="menuBtn" class="md:hidden text-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+
+                </div>
+
+                <!-- MOBILE MENU -->
+                <div id="mobileMenu" class="hidden md:hidden flex flex-col gap-4 pb-4 text-gray-800 font-medium">
+                    <a href="#">About Us</a>
+                    <a href="#">Why Online PGDM?</a>
+                    <a href="#">Curriculum</a>
+                    <a href="#">Course Preview</a>
+                    <a href="#">Admission</a>
+                    <a href="#">Faculty</a>
+                    <a href="#">Reviews</a>
+                    <a href="#">Blog</a>
+                    <a href="#" class="bg-orange-500 text-white text-center py-2 rounded-md mt-2">
+                        Apply Now
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
     </header>
 
     <!-- 2. Corrected Hero Section (Full-Width Slider) & Exhaustive Lead Form -->
     <section class="relative w-full h-[850px] lg:h-[700px] overflow-hidden bg-brand-purple">
-        <div id="hero-slider" class="absolute inset-0 w-full h-full">
-            <div class="slide active absolute inset-0 w-full h-full">
-                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop"
-                    alt="Students in modern library" class="w-full h-full object-cover">
-                <!-- <div class="absolute inset-0 bg-white/60"></div> -->
-                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/70 via-50% to-transparent"></div>
-            </div>
-            <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
-                    alt="Professionals in meeting" class="w-full h-full object-cover">
-                <!-- <div class="absolute inset-0 bg-white/60"></div> -->
-                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/70 via-50% to-transparent"></div>
-            </div>
-            <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
-                    alt="Collaborative corporate environment" class="w-full h-full object-cover">
-                <!-- <div class="absolute inset-0 bg-white/60"></div> -->
-                <div class="absolute inset-0 bg-gradient-to-r from-white via-white/70 via-50% to-transparent"></div>
-            </div>
+    
+    <!-- SLIDER -->
+    <div id="hero-slider" class="absolute inset-0 w-full h-full">
+        
+        <!-- SLIDE 1 -->
+        <div class="slide active absolute inset-0 w-full h-full">
+            <img src="/images/JIM_Noida.jpg" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/60"></div>
         </div>
 
-        <div class="relative z-20 max-w-7xl mx-auto px-4 h-full pt-10 lg:pt-0">
-            <div class="grid grid-cols-1 lg:grid-cols-2 h-full items-center">
-
-                <div class="text-center lg:text-left pt-10 lg:pt-0">
-                    <div
-                        class="inline-flex items-center px-4 py-1 bg-white shadow rounded-full mb-6 border border-gray-100 text-brand-purple">
-                        <img src="images/icons/aicteLogo.webp" alt="AICTE Logo" class="w-12 h-auto mr-2">
-                        <span class="font-bold text-sm tracking-wide uppercase">AICTE Approved PGDM</span>
-                    </div>
-
-                    <h1 class="text-4xl lg:text-6xl font-extrabold leading-tight mb-6 text-brand-purple drop-shadow-sm">
-                        Elevate Your Career: <br>India’s <span
-                            class="bg-brand-orange text-white px-2 rounded">Premier</span> Online PGDM
-                    </h1>
-
-                    <p
-                        class="text-lg lg:text-xl font-semibold mb-12 leading-relaxed text-gray-700 max-w-2xl mx-auto lg:mx-0">
-                        Transform your career trajectory with our globally recognized, AICTE approved 24-Month Post
-                        Graduate Diploma. Design meticulously for working professionals like you.
-                    </p>
-
-                    <!-- <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-3xl">
-                        <div
-                            class="bg-brand-purple rounded-xl p-4 text-center text-white border-2 border-brand-purple hover:border-brand-gold transition-colors duration-300">
-                            <i class="fa-solid fa-business-time text-3xl text-brand-gold mb-3"></i>
-                            <p class="font-bold text-sm">Marketing</p>
-                        </div>
-                        <div
-                            class="bg-brand-purple rounded-xl p-4 text-center text-white border-2 border-brand-purple hover:border-brand-gold transition-colors duration-300">
-                            <i class="fa-solid fa-chart-pie text-3xl text-brand-gold mb-3"></i>
-                            <p class="font-bold text-sm">Human Resource</p>
-                        </div>
-                        <div
-                            class="bg-brand-purple rounded-xl p-4 text-center text-white border-2 border-brand-purple hover:border-brand-gold transition-colors duration-300">
-                            <i class="fa-solid fa-coins text-3xl text-brand-gold mb-3"></i>
-                            <p class="font-bold text-sm">Finance</p>
-                        </div>
-                        <div
-                            class="bg-brand-purple rounded-xl p-4 text-center text-white border-2 border-brand-purple hover:border-brand-gold transition-colors duration-300">
-                            <i class="fa-solid fa-people-arrows text-3xl text-brand-gold mb-3"></i>
-                            <p class="font-bold text-sm">Business Analytics</p>
-                        </div>
-                    </div> -->
-
-                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                        <button
-                            class="bg-brand-orange text-white px-8 py-3 rounded-full font-bold hover:bg-brand-orange_hover transition-colors text-lg shadow-md">
-                            Download Brochure
-                        </button>
-                        <button
-                            class="bg-white text-brand-purple px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors text-lg shadow-sm border border-gray-100">
-                            Explore Syllabus
-                        </button>
-                    </div>
-                </div>
-
-                <div class="h-full flex items-end justify-center lg:justify-end relative lg:ml-auto lg:max-w-xl">
-                    <div class="absolute inset-0 bg-grid-brand-purple/10 mask-image-linear-to-bottom"></div>
-
-                    <img src="images/heroGirl.png" alt="Jaipuria Student"
-                        class="relative z-10 w-auto h-[90%] lg:h-[95%] max-h-[700px] object-contain object-bottom">
-                </div>
-            </div>
+        <!-- SLIDE 2 -->
+        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
+                class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/60"></div>
         </div>
-    </section>
+
+        <!-- SLIDE 3 -->
+        <div class="slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+                class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/60"></div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 h-full flex items-center">
+        
+        <div class="max-w-2xl text-white">
+
+            <!-- HEADLINE -->
+            <h1 class="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+                AICTE-Approved Online PGDM from Jaipuria – Learn Anytime, Advance Faster
+            </h1>
+
+            <!-- POINTS -->
+            <ul class="space-y-3 mb-6 text-lg">
+                <li><i class="fa-solid fa-check"></i>&nbsp;&nbsp;AICTE Approved</li>
+                <li><i class="fa-solid fa-check"></i>&nbsp;&nbsp;Industry-focused curriculum</li>
+                <li><i class="fa-solid fa-check"></i>&nbsp;&nbsp;Placement assistance</li>
+            </ul>
+
+            <!-- CTA -->
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#" class="bg-brand-orange text-white px-6 py-3 rounded-md font-semibold text-center">
+                     Apply Now
+                </a>
+                <a href="#" class="bg-white text-black px-6 py-3 rounded-md font-semibold text-center">
+                     Download Brochure
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     <section class="relative z-30 bg-white border-y border-gray-100 py-6">
         <div class="max-w-7xl mx-auto px-4 flex flex-wrap gap-x-8 gap-y-4 justify-around items-center text-center">
@@ -1318,107 +1292,135 @@
         </div>
     </section>
 
-    <!-- 14. Exhaustive Footer -->
-    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t-4 border-brand-orange">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+    <!-- Footer Area -->
+    <footer id="contact" class="bg-brand-purple text-white">
+        <div class="max-w-[1200px] mx-auto p-5 lg:p-6">
 
-                <!-- Col 1: Brand & About -->
-                <div>
-                    <!-- Footer Logo (Using placeholder text matching requested structure if image fails) -->
-                    <img src="image_1.png" alt="Jaipuria Logo" class="h-12 w-auto mb-6 bg-white p-2 rounded"
-                        onerror="this.src='https://placehold.co/200x60/ffffff/56236A?text=Jaipuria+Institute'">
-                    <p class="text-sm mb-6 leading-relaxed">
-                        Jaipuria Institute of Management is a leading business school in India, known for its academic
-                        excellence, industry alignment, and holistic development. The Online PGDM program carries
-                        forward this legacy into the digital realm.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
-                                class="fa-brands fa-facebook-f text-white"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
-                                class="fa-brands fa-twitter text-white"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
-                                class="fa-brands fa-linkedin-in text-white"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
-                                class="fa-brands fa-youtube text-white"></i></a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
-                                class="fa-brands fa-instagram text-white"></i></a>
-                    </div>
-                </div>
+            <!-- GRID -->
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
 
-                <!-- Col 2: Quick Links -->
+                <!-- QUICK LINKS -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-lg border-b border-gray-700 pb-2">Quick Links</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Home</a></li>
-                        <li><a href="#about" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>About Jaipuria</a></li>
-                        <li><a href="#why" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Why Online PGDM</a></li>
-                        <li><a href="#programs" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Programs Offered</a></li>
-                        <li><a href="#faculty" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Eminent Faculty</a></li>
-                        <li><a href="#placements" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-angle-right mr-2 text-brand-gold"></i>Placement Records</a></li>
+                    <h3 class="font-semibold mb-3 uppercase tracking-wide text-xs lg:text-sm">Quick Links</h3>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#">PGDM Fee Portal</a></li>
+                        <li><a href="#">AICTE Grievance Redressal</a></li>
+                        <li><a href="#">AICTE Feedback</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Changemaker Series</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Jaipuria Events</a></li>
+                        <li><a href="#">NIRF Rankings</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 3: Campuses & Resources -->
+                <!-- ADMISSIONS -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-lg border-b border-gray-700 pb-2">Campuses</h4>
-                    <ul class="space-y-3 text-sm mb-6">
-                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-location-arrow mr-2 text-gray-500"></i>Lucknow</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-location-arrow mr-2 text-gray-500"></i>Noida</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-location-arrow mr-2 text-gray-500"></i>Jaipur</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors"><i
-                                    class="fa-solid fa-location-arrow mr-2 text-gray-500"></i>Indore</a></li>
+                    <h3 class="font-semibold mb-3 uppercase tracking-wide text-xs lg:text-sm">PGDM/MBA Admissions
+                    </h3>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#">PGDM/MBA Eligibility</a></li>
+                        <li><a href="#">How to Apply for PGDM/MBA</a></li>
+                        <li><a href="#">PGDM/MBA Course Fees</a></li>
+                        <li><a href="#">PGDM/MBA Scholarship</a></li>
+                        <li><a href="#">Download Brochure</a></li>
                     </ul>
-                    <h4 class="text-white font-bold mb-4 text-lg border-b border-gray-700 pb-2">Resources</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Download Brochure</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Student Portal Login</a></li>
+
+                    <h3 class="font-semibold mt-5 mb-3 uppercase tracking-wide text-xs lg:text-sm">Information</h3>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#">Accreditations & Approvals</a></li>
+                        <li><a href="#">Downloads</a></li>
+                        <li><a href="#">CAPI</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 4: Contact & Footer Map Placeholder -->
+                <!-- PROGRAMMES -->
                 <div>
-                    <h4 class="text-white font-bold mb-6 text-lg border-b border-gray-700 pb-2">Contact Details</h4>
-                    <ul class="space-y-3 text-sm mb-6">
-                        <li class="flex"><i class="fa-solid fa-phone mt-1 mr-3 text-brand-gold"></i> 1800-102-9990</li>
-                        <li class="flex"><i class="fa-solid fa-envelope mt-1 mr-3 text-brand-gold"></i>
-                            online.admissions@jaipuria.ac.in</li>
+                    <h3 class="font-semibold mb-3 uppercase tracking-wide text-xs lg:text-sm">PGDM/MBA Programmes
+                    </h3>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#">PGDM</a></li>
+                        <li><a href="#">PGDM (Financial Services)</a></li>
+                        <li><a href="#">PGDM (Retail Management)</a></li>
+                        <li><a href="#">PGDM (Marketing)</a></li>
+                        <li><a href="#">PGDM (Service Management)</a></li>
+                        <li><a href="#">FPM (Doctoral Level)</a></li>
+                        <li><a href="#">Online PGDM/MBA</a></li>
+                        <li><a href="#">Executive Education</a></li>
                     </ul>
-                    <!-- Small Footer Map Placeholder -->
-                    <div
-                        class="h-24 bg-gray-800 rounded flex items-center justify-center border border-gray-700 text-xs text-center p-2">
-                        [Map View of HQ]
-                    </div>
+                </div>
+
+                <!-- CAMPUSES -->
+                <div>
+                    <h3 class="font-semibold mb-3 uppercase tracking-wide text-xs lg:text-sm">Jaipuria Campuses</h3>
+                    <ul class="space-y-3 text-xs">
+                        <li>
+                            Jaipuria Institute of Management Lucknow
+                            <div class="ml-3 text-xs">› Virtual Tour</div>
+                        </li>
+                        <li>
+                            Jaipuria Institute of Management Noida
+                            <div class="ml-3 text-xs">› Virtual Tour</div>
+                        </li>
+                        <li>
+                            Jaipuria Institute of Management Jaipur
+                            <div class="ml-3 text-xs">› Virtual Tour</div>
+                        </li>
+                        <li>
+                            Jaipuria Institute of Management Indore
+                            <div class="ml-3 text-xs">› Virtual Tour</div>
+                        </li>
+                        <li class="text-xs pt-2">
+                            AIU Recognized PGDM courses Equivalent to MBA
+                        </li>
+                    </ul>
                 </div>
 
             </div>
 
-            <!-- Copyright & Legal -->
+            <!-- Divider -->
+            <div class="border-t border-white/30 mt-6 pt-5 text-[11px] leading-relaxed">
+                <p>
+                    Disclaimer: Jaipuria Institute of Management operates campuses at Noida, Lucknow, Jaipur, and
+                    Indore under the same group and governance. The Jaipuria Institute of Management campuses
+                    mentioned above are not affiliated with or associated with any other higher education/management
+                    institute using the "Jaipuria" name, including business institutes located in Ghaziabad or
+                    operated by other groups.
+                </p>
+            </div>
+
+            <!-- Bottom Bar -->
             <div
-                class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-                <p>&copy; 2026 Jaipuria Institute of Management. All Rights Reserved.</p>
-                <div class="space-x-4 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-brand-orange transition-colors">Terms & Conditions</a>
-                    <a href="#" class="hover:text-brand-orange transition-colors">Refund Policy</a>
-                    <a href="#" class="hover:text-brand-orange transition-colors">Disclaimer</a>
+                class="flex flex-col md:flex-row justify-between items-center gap-4 mt-4 text-xs text-center md:text-left">
+
+                <!-- Copyright -->
+                <div class="order-3 md:order-1">
+                    &copy; 2026 Jaipuria Institute of Management. All Rights Reserved.
                 </div>
+
+                <!-- Policy Links -->
+                <div class="flex gap-4 order-2">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Sitemap</a>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex flex-wrap justify-center gap-3 text-xl lg:text-2xl order-1 md:order-3">
+                    <span class="hover:scale-110 transition"><i class="fa-brands fa-facebook"></i></span>
+                    <span class="hover:scale-110 transition"><i class="fa-brands fa-x-twitter"></i></span>
+                    <span class="hover:scale-110 transition"><i class="fa-brands fa-youtube"></i></span>
+                    <span class="hover:scale-110 transition"><i class="fa-brands fa-linkedin"></i></span>
+                    <span class="hover:scale-110 transition"><i class="fa-brands fa-instagram"></i></span>
+                    <span class="hover:scale-110 transition"><i class="fa-brands fa-whatsapp"></i></span>
+                    <span class="hover:scale-110 transition"><i class="fa-brands fa-telegram"></i></span>
+                    <span class="hover:scale-110 transition"><i class="fa-brands fa-quora"></i></span>
+                    <span class="hover:scale-110 transition"><i class="fa-solid fa-rss"></i></span>
+                </div>
+
             </div>
+
         </div>
     </footer>
 
