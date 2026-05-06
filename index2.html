@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online PGDM | Jaipuria Institute of Management</title>
-    
-    <!-- Fonts -->
+
+    <!-- Escul vibe fonts: Outfit for Headings, Inter for Body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Using Outfit for main brand, but Inter for highly readable body text typical of academic sites -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -27,13 +29,18 @@
                             purple: '#492F5F',
                             orange: '#D67B19',
                             blue: '#356C8E',
-                            light: '#F8F9FA', // Institutional light gray
-                            dark: '#1E293B', // Slate dark for formal text
+                            light: '#F4F7FA', // Escul gray bg
+                            dark: '#0f1216', // Escul dark
+                            text: '#4B5563' // Body text
                         }
                     },
                     fontFamily: {
                         heading: ['Outfit', 'sans-serif'],
                         sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'escul': '0px 10px 60px 0px rgba(0, 0, 0, 0.07)',
+                        'escul-hover': '0px 20px 60px 0px rgba(0, 0, 0, 0.12)',
                     }
                 }
             }
@@ -41,733 +48,1109 @@
     </script>
 
     <style>
-        /* Base styles */
+        /* Global Reset & Body */
         body {
-            background-color: #FFFFFF;
-            color: #334155; /* Slate 700 */
+            color: theme('colors.brand.text');
             -webkit-font-smoothing: antialiased;
+            background-color: #ffffff;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #F1F5F9; }
-        ::-webkit-scrollbar-thumb { background: #492F5F; }
-        ::-webkit-scrollbar-thumb:hover { background: #D67B19; }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: theme('colors.brand.dark');
+            font-family: 'Outfit', sans-serif;
+        }
 
-        /* Institutional Card Hover Effects */
-        .academic-card {
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            border-top: 4px solid #E2E8F0;
+        /* Hero Animation Fix - Guaranteed to show text */
+        @keyframes slideUpFade {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content-anim {
+            animation: slideUpFade 1s ease-out forwards;
+        }
+
+        /* Escul Primary Button */
+        .btn-primary {
+            background-color: theme('colors.brand.orange');
+            color: white;
+            padding: 16px 36px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: theme('colors.brand.purple');
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover::before {
+            transform: scaleX(1);
+        }
+
+        .btn-primary:hover {
+            color: white;
+        }
+
+        /* Escul Overlapping Features (Signature Style) */
+        .overlap-card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 5px;
+            box-shadow: theme('boxShadow.escul');
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 20;
+            overflow: hidden;
+        }
+
+        .overlap-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: theme('colors.brand.orange');
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .overlap-card:hover {
+            transform: translateY(-8px);
+            box-shadow: theme('boxShadow.escul-hover');
+        }
+
+        .overlap-card:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Subheading Style (// TEXT) */
+        .sub-heading {
+            color: theme('colors.brand.orange');
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .sub-heading::before {
+            content: '//';
+            color: theme('colors.brand.orange');
+        }
+
+        /* Standard Cards */
+        .escul-card {
+            background: #ffffff;
+            border: 1px solid #E5E7EB;
+            padding: 40px 30px;
+            border-radius: 5px;
             transition: all 0.3s ease;
         }
-        .academic-card:hover {
-            border-top-color: theme('colors.brand.orange');
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+
+        .escul-card:hover {
+            border-color: theme('colors.brand.orange');
+            box-shadow: theme('boxShadow.escul');
         }
 
-        /* Hero Slider Transitions */
-        .hero-slide { transition: opacity 1s ease-in-out; }
+        /* Hero Slider Fade Effects */
+        .hero-bg-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
 
-        /* Accordion transition */
+        .hero-bg-slide.active {
+            opacity: 1;
+        }
+
+        /* Accordion */
         .faq-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
         }
-        .faq-item.active .faq-content { max-height: 500px; }
-        .faq-item.active .faq-icon { transform: rotate(180deg); color: theme('colors.brand.orange'); }
 
-        /* Strip Animation */
-        .ticker-wrap {
-            width: 100%;
-            overflow: hidden;
-            background-color: theme('colors.brand.purple');
-            padding-left: 100%;
-            box-sizing: content-box;
+        .faq-item.active .faq-content {
+            max-height: 400px;
         }
-        .ticker {
-            display: inline-block;
-            white-space: nowrap;
-            padding-right: 100%;
-            box-sizing: content-box;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-            animation-name: ticker;
-            animation-duration: 30s;
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+            background-color: theme('colors.brand.orange');
+            color: white;
+            border-color: theme('colors.brand.orange');
         }
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
+
+        .faq-item.active .faq-title {
+            color: theme('colors.brand.orange');
         }
     </style>
 </head>
-<body class="pt-[110px] md:pt-[130px]"> <!-- Compensate for fixed header -->
 
-    <!-- TOP UTILITY BAR (Homepage Characteristic) -->
-    <div class="fixed top-0 w-full bg-brand-purple text-white text-xs py-2 px-6 z-50 flex justify-between items-center hidden md:flex">
-        <div class="flex items-center gap-6">
-            <span class="flex items-center gap-2"><i data-lucide="phone" class="w-3 h-3 text-brand-orange"></i> 1800-102-4900</span>
-            <span class="flex items-center gap-2"><i data-lucide="mail" class="w-3 h-3 text-brand-orange"></i> online@jaipuria.ac.in</span>
-        </div>
-        <div class="flex items-center gap-4 font-medium">
-            <a href="#" class="hover:text-brand-orange transition-colors">Student Portal</a>
-            <span class="text-white/30">|</span>
-            <a href="#" class="hover:text-brand-orange transition-colors">Alumni</a>
-            <span class="text-white/30">|</span>
-            <a href="#" class="hover:text-brand-orange transition-colors">Careers</a>
-            <span class="text-white/30">|</span>
-            <a href="#" class="text-brand-orange font-bold">Apply 2026</a>
-        </div>
-    </div>
+<body class="pt-[140px]"> <!-- Compensate for sticky header -->
 
-    <!-- MAIN NAVIGATION -->
-    <nav id="navbar" class="fixed top-0 md:top-[32px] w-full z-40 bg-white border-b border-gray-200 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
-            
+    <!-- 1. HEADER (Escul Theme Style) -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white shadow-sm transition-all duration-300" id="main-header">
+
+        <!-- Topbar -->
+        <div class="bg-brand-purple text-white text-sm py-3 hidden lg:block border-b border-white/10">
+            <div class="max-w-[1200px] mx-auto px-4 flex justify-between items-center">
+                <div class="flex gap-8 font-medium text-gray-200">
+                    <span class="flex items-center gap-2 hover:text-brand-orange transition-colors cursor-pointer">
+                        <i data-lucide="phone-call" class="w-4 h-4 text-brand-orange"></i> 1800-102-4900
+                    </span>
+                    <span class="flex items-center gap-2 hover:text-brand-orange transition-colors cursor-pointer">
+                        <i data-lucide="mail" class="w-4 h-4 text-brand-orange"></i> online@jaipuria.ac.in
+                    </span>
+                </div>
+                <div class="flex gap-6 font-medium text-gray-200">
+                    <span class="font-bold text-brand-orange flex items-center gap-2">
+                        #BeLimitless
+                    </span>
+                    <span class="text-gray-500">|</span>
+                    <a href="#" class="hover:text-white transition-colors">Alumni</a>
+                    <a href="#" class="hover:text-white transition-colors">Careers</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navbar -->
+        <div class="max-w-[1200px] mx-auto px-4 py-4 lg:py-5 flex justify-between items-center bg-white">
             <!-- Logo -->
             <div class="flex items-center gap-3 cursor-pointer">
-                <div class="w-12 h-12 rounded bg-brand-purple flex items-center justify-center font-heading font-bold text-2xl text-white">J</div>
+                <div
+                    class="w-[50px] h-[50px] bg-brand-purple flex items-center justify-center font-heading font-bold text-[28px] text-white rounded-[4px]">
+                    J</div>
                 <div class="flex flex-col">
-                    <span class="font-heading font-bold text-xl md:text-2xl tracking-wide text-brand-purple leading-none">JAIPURIA</span>
-                    <span class="text-brand-orange text-xs font-bold tracking-widest uppercase mt-1">Institute of Management</span>
+                    <span
+                        class="font-heading font-bold text-[26px] tracking-wide text-brand-purple leading-none">JAIPURIA</span>
+                    <span class="text-brand-orange text-[11px] font-bold tracking-[0.15em] uppercase mt-1">Online
+                        PGDM</span>
                 </div>
             </div>
 
-            <!-- Desktop Nav Links -->
-            <div class="hidden lg:flex items-center gap-8 font-semibold text-sm text-gray-700">
-                <a href="#about" class="hover:text-brand-purple transition-colors">The Institute</a>
-                <a href="#programmes" class="hover:text-brand-purple transition-colors">Online PGDM</a>
-                <a href="#admissions" class="hover:text-brand-purple transition-colors">Admissions</a>
-                <a href="#campus" class="hover:text-brand-purple transition-colors">Experience</a>
-                <a href="#recruiters" class="hover:text-brand-purple transition-colors">Placements</a>
-            </div>
+            <!-- Menu -->
+            <nav class="hidden lg:flex items-center gap-8 font-heading font-semibold text-[16px] text-brand-dark">
+                <a href="#" class="text-brand-orange">Home</a>
+                <a href="#about" class="hover:text-brand-orange transition-colors">About</a>
+                <a href="#why" class="hover:text-brand-orange transition-colors">Why PGDM</a>
+                <a href="#specialisations" class="hover:text-brand-orange transition-colors">Specialisations</a>
+                <a href="#admissions" class="hover:text-brand-orange transition-colors">Admissions</a>
+            </nav>
 
-            <!-- Action Buttons -->
-            <div class="hidden lg:flex items-center gap-4">
-                <button class="border border-brand-purple text-brand-purple px-5 py-2 rounded font-semibold hover:bg-brand-purple hover:text-white transition-all text-sm">
-                    Download Brochure
-                </button>
-                <button class="bg-brand-orange text-white px-6 py-2 rounded font-bold hover:bg-orange-600 transition-all text-sm shadow-md">
-                    Apply Now
-                </button>
+            <!-- CTA -->
+            <div class="hidden lg:block">
+                <a href="#apply" class="btn-primary">
+                    [Apply Now] <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
             </div>
 
             <!-- Mobile Toggle -->
-            <button id="mobile-menu-btn" class="lg:hidden text-brand-purple p-2">
-                <i data-lucide="menu" class="w-6 h-6"></i>
+            <button id="mobile-menu-btn" class="lg:hidden text-brand-dark">
+                <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
         </div>
 
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
-            <div class="flex flex-col p-4 gap-4 text-brand-dark font-medium">
-                <a href="#about" class="mobile-link p-2 hover:bg-gray-50 rounded">The Institute</a>
-                <a href="#programmes" class="mobile-link p-2 hover:bg-gray-50 rounded">Online PGDM</a>
-                <a href="#admissions" class="mobile-link p-2 hover:bg-gray-50 rounded">Admissions</a>
-                <button class="bg-brand-orange text-white px-4 py-3 rounded font-bold mt-2 text-center w-full">Apply Now</button>
+            <div class="flex flex-col p-6 gap-4 font-heading font-semibold text-brand-dark">
+                <a href="#about" class="hover:text-brand-orange border-b border-gray-100 pb-2 mobile-link">About</a>
+                <a href="#why" class="hover:text-brand-orange border-b border-gray-100 pb-2 mobile-link">Why PGDM</a>
+                <a href="#specialisations"
+                    class="hover:text-brand-orange border-b border-gray-100 pb-2 mobile-link">Specialisations</a>
+                <a href="#admissions"
+                    class="hover:text-brand-orange border-b border-gray-100 pb-2 mobile-link">Admissions</a>
+                <a href="#apply" class="btn-primary justify-center mt-4 w-full text-center">[Apply Now]</a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- 1. HERO SLIDER (Institutional Homepage Style) -->
-    <section class="relative h-[85vh] lg:h-[75vh] bg-gray-900 flex items-center">
-        <!-- Sliders -->
-        <div id="hero-slider" class="absolute inset-0 z-0">
-            <!-- Slide 1 -->
-            <div class="hero-slide absolute inset-0 opacity-100">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover opacity-50" alt="University Campus">
-            </div>
-            <!-- Slide 2 -->
-            <div class="hero-slide absolute inset-0 opacity-0">
-                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover opacity-50" alt="Students in class">
-            </div>
-            <!-- Slide 3 -->
-            <div class="hero-slide absolute inset-0 opacity-0">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover opacity-50" alt="Corporate professionals">
-            </div>
+    <!-- 2. HERO SECTION (Fix with guaranteed text visibility) -->
+    <section class="relative bg-brand-dark min-h-[650px] lg:h-[80vh] flex items-center overflow-hidden">
+
+        <!-- Background Images (Fading independently of text) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1920"
+                class="hero-bg-slide active w-full h-full object-cover opacity-30" alt="Students">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1920"
+                class="hero-bg-slide w-full h-full object-cover opacity-30" alt="Online Learning">
         </div>
 
-        <!-- Gradient overlay for text readability -->
-        <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/60 to-transparent z-10"></div>
+        <!-- Black Gradient Overlay for Contrast -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent z-0"></div>
 
-        <!-- Content Overlay -->
-        <div class="max-w-7xl mx-auto px-6 md:px-8 w-full z-20 relative">
-            <div class="max-w-2xl">
-                <!-- Academic Program Tag -->
-                <div class="inline-block bg-brand-orange text-white text-xs font-bold px-3 py-1 uppercase tracking-widest mb-6 rounded-sm">
-                    Admissions Open 2026
-                </div>
-                
-                <!-- Exact Document Text -->
-                <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+        <!-- Static Text Content over Slider -->
+        <div class="max-w-[1200px] mx-auto px-4 w-full relative z-10 pt-10 pb-32">
+            <div class="max-w-2xl hero-content-anim">
+                <h4 class="sub-heading !text-brand-orange !mb-6">
                     Learn. Lead. Evolve.
+                </h4>
+
+                <!-- EXACT DOCUMENT TEXT -->
+                <h1 class="font-heading text-5xl md:text-6xl lg:text-[72px] font-bold text-white leading-[1.1] mb-8">
+                    A Career-Defining <br>Online PGDM <br>Programme
                 </h1>
-                <p class="text-lg md:text-xl text-gray-200 mb-8 font-light border-l-4 border-brand-orange pl-4 leading-relaxed">
-                    A Career-Defining Online PGDM Programme for Professionals Who Refuse to Pause Their Growth.
+
+                <p
+                    class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-xl border-l-[3px] border-brand-orange pl-5 font-medium">
+                    For Professionals Who Refuse to Pause Their Growth. <br>
+                    <span class="text-brand-orange">Easy EMI Options Available.</span>
                 </p>
-                
-                <div class="flex flex-wrap gap-4">
-                    <button class="bg-brand-orange text-white px-8 py-3.5 rounded font-bold hover:bg-orange-600 transition-colors shadow-lg flex items-center gap-2">
-                        [Apply Now] <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </button>
-                    <span class="inline-flex items-center px-6 py-3.5 bg-white/10 backdrop-blur text-white font-semibold rounded border border-white/20">
-                        #BeLimitless
-                    </span>
+
+                <div class="flex flex-wrap gap-5 items-center">
+                    <a href="#apply" class="btn-primary">
+                        [Apply Now] <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Formal Slider Controls -->
-        <div class="absolute bottom-8 right-8 z-20 flex gap-2">
-            <button onclick="prevSlide()" class="w-10 h-10 bg-white/10 hover:bg-brand-orange text-white flex items-center justify-center transition-colors backdrop-blur rounded">
-                <i data-lucide="chevron-left" class="w-5 h-5"></i>
-            </button>
-            <button onclick="nextSlide()" class="w-10 h-10 bg-white/10 hover:bg-brand-orange text-white flex items-center justify-center transition-colors backdrop-blur rounded">
-                <i data-lucide="chevron-right" class="w-5 h-5"></i>
-            </button>
+        <!-- Slider Controls -->
+        <div
+            class="absolute bottom-1/2 -translate-y-1/2 w-full px-4 flex justify-between z-20 pointer-events-none hidden md:flex">
+            <div class="max-w-[1200px] mx-auto w-full flex justify-between pointer-events-auto">
+                <button onclick="prevBgSlide()"
+                    class="w-14 h-14 bg-white/10 hover:bg-brand-orange text-white rounded flex items-center justify-center transition-all backdrop-blur-sm -ml-6">
+                    <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                </button>
+                <button onclick="nextBgSlide()"
+                    class="w-14 h-14 bg-white/10 hover:bg-brand-orange text-white rounded flex items-center justify-center transition-all backdrop-blur-sm -mr-6">
+                    <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                </button>
+            </div>
         </div>
     </section>
 
-    <!-- HIGHLIGHTS TICKER (Institutional Announcement Style) -->
-    <div class="ticker-wrap border-b-4 border-brand-orange text-sm font-semibold text-white py-2 shadow-inner z-20 relative">
-        <div class="ticker flex items-center gap-12">
-            <span class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-brand-orange"></i> 80+ Years of Educational Legacy</span>
-            <span>•</span>
-            <span class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-orange"></i> AICTE-Approved</span>
-            <span>•</span>
-            <span class="flex items-center gap-2"><i data-lucide="globe" class="w-4 h-4 text-brand-orange"></i> AACSB Accredited (Top 1% in India, Top 6% globally)</span>
-            <span>•</span>
-            <span class="flex items-center gap-2"><i data-lucide="bar-chart" class="w-4 h-4 text-brand-orange"></i> NIRF Ranked #41 (2025)</span>
-            <span>•</span>
-            <span class="flex items-center gap-2"><i data-lucide="credit-card" class="w-4 h-4 text-brand-orange"></i> Easy EMI Options Available</span>
-        </div>
-    </div>
+    <!-- 3. OVERLAPPING HIGHLIGHTS (Escul Signature) -->
+    <!-- Negative margin pulls this up over the hero section -->
+    <section class="relative z-20 -mt-[100px] pb-24 px-4">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-    <!-- 2. ABOUT THE INSTITUTE (Structured 2-Column layout) -->
-    <section id="about" class="py-20 bg-brand-light">
-        <div class="max-w-7xl mx-auto px-6 md:px-8">
-            <div class="grid lg:grid-cols-12 gap-12 items-start">
-                
-                <!-- Content Area -->
-                <div class="lg:col-span-7">
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-1 bg-brand-orange"></div>
-                        <span class="text-brand-purple font-bold uppercase tracking-widest text-sm">Overview</span>
+                <!-- Exact Document Text Highlight 1 -->
+                <div class="overlap-card flex flex-col items-center text-center">
+                    <div
+                        class="w-[70px] h-[70px] rounded-full bg-brand-light flex items-center justify-center mb-6 text-brand-orange transition-transform hover:scale-110">
+                        <i data-lucide="award" class="w-8 h-8"></i>
                     </div>
-                    <!-- Exact Document Text -->
-                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-6 leading-tight">
+                    <h4 class="font-heading font-bold text-[18px] text-brand-dark leading-tight">80+ Years
+                        of<br>Educational Legacy</h4>
+                </div>
+
+                <!-- Exact Document Text Highlight 2 -->
+                <div class="overlap-card flex flex-col items-center text-center">
+                    <div
+                        class="w-[70px] h-[70px] rounded-full bg-brand-light flex items-center justify-center mb-6 text-brand-blue transition-transform hover:scale-110">
+                        <i data-lucide="shield-check" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-[18px] text-brand-dark leading-tight">
+                        AICTE-Approved<br>Institution</h4>
+                </div>
+
+                <!-- Exact Document Text Highlight 3 -->
+                <div class="overlap-card flex flex-col items-center text-center">
+                    <div
+                        class="w-[70px] h-[70px] rounded-full bg-brand-light flex items-center justify-center mb-6 text-brand-purple transition-transform hover:scale-110">
+                        <i data-lucide="globe" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-[18px] text-brand-dark leading-tight">AACSB Accredited</h4>
+                    <p class="text-[13px] mt-2 text-gray-500 font-medium">(Top 1% in India, <br>Top 6% globally)</p>
+                </div>
+
+                <!-- Exact Document Text Highlight 4 -->
+                <div class="overlap-card flex flex-col items-center text-center">
+                    <div
+                        class="w-[70px] h-[70px] rounded-full bg-brand-light flex items-center justify-center mb-6 text-green-600 transition-transform hover:scale-110">
+                        <i data-lucide="bar-chart-2" class="w-8 h-8"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-[18px] text-brand-dark leading-tight">NIRF Ranked #41</h4>
+                    <p class="text-[13px] mt-2 text-gray-500 font-medium">(2025)</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ABOUT SECTION (Side-by-side with Floating Badge) -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-[1200px] mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Escul Image Grid -->
+                <div class="relative pl-6 pb-6">
+                    <!-- Decor element -->
+                    <div
+                        class="absolute top-0 left-0 w-full h-full bg-brand-light rounded-lg -z-10 transform -translate-x-6 translate-y-6">
+                    </div>
+
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800"
+                        class="rounded-lg shadow-xl w-full h-[500px] object-cover" alt="Campus Building">
+
+                    <!-- Floating Badge -->
+                    <div
+                        class="absolute bottom-10 -right-8 bg-brand-purple text-white p-8 rounded-lg w-48 text-center shadow-2xl border-b-4 border-brand-orange hidden md:block">
+                        <h3 class="font-heading font-bold text-4xl mb-1">2004</h3>
+                        <p class="text-xs font-bold uppercase tracking-widest text-brand-orange">Established</p>
+                    </div>
+                </div>
+
+                <!-- Content Side -->
+                <div>
+                    <h4 class="sub-heading">ABOUT JAIPURIA</h4>
+                    <h2 class="font-heading text-4xl lg:text-5xl font-bold text-brand-dark mb-6 leading-[1.2]">
                         ABOUT JAIPURIA INSTITUTE OF MANAGEMENT, NOIDA
                     </h2>
-                    
-                    <div class="prose max-w-none text-gray-600 space-y-4">
-                        <p class="text-justify leading-relaxed">
-                            Established in 2004, Jaipuria Institute of Management, Noida is a leading B-School in India known for its strong academic foundation and deep industry integration. In 2023, the institute introduced its AICTE-approved Online PGDM, enrolling 200 plus students within the first year, reflecting its growing relevance among working professionals and aspiring managers.
-                        </p>
-                        <p class="text-justify leading-relaxed">
-                            The programme is designed to deliver experiential learning, industry exposure, and structured mentorship that support holistic career growth. Backed by strong corporate connections, innovative pedagogy, and a modern campus ecosystem, Jaipuria Noida continues to develop future-ready business leaders equipped to succeed in a rapidly evolving, AI-driven business environment while also offering its flagship full-time PGDM and a Doctoral-Level Fellow Programme.
-                        </p>
-                    </div>
-                </div>
 
-                <!-- Info Card Area (Common in University Sites) -->
-                <div class="lg:col-span-5 relative">
-                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800" alt="Campus" class="rounded shadow-lg w-full h-[400px] object-cover">
-                    <!-- Quick Stats Overlay Box -->
-                    <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-xl rounded border-t-4 border-brand-purple flex gap-6">
-                        <div>
-                            <p class="text-3xl font-heading font-bold text-brand-orange">200+</p>
-                            <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mt-1">Enrolled<br>First Year</p>
-                        </div>
-                        <div class="w-px bg-gray-200"></div>
-                        <div>
-                            <p class="text-3xl font-heading font-bold text-brand-purple">2004</p>
-                            <p class="text-xs text-gray-500 font-bold uppercase tracking-wider mt-1">Year of<br>Establishment</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. WHY ONLINE PGDM (Academic Grid) -->
-    <section id="programmes" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6 md:px-8">
-            <div class="text-center mb-16 max-w-3xl mx-auto">
-                <!-- Exact Document Text -->
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark mb-4">Why Online PGDM?</h2>
-                <h3 class="text-2xl text-brand-orange font-semibold mb-4">Learn Without Pressing Pause</h3>
-                <p class="text-gray-600 italic">Your career continues. Your growth accelerates.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Academic Cards -->
-                <div class="academic-card p-6 rounded flex flex-col items-center text-center">
-                    <div class="w-12 h-12 bg-orange-50 rounded-full flex items-center justify-center mb-4">
-                        <i data-lucide="video" class="w-6 h-6 text-brand-orange"></i>
-                    </div>
-                    <p class="font-semibold text-brand-dark">Live interactive online classes</p>
-                </div>
-
-                <div class="academic-card p-6 rounded flex flex-col items-center text-center">
-                    <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4">
-                        <i data-lucide="calendar" class="w-6 h-6 text-brand-blue"></i>
-                    </div>
-                    <p class="font-semibold text-brand-dark">Weekend & flexible learning formats</p>
-                </div>
-
-                <div class="academic-card p-6 rounded flex flex-col items-center text-center">
-                    <div class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mb-4">
-                        <i data-lucide="map-pin" class="w-6 h-6 text-brand-purple"></i>
-                    </div>
-                    <p class="font-semibold text-brand-dark">Learn from anywhere - no relocation required</p>
-                </div>
-
-                <div class="academic-card p-6 rounded flex flex-col items-center text-center">
-                    <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mb-4">
-                        <i data-lucide="trending-up" class="w-6 h-6 text-green-600"></i>
-                    </div>
-                    <p class="font-semibold text-brand-dark">Continue earning while you upskill</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. WHAT SETS JAIPURIA APART (Formal Features List) -->
-    <section class="py-20 bg-brand-light border-y border-gray-200">
-        <div class="max-w-7xl mx-auto px-6 md:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div>
-                    <div class="flex items-center gap-2 mb-2">
-                        <div class="w-8 h-1 bg-brand-orange"></div>
-                        <span class="text-brand-purple font-bold uppercase tracking-widest text-sm">Differentiators</span>
-                    </div>
                     <!-- Exact Document Text -->
-                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-dark">What Sets Jaipuria’s Online PGDM Apart</h2>
+                    <p class="mb-5 leading-relaxed text-gray-600 text-[16px] text-justify">
+                        Established in 2004, Jaipuria Institute of Management, Noida is a leading B-School in India
+                        known for its strong academic foundation and deep industry integration. In 2023, the institute
+                        introduced its AICTE-approved Online PGDM, enrolling 200 plus students within the first year,
+                        reflecting its growing relevance among working professionals and aspiring managers.
+                    </p>
+                    <p class="mb-8 leading-relaxed text-gray-600 text-[16px] text-justify">
+                        The programme is designed to deliver experiential learning, industry exposure, and structured
+                        mentorship that support holistic career growth. Backed by strong corporate connections,
+                        innovative pedagogy, and a modern campus ecosystem, Jaipuria Noida continues to develop
+                        future-ready business leaders equipped to succeed in a rapidly evolving, AI-driven business
+                        environment while also offering its flagship full-time PGDM and a Doctoral-Level Fellow
+                        Programme.
+                    </p>
+
+                    <div class="flex items-center gap-8 mt-8 border-t border-gray-100 pt-8">
+                        <a href="#why" class="btn-primary">Know More</a>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center text-brand-orange">
+                                <i data-lucide="phone-call" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Call for
+                                    Details</p>
+                                <p class="font-heading font-bold text-brand-dark text-xl leading-none">1800-102-4900</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            
+        </div>
+    </section>
+
+    <!-- 5. WHY ONLINE PGDM (Grid Layout) -->
+    <section id="why" class="py-28 bg-brand-light">
+        <div class="max-w-[1200px] mx-auto px-4">
+
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h4 class="sub-heading justify-center">Why Online PGDM?</h4>
+                <h2 class="font-heading text-4xl lg:text-5xl font-bold text-brand-dark mb-4">Learn Without Pressing
+                    Pause</h2>
+                <p class="text-lg italic text-brand-orange font-medium">Your career continues. Your growth accelerates.
+                </p>
+            </div>
+
+            <!-- Features -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Exact Document Text -->
+                <div class="escul-card group text-center">
+                    <div
+                        class="w-[80px] h-[80px] mx-auto bg-brand-light rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-brand-orange group-hover:text-white group-hover:-translate-y-2">
+                        <i data-lucide="video" class="w-8 h-8 text-brand-orange group-hover:text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-[20px] text-brand-dark mb-3">Live Classes</h3>
+                    <p class="text-[15px] text-gray-600">Live interactive online classes</p>
+                </div>
+
+                <div class="escul-card group text-center">
+                    <div
+                        class="w-[80px] h-[80px] mx-auto bg-brand-light rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-brand-blue group-hover:text-white group-hover:-translate-y-2">
+                        <i data-lucide="calendar" class="w-8 h-8 text-brand-blue group-hover:text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-[20px] text-brand-dark mb-3">Flexible Formats</h3>
+                    <p class="text-[15px] text-gray-600">Weekend & flexible learning formats</p>
+                </div>
+
+                <div class="escul-card group text-center">
+                    <div
+                        class="w-[80px] h-[80px] mx-auto bg-brand-light rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-brand-purple group-hover:text-white group-hover:-translate-y-2">
+                        <i data-lucide="map-pin-off" class="w-8 h-8 text-brand-purple group-hover:text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-[20px] text-brand-dark mb-3">Anywhere Access</h3>
+                    <p class="text-[15px] text-gray-600">Learn from anywhere - no relocation required</p>
+                </div>
+
+                <div class="escul-card group text-center">
+                    <div
+                        class="w-[80px] h-[80px] mx-auto bg-brand-light rounded-full flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-green-500 group-hover:text-white group-hover:-translate-y-2">
+                        <i data-lucide="briefcase" class="w-8 h-8 text-green-500 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-[20px] text-brand-dark mb-3">Keep Earning</h3>
+                    <p class="text-[15px] text-gray-600">Continue earning while you upskill</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. WHAT SETS JAIPURIA APART (Boxy Columns) -->
+    <section id="specialisations" class="py-28 bg-white border-b border-gray-100">
+        <div class="max-w-[1200px] mx-auto px-4">
+
+            <div class="mb-16">
+                <h4 class="sub-heading">Differentiators</h4>
+                <h2 class="font-heading text-4xl lg:text-5xl font-bold text-brand-dark">What Sets Jaipuria’s Online PGDM
+                    Apart</h2>
+            </div>
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="bg-white p-8 rounded shadow-sm border border-gray-100">
-                    <h3 class="text-xl font-heading font-bold mb-3 text-brand-purple border-b border-gray-100 pb-3">AI-Integrated Learning</h3>
-                    <p class="text-gray-600 text-sm">AI is built into the curriculum - not as a subject, but as a decision-making tool across business functions.</p>
-                </div>
 
-                <div class="bg-white p-8 rounded shadow-sm border border-gray-100">
-                    <h3 class="text-xl font-heading font-bold mb-3 text-brand-purple border-b border-gray-100 pb-3">New-Age Specialisations</h3>
-                    <ul class="text-gray-600 text-sm space-y-2 list-disc pl-4 marker:text-brand-orange">
-                        <li>AI & Business Analytics</li>
-                        <li>Digital & E-Commerce</li>
-                        <li>Product Management</li>
-                        <li>Entrepreneurship</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-8 rounded shadow-sm border border-gray-100">
-                    <h3 class="text-xl font-heading font-bold mb-3 text-brand-purple border-b border-gray-100 pb-3">AI-Powered Career Acceleration</h3>
-                    <ul class="text-gray-600 text-sm space-y-2 list-disc pl-4 marker:text-brand-orange">
-                        <li>Resume builder tools</li>
-                        <li>Interview simulators</li>
-                        <li>Skill-gap analysis</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-8 rounded shadow-sm border border-gray-100">
-                    <h3 class="text-xl font-heading font-bold mb-3 text-brand-purple border-b border-gray-100 pb-3">Taught by Faculty & Industry Experts</h3>
-                    <p class="text-gray-600 text-sm">Learn through real cases, real tools, and real business challenges.</p>
-                </div>
-
-                <div class="bg-white p-8 rounded shadow-sm border border-gray-100">
-                    <h3 class="text-xl font-heading font-bold mb-3 text-brand-purple border-b border-gray-100 pb-3">Simulation-Based Learning</h3>
-                    <p class="text-gray-600 text-sm">Practice decision-making through business simulations and live problem-solving.</p>
-                </div>
-
-                <div class="bg-white p-8 rounded shadow-sm border border-gray-100">
-                    <h3 class="text-xl font-heading font-bold mb-3 text-brand-purple border-b border-gray-100 pb-3">Career Support Throughout</h3>
-                    <ul class="text-gray-600 text-sm space-y-2 list-disc pl-4 marker:text-brand-orange">
-                        <li>Continuous mentoring</li>
-                        <li>Career coaching</li>
-                        <li>Placement assistance</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. CAMPUS IMMERSION & LEARNING SYSTEM (Institutional Split layout) -->
-    <section id="campus" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
-            
-            <!-- Campus Immersion -->
-            <div>
-                <img src="https://images.unsplash.com/photo-1523580494112-021d22f9bb69?auto=format&fit=crop&q=80&w=800" alt="Campus Life" class="w-full h-[300px] object-cover rounded shadow mb-6">
                 <!-- Exact Document Text -->
-                <h3 class="text-2xl font-heading font-bold text-brand-dark mb-4 border-l-4 border-brand-orange pl-3">7-day Campus Immersion</h3>
-                <ul class="space-y-3 text-gray-600 font-medium list-none">
-                    <li class="flex gap-3"><i data-lucide="check" class="text-brand-orange mt-1 w-4 h-4"></i> Network with peers & alumni</li>
-                    <li class="flex gap-3"><i data-lucide="check" class="text-brand-orange mt-1 w-4 h-4"></i> Engage deeply with faculty</li>
-                    <li class="flex gap-3"><i data-lucide="check" class="text-brand-orange mt-1 w-4 h-4"></i> Experience B-school culture</li>
-                    <li class="flex gap-3"><i data-lucide="check" class="text-brand-orange mt-1 w-4 h-4"></i> Expand professional connections</li>
-                </ul>
-            </div>
-
-            <!-- Learning System -->
-            <div class="bg-brand-purple p-10 rounded shadow-xl text-white">
-                <h3 class="text-2xl font-heading font-bold mb-6">Learning That Fits Modern Lives</h3>
-                <ul class="space-y-4 mb-8">
-                    <li class="flex items-start gap-3 border-b border-white/10 pb-3">
-                        <i data-lucide="laptop" class="w-5 h-5 text-brand-orange mt-1 shrink-0"></i>
-                        <span>Integrated Learning Management System (LMS)</span>
-                    </li>
-                    <li class="flex items-start gap-3 border-b border-white/10 pb-3">
-                        <i data-lucide="play-circle" class="w-5 h-5 text-brand-orange mt-1 shrink-0"></i>
-                        <span>Micro-learning via short videos</span>
-                    </li>
-                    <li class="flex items-start gap-3 border-b border-white/10 pb-3">
-                        <i data-lucide="file-text" class="w-5 h-5 text-brand-orange mt-1 shrink-0"></i>
-                        <span>Online assessments</span>
-                    </li>
-                    <li class="flex items-start gap-3 border-b border-white/10 pb-3">
-                        <i data-lucide="users" class="w-5 h-5 text-brand-orange mt-1 shrink-0"></i>
-                        <span>Community group learning & tutor support</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <i data-lucide="message-circle" class="w-5 h-5 text-brand-orange mt-1 shrink-0"></i>
-                        <span>Fireside chats and mentoring sessions</span>
-                    </li>
-                </ul>
-                <p class="font-bold text-brand-orange text-lg italic">Structure, flexibility, and engagement - together.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- 6. VOICES OF SUCCESS & RECRUITERS (Formal Corporate Relations view) -->
-    <section id="recruiters" class="py-20 bg-brand-light border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-6 md:px-8">
-            
-            <div class="grid lg:grid-cols-2 gap-16">
-                <!-- Testimonials -->
-                <div>
-                    <h2 class="font-heading text-3xl font-bold mb-8 text-brand-purple">VOICES OF SUCCESS</h2>
-                    <div class="grid grid-cols-2 gap-4">
-                        <!-- Exact Document Text placeholder -->
-                        <div class="bg-gray-200 aspect-video rounded flex items-center justify-center relative overflow-hidden group">
-                            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=800" class="absolute w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Testimonial">
-                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                                <i data-lucide="play-circle" class="w-12 h-12 text-white"></i>
-                            </div>
-                            <span class="absolute bottom-2 left-2 text-white text-xs font-bold">[VIDEO TESTIMONIALS]</span>
-                        </div>
-                        <div class="bg-gray-200 aspect-video rounded flex items-center justify-center relative overflow-hidden group">
-                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=800" class="absolute w-full h-full object-cover group-hover:scale-105 transition-transform" alt="Testimonial">
-                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                                <i data-lucide="play-circle" class="w-12 h-12 text-white"></i>
-                            </div>
-                            <span class="absolute bottom-2 left-2 text-white text-xs font-bold">[VIDEO TESTIMONIALS]</span>
-                        </div>
+                <div
+                    class="bg-white border border-gray-200 p-10 rounded-[4px] hover:border-brand-orange hover:shadow-escul transition-all duration-300 relative group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-[3px] bg-brand-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
                     </div>
-                    
-                    <div class="mt-8 pt-8 border-t border-gray-200">
-                        <h3 class="font-heading text-xl font-bold mb-4 text-brand-dark">Written TESTIMONIALS</h3>
-                        <div class="flex gap-4">
-                            <div class="w-24 h-24 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-500 font-bold border border-gray-300">[IMAGES]</div>
-                            <div class="w-24 h-24 bg-gray-200 rounded flex items-center justify-center text-xs text-gray-500 font-bold border border-gray-300">[IMAGES]</div>
-                        </div>
-                    </div>
+                    <h3 class="font-heading font-bold text-[22px] text-brand-dark mb-4">AI-Integrated Learning</h3>
+                    <p class="text-gray-600 leading-relaxed">AI is built into the curriculum - not as a subject, but as
+                        a decision-making tool across business functions.</p>
                 </div>
 
-                <!-- Corporate Relations -->
-                <div>
-                    <h2 class="font-heading text-3xl font-bold mb-8 text-brand-purple">Our Top Recruiters</h2>
-                    <div class="bg-white p-8 rounded shadow-sm border border-gray-200">
-                        <p class="text-gray-500 font-bold text-sm tracking-widest uppercase text-center border-b border-gray-100 pb-4 mb-6">[LOGOS]</p>
-                        <div class="grid grid-cols-3 gap-8 place-items-center text-gray-400">
-                            <!-- Stock Icons as Logo Placeholders -->
-                            <i data-lucide="amazon" class="w-10 h-10 hover:text-brand-purple transition-colors"></i>
-                            <i data-lucide="codesandbox" class="w-10 h-10 hover:text-brand-purple transition-colors"></i>
-                            <i data-lucide="figma" class="w-10 h-10 hover:text-brand-purple transition-colors"></i>
-                            <i data-lucide="slack" class="w-10 h-10 hover:text-brand-purple transition-colors"></i>
-                            <i data-lucide="twitch" class="w-10 h-10 hover:text-brand-purple transition-colors"></i>
-                            <i data-lucide="github" class="w-10 h-10 hover:text-brand-purple transition-colors"></i>
-                        </div>
+                <div
+                    class="bg-white border border-gray-200 p-10 rounded-[4px] hover:border-brand-blue hover:shadow-escul transition-all duration-300 relative group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-[3px] bg-brand-blue scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
                     </div>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
-    <!-- 7. RANKINGS & ACCREDITATIONS (Formal Information Strip) -->
-    <section class="py-12 bg-brand-dark text-white text-center">
-        <div class="max-w-7xl mx-auto px-6 md:px-8">
-            <h2 class="font-heading text-2xl font-bold mb-8 uppercase tracking-widest text-brand-orange">Rankings & Accreditations</h2>
-            <div class="flex flex-wrap justify-center gap-x-12 gap-y-6">
-                <div class="text-center">
-                    <p class="font-bold text-lg">AACSB Accredited</p>
-                    <p class="text-sm text-gray-400">(Top 1% in India, Top 6% globally)</p>
-                </div>
-                <div class="w-px bg-white/20 hidden md:block"></div>
-                <div class="text-center">
-                    <p class="font-bold text-lg">AICTE</p>
-                    <p class="text-sm text-gray-400">Approved</p>
-                </div>
-                <div class="w-px bg-white/20 hidden md:block"></div>
-                <div class="text-center">
-                    <p class="font-bold text-lg">NBA</p>
-                    <p class="text-sm text-gray-400">Accredited</p>
-                </div>
-                <div class="w-px bg-white/20 hidden md:block"></div>
-                <div class="text-center">
-                    <p class="font-bold text-lg">NAAC</p>
-                    <p class="text-sm text-gray-400">Accredited</p>
-                </div>
-                <div class="w-px bg-white/20 hidden lg:block"></div>
-                <div class="text-center">
-                    <p class="font-bold text-lg">NIRF Ranked #41</p>
-                    <p class="text-sm text-gray-400">(2025)</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. ADMISSIONS & FEES (Structured Process View) -->
-    <section id="admissions" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-6 md:px-8 grid lg:grid-cols-2 gap-16">
-            
-            <!-- Process -->
-            <div>
-                <div class="flex items-center gap-2 mb-2">
-                    <div class="w-8 h-1 bg-brand-orange"></div>
-                    <span class="text-brand-purple font-bold uppercase tracking-widest text-sm">Join Us</span>
-                </div>
-                <!-- Exact Document Text -->
-                <h2 class="font-heading text-3xl font-bold mb-8 text-brand-dark">Admissions Process</h2>
-                
-                <div class="space-y-6 relative border-l-2 border-gray-200 ml-3">
-                    <div class="relative pl-8">
-                        <div class="absolute -left-3.5 top-0 w-7 h-7 bg-brand-orange text-white rounded-full flex items-center justify-center font-bold text-xs">1</div>
-                        <h3 class="font-bold text-lg text-brand-dark">Apply Online</h3>
-                    </div>
-                    <div class="relative pl-8">
-                        <div class="absolute -left-3.5 top-0 w-7 h-7 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-xs">2</div>
-                        <h3 class="font-bold text-lg text-brand-dark">Screening & Document Verification</h3>
-                    </div>
-                    <div class="relative pl-8">
-                        <div class="absolute -left-3.5 top-0 w-7 h-7 bg-brand-purple text-white rounded-full flex items-center justify-center font-bold text-xs">3</div>
-                        <h3 class="font-bold text-lg text-brand-dark">Selection & Seat Confirmation</h3>
-                    </div>
-                </div>
-
-                <div class="mt-8 bg-gray-50 border border-gray-200 p-4 rounded text-sm text-gray-700">
-                    <strong>Eligibility:</strong> Minimum 3-year Bachelor’s Degree with 50% marks (UGC-recognized).
-                </div>
-            </div>
-
-            <!-- Fees -->
-            <div>
-                <h2 class="font-heading text-3xl font-bold mb-6 text-brand-dark">Affordable. Accessible. Valuable.</h2>
-                <p class="text-gray-600 mb-6">An Online PGDM that respects your ambition and your investment.</p>
-                
-                <div class="bg-brand-light border border-gray-200 rounded p-6 shadow-sm mb-6">
-                    <ul class="space-y-4 text-gray-700 text-sm">
-                        <li class="flex items-center gap-3 border-b border-gray-200 pb-3"><i data-lucide="check-circle" class="text-green-600 w-5 h-5"></i> Flexible fee payment options</li>
-                        <li class="flex items-center gap-3 border-b border-gray-200 pb-3"><i data-lucide="check-circle" class="text-green-600 w-5 h-5"></i> Merit-based scholarships available</li>
-                        <li class="flex items-center gap-3"><i data-lucide="check-circle" class="text-green-600 w-5 h-5"></i> Significantly lower cost than full-time MBA programmes</li>
+                    <h3 class="font-heading font-bold text-[22px] text-brand-dark mb-4">New-Age Specialisations</h3>
+                    <ul class="text-gray-600 space-y-3 font-medium">
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-brand-blue shrink-0"></i> AI & Business Analytics</li>
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-brand-blue shrink-0"></i> Digital & E-Commerce</li>
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-brand-blue shrink-0"></i> Product Management</li>
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-brand-blue shrink-0"></i> Entrepreneurship</li>
                     </ul>
                 </div>
-                
-                <div class="bg-brand-orange/10 border border-brand-orange p-4 rounded text-center">
-                    <p class="text-sm font-bold text-brand-orange">Because quality education should open doors, not create barriers.</p>
-                </div>
-            </div>
 
-        </div>
-    </section>
-
-    <!-- 9. FAQs (Formal Help Center Style) -->
-    <section class="py-20 bg-brand-light border-y border-gray-200">
-        <div class="max-w-4xl mx-auto px-6 md:px-8">
-            <h2 class="font-heading text-3xl font-bold text-center mb-10 text-brand-dark">FAQs</h2>
-            
-            <div class="space-y-3 bg-white p-6 rounded border border-gray-200 shadow-sm">
-                <!-- Exact Document Text -->
-                <div class="faq-item border-b border-gray-100 last:border-0 cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">Is the Online PGDM approved and recognized?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
+                <div
+                    class="bg-white border border-gray-200 p-10 rounded-[4px] hover:border-brand-purple hover:shadow-escul transition-all duration-300 relative group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-[3px] bg-brand-purple scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
                     </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">Yes, the programme is AICTE-approved and recognized, ensuring credibility and industry acceptance across India.</p>
-                    </div>
+                    <h3 class="font-heading font-bold text-[22px] text-brand-dark mb-4">AI-Powered Career Acceleration
+                    </h3>
+                    <ul class="text-gray-600 space-y-3 font-medium">
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-brand-purple shrink-0"></i> Resume builder tools</li>
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-brand-purple shrink-0"></i> Interview simulators</li>
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-brand-purple shrink-0"></i> Skill-gap analysis</li>
+                    </ul>
                 </div>
 
-                <div class="faq-item border-b border-gray-100 last:border-0 cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">Can I pursue this programme while working full-time?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
+                <div
+                    class="bg-white border border-gray-200 p-10 rounded-[4px] hover:border-green-500 hover:shadow-escul transition-all duration-300 relative group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-[3px] bg-green-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
                     </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">Yes, the programme is specifically designed for working professionals with weekend classes and flexible learning options.</p>
-                    </div>
+                    <h3 class="font-heading font-bold text-[22px] text-brand-dark mb-4">Taught by Faculty & Experts</h3>
+                    <p class="text-gray-600 leading-relaxed">Learn through real cases, real tools, and real business
+                        challenges.</p>
                 </div>
 
-                <div class="faq-item border-b border-gray-100 last:border-0 cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">What is the duration of the Online PGDM?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
+                <div
+                    class="bg-white border border-gray-200 p-10 rounded-[4px] hover:border-yellow-500 hover:shadow-escul transition-all duration-300 relative group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-[3px] bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
                     </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">The programme typically spans 2 years, divided into multiple semesters.</p>
-                    </div>
+                    <h3 class="font-heading font-bold text-[22px] text-brand-dark mb-4">Simulation-Based Learning</h3>
+                    <p class="text-gray-600 leading-relaxed">Practice decision-making through business simulations and
+                        live problem-solving.</p>
                 </div>
 
-                <div class="faq-item border-b border-gray-100 last:border-0 cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">Are live classes mandatory to attend?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
+                <div
+                    class="bg-white border border-gray-200 p-10 rounded-[4px] hover:border-red-500 hover:shadow-escul transition-all duration-300 relative group">
+                    <div
+                        class="absolute top-0 left-0 w-full h-[3px] bg-red-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
                     </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">Live classes are recommended for better learning, but recordings are available for flexibility if you miss a session.</p>
-                    </div>
+                    <h3 class="font-heading font-bold text-[22px] text-brand-dark mb-4">Career Support Throughout</h3>
+                    <ul class="text-gray-600 space-y-3 font-medium">
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-red-500 shrink-0"></i> Continuous mentoring</li>
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-red-500 shrink-0"></i> Career coaching</li>
+                        <li class="flex gap-3 items-start"><i data-lucide="check"
+                                class="w-5 h-5 text-red-500 shrink-0"></i> Placement assistance</li>
+                    </ul>
                 </div>
 
-                <div class="faq-item border-b border-gray-100 last:border-0 cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">What specialisations are offered in the programme?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">The programme offers new-age specialisations such as AI and Business Analytics, Digital and E-Commerce, Product Management, and Entrepreneurship.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item border-b border-gray-100 last:border-0 cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">How are exams and assessments conducted?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">Assessments are conducted online through quizzes, assignments, projects, and term-end examinations with flexible scheduling.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item border-b border-gray-100 last:border-0 cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">Is there any placement or career support?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">Yes, the programme offers continuous career support including resume building, interview preparation, and placement assistance.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item border-b border-gray-100 last:border-0 cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">Will I get networking opportunities in an online programme?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">Yes, you will interact with peers, faculty, and industry experts through live sessions, group projects, and campus immersion.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item border-b border-gray-100 last:border-0 cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">What is the eligibility criteria for admission?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">Candidates must have a minimum 3-year bachelor’s degree with at least 50% marks from a recognized university.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item cursor-pointer py-2">
-                    <div class="faq-header flex justify-between items-center py-2 hover:text-brand-orange transition-colors">
-                        <h4 class="font-semibold text-brand-dark text-sm">How do I apply for the programme?</h4>
-                        <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-gray-400 transition-transform duration-300"></i>
-                    </div>
-                    <div class="faq-content text-gray-600 text-sm">
-                        <p class="pb-4 pt-1">You can apply online by filling out the application form, submitting required documents, and completing the admission process.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- 10. INSTITUTIONAL CALL TO ACTION -->
-    <section class="py-20 relative bg-brand-purple">
-        <div class="max-w-7xl mx-auto px-6 md:px-8 text-center relative z-20">
+    <!-- 7. CAMPUS IMMERSION (Parallax Video Style Background) -->
+    <section
+        class="py-[150px] relative bg-brand-dark bg-fixed bg-center bg-cover flex flex-col justify-center items-center"
+        style="background-image: url('https://images.unsplash.com/photo-1523580494112-021d22f9bb69?auto=format&fit=crop&q=80&w=1920');">
+        <div class="absolute inset-0 bg-brand-purple/80 mix-blend-multiply z-0"></div>
+        <div class="absolute inset-0 bg-black/50 z-0"></div>
+
+        <div class="max-w-[1000px] mx-auto px-4 relative z-10 text-center">
+
+            <!-- Play Button Element -->
+            <div
+                class="w-[90px] h-[90px] bg-brand-orange text-white rounded-full flex items-center justify-center mx-auto mb-10 cursor-pointer shadow-[0_0_0_10px_rgba(214,123,25,0.3)] animate-[pulse_2s_infinite]">
+                <i data-lucide="play" class="w-10 h-10 ml-2"></i>
+            </div>
+
+            <h4 class="sub-heading justify-center !text-white !mb-4">// Experience</h4>
+            <h2 class="font-heading text-4xl lg:text-[54px] font-bold text-white mb-10 leading-tight">7-day Campus
+                Immersion</h2>
+
             <!-- Exact Document Text -->
-            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">
-                Stay relevant. Stay ahead. <br><span class="text-brand-orange">Stay unstoppable.</span>
-            </h2>
-            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                <button class="bg-brand-orange text-white px-10 py-4 rounded font-bold hover:bg-orange-600 transition-colors shadow-lg">
-                    [Apply Now]
-                </button>
-                <button class="bg-transparent border border-white text-white px-10 py-4 rounded font-bold hover:bg-white/10 transition-colors">
-                    Request Information
-                </button>
+            <div class="flex flex-wrap justify-center gap-x-10 gap-y-6 text-[17px] font-medium text-gray-200">
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                        class="text-brand-orange w-6 h-6"></i> Network with peers & alumni</span>
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                        class="text-brand-orange w-6 h-6"></i> Engage deeply with faculty</span>
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                        class="text-brand-orange w-6 h-6"></i> Experience B-school culture</span>
+                <span class="flex items-center gap-2"><i data-lucide="check-circle"
+                        class="text-brand-orange w-6 h-6"></i> Expand professional connections</span>
             </div>
         </div>
     </section>
 
-    <!-- FORMAL MEGA-FOOTER -->
-    <footer class="bg-brand-dark pt-16 pb-8 text-white border-t-8 border-brand-orange">
-        <div class="max-w-7xl mx-auto px-6 md:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                
-                <!-- Branding -->
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="w-10 h-10 rounded bg-white flex items-center justify-center font-heading font-bold text-xl text-brand-purple">J</div>
-                        <div class="font-heading font-bold tracking-wide leading-tight">
-                            JAIPURIA <span class="text-brand-orange text-[10px] block font-sans uppercase">Online PGDM</span>
+    <!-- 8. LEARNING & TESTIMONIALS -->
+    <section class="py-28 bg-brand-light">
+        <div class="max-w-[1200px] mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16">
+
+                <!-- Left: Testimonials / Voices of Success -->
+                <div>
+                    <h4 class="sub-heading">Success Stories</h4>
+                    <h2 class="font-heading text-4xl font-bold text-brand-dark mb-10">VOICES OF SUCCESS</h2>
+
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <!-- Exact Document Text - Video Testimonial Placeholder -->
+                        <div class="relative rounded-lg overflow-hidden group shadow-md cursor-pointer bg-white">
+                            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=600"
+                                class="w-full h-[180px] object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Student">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                <div
+                                    class="w-14 h-14 bg-brand-orange text-white rounded-full flex items-center justify-center shadow-lg group-hover:bg-brand-purple transition-colors">
+                                    <i data-lucide="play" class="w-6 h-6 ml-1"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-3 left-3">
+                                <span class="bg-brand-dark/80 text-white text-[11px] font-bold px-2 py-1 rounded">[VIDEO
+                                    TESTIMONIALS]</span>
+                            </div>
+                        </div>
+                        <div class="relative rounded-lg overflow-hidden group shadow-md cursor-pointer bg-white">
+                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=600"
+                                class="w-full h-[180px] object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Student">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                <div
+                                    class="w-14 h-14 bg-brand-orange text-white rounded-full flex items-center justify-center shadow-lg group-hover:bg-brand-purple transition-colors">
+                                    <i data-lucide="play" class="w-6 h-6 ml-1"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-3 left-3">
+                                <span class="bg-brand-dark/80 text-white text-[11px] font-bold px-2 py-1 rounded">[VIDEO
+                                    TESTIMONIALS]</span>
+                            </div>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-400">A Career-Defining Online PGDM Programme for Professionals Who Refuse to Pause Their Growth.</p>
+
+                    <!-- Exact Document Text - Image Testimonials Placeholder -->
+                    <div class="bg-white p-8 rounded border-l-[4px] border-brand-orange shadow-sm">
+                        <p class="text-[16px] text-gray-600 font-medium italic mb-6">"TESTIMONIALS [IMAGES]"</p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-14 h-14 bg-brand-light rounded-full flex items-center justify-center text-[10px] font-bold text-gray-400 border border-gray-200">
+                                [IMG]</div>
+                            <div>
+                                <h5 class="font-heading font-bold text-lg text-brand-dark">Alumni Name</h5>
+                                <p class="text-sm text-gray-500">Placed via Jaipuria</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Quick Links -->
+                <!-- Right: Learning System & Recruiters -->
                 <div>
-                    <h4 class="font-bold mb-4 uppercase text-sm tracking-wider text-gray-300">Academics</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Programme Overview</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Curriculum</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Faculty</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Academic Calendar</a></li>
+                    <h4 class="sub-heading">Placements</h4>
+                    <h2 class="font-heading text-4xl font-bold text-brand-dark mb-10">Our Top Recruiters</h2>
+
+                    <div class="bg-white p-10 rounded shadow-sm border border-gray-100 mb-10">
+                        <p class="text-center font-bold text-gray-400 tracking-[0.2em] text-sm mb-8">[LOGOS]</p>
+                        <div class="grid grid-cols-3 gap-8 place-items-center opacity-40 grayscale">
+                            <!-- Stock Icons as Placeholders -->
+                            <i data-lucide="amazon"
+                                class="w-10 h-10 hover:text-brand-orange transition-colors cursor-pointer"></i>
+                            <i data-lucide="codesandbox"
+                                class="w-10 h-10 hover:text-brand-orange transition-colors cursor-pointer"></i>
+                            <i data-lucide="figma"
+                                class="w-10 h-10 hover:text-brand-orange transition-colors cursor-pointer"></i>
+                            <i data-lucide="slack"
+                                class="w-10 h-10 hover:text-brand-orange transition-colors cursor-pointer"></i>
+                            <i data-lucide="twitch"
+                                class="w-10 h-10 hover:text-brand-orange transition-colors cursor-pointer"></i>
+                            <i data-lucide="github"
+                                class="w-10 h-10 hover:text-brand-orange transition-colors cursor-pointer"></i>
+                        </div>
+                    </div>
+
+                    <!-- Learning Style Box -->
+                    <div class="bg-brand-purple p-10 rounded shadow-lg text-white relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 opacity-10"><i data-lucide="book-open"
+                                class="w-48 h-48"></i></div>
+                        <h3 class="font-heading text-[26px] font-bold mb-6 relative z-10">Learning That Fits Modern
+                            Lives</h3>
+                        <ul class="space-y-4 mb-8 text-[15px] text-gray-200 relative z-10 font-medium">
+                            <li class="flex gap-3"><i data-lucide="check"
+                                    class="w-5 h-5 text-brand-orange shrink-0 mt-0.5"></i> Integrated Learning
+                                Management System (LMS)</li>
+                            <li class="flex gap-3"><i data-lucide="check"
+                                    class="w-5 h-5 text-brand-orange shrink-0 mt-0.5"></i> Micro-learning via short
+                                videos</li>
+                            <li class="flex gap-3"><i data-lucide="check"
+                                    class="w-5 h-5 text-brand-orange shrink-0 mt-0.5"></i> Online assessments</li>
+                            <li class="flex gap-3"><i data-lucide="check"
+                                    class="w-5 h-5 text-brand-orange shrink-0 mt-0.5"></i> Community group learning &
+                                tutor support</li>
+                            <li class="flex gap-3"><i data-lucide="check"
+                                    class="w-5 h-5 text-brand-orange shrink-0 mt-0.5"></i> Fireside chats and mentoring
+                                sessions</li>
+                        </ul>
+                        <p
+                            class="text-brand-orange font-bold text-lg italic border-t border-white/10 pt-6 relative z-10">
+                            Structure, flexibility, and engagement - together.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. ADMISSIONS & FEES -->
+    <section id="admissions" class="py-28 bg-white border-b border-gray-100">
+        <div class="max-w-[1200px] mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16">
+
+                <!-- Process -->
+                <div>
+                    <h4 class="sub-heading">Join Us</h4>
+                    <h2 class="font-heading text-4xl lg:text-5xl font-bold text-brand-dark mb-10">Admissions Process
+                    </h2>
+
+                    <div class="space-y-8">
+                        <div class="flex gap-6 group">
+                            <div
+                                class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center font-heading font-bold text-2xl text-brand-orange border border-gray-200 group-hover:bg-brand-orange group-hover:text-white group-hover:border-brand-orange transition-colors shrink-0">
+                                1</div>
+                            <div class="pt-2">
+                                <h4 class="font-heading font-bold text-xl text-brand-dark mb-2">Apply Online</h4>
+                                <p class="text-gray-600">Submit your application form through our secure online
+                                    admission portal.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group">
+                            <div
+                                class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center font-heading font-bold text-2xl text-brand-purple border border-gray-200 group-hover:bg-brand-purple group-hover:text-white group-hover:border-brand-purple transition-colors shrink-0">
+                                2</div>
+                            <div class="pt-2">
+                                <h4 class="font-heading font-bold text-xl text-brand-dark mb-2">Screening & Document
+                                    Verification</h4>
+                                <p class="text-gray-600">Our academic panel will review your submitted graduation
+                                    documents.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group">
+                            <div
+                                class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center font-heading font-bold text-2xl text-brand-blue border border-gray-200 group-hover:bg-brand-blue group-hover:text-white group-hover:border-brand-blue transition-colors shrink-0">
+                                3</div>
+                            <div class="pt-2">
+                                <h4 class="font-heading font-bold text-xl text-brand-dark mb-2">Selection & Seat
+                                    Confirmation</h4>
+                                <p class="text-gray-600">Receive your offer letter and complete the enrollment process.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 bg-brand-light border-l-4 border-brand-orange p-6 rounded-r">
+                        <p class="font-medium text-brand-dark text-lg"><strong
+                                class="text-brand-orange">Eligibility:</strong> Minimum 3-year Bachelor’s Degree with
+                            50% marks (UGC-recognized).</p>
+                    </div>
+                </div>
+
+                <!-- Exact Document Text - Fees block -->
+                <div>
+                    <div
+                        class="escul-card h-full flex flex-col justify-center !p-12 bg-brand-dark relative overflow-hidden">
+                        <div
+                            class="absolute -right-20 -bottom-20 w-[300px] h-[300px] bg-brand-purple/20 rounded-full blur-[50px] z-0">
+                        </div>
+
+                        <div class="relative z-10">
+                            <h2 class="font-heading text-4xl lg:text-[42px] font-bold text-white mb-4 leading-tight">
+                                Affordable. Accessible.<br><span class="text-brand-orange">Valuable.</span></h2>
+                            <p class="mb-10 text-gray-300 text-lg">An Online PGDM that respects your ambition and your
+                                investment.</p>
+
+                            <ul class="space-y-5 mb-12">
+                                <li class="flex items-center gap-4 text-white text-[17px] font-medium"><i
+                                        data-lucide="check-circle-2" class="w-6 h-6 text-green-500 shrink-0"></i>
+                                    Flexible fee payment options</li>
+                                <li class="flex items-center gap-4 text-white text-[17px] font-medium"><i
+                                        data-lucide="check-circle-2" class="w-6 h-6 text-green-500 shrink-0"></i>
+                                    Merit-based scholarships available</li>
+                                <li class="flex items-center gap-4 text-white text-[17px] font-medium"><i
+                                        data-lucide="check-circle-2" class="w-6 h-6 text-green-500 shrink-0"></i>
+                                    Significantly lower cost than full-time MBA programmes</li>
+                            </ul>
+
+                            <div class="bg-brand-orange/20 border border-brand-orange/50 p-6 rounded">
+                                <p class="font-bold text-xl italic text-brand-orange text-center">Because quality
+                                    education should open doors, not create barriers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FAQS (Escul Style Boxed Accordion) -->
+    <section class="py-28 bg-brand-light">
+        <div class="max-w-[850px] mx-auto px-4">
+            <div class="text-center mb-16">
+                <h4 class="sub-heading justify-center">Help Center</h4>
+                <h2 class="font-heading text-4xl lg:text-5xl font-bold text-brand-dark">FAQs</h2>
+            </div>
+
+            <div class="space-y-4">
+
+                <!-- Exact Document Text FAQs -->
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">Is
+                            the Online PGDM approved and recognized?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">Yes, the
+                            programme is AICTE-approved and recognized, ensuring credibility and industry acceptance
+                            across India.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">Can I
+                            pursue this programme while working full-time?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">Yes, the
+                            programme is specifically designed for working professionals with weekend classes and
+                            flexible learning options.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">What
+                            is the duration of the Online PGDM?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">The
+                            programme typically spans 2 years, divided into multiple semesters.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">Are
+                            live classes mandatory to attend?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">Live
+                            classes are recommended for better learning, but recordings are available for flexibility if
+                            you miss a session.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">What
+                            specialisations are offered in the programme?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">The
+                            programme offers new-age specialisations such as AI and Business Analytics, Digital and
+                            E-Commerce, Product Management, and Entrepreneurship.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">How
+                            are exams and assessments conducted?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">
+                            Assessments are conducted online through quizzes, assignments, projects, and term-end
+                            examinations with flexible scheduling.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">Is
+                            there any placement or career support?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">Yes, the
+                            programme offers continuous career support including resume building, interview preparation,
+                            and placement assistance.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">Will
+                            I get networking opportunities in an online programme?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">Yes, you
+                            will interact with peers, faculty, and industry experts through live sessions, group
+                            projects, and campus immersion.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">What
+                            is the eligibility criteria for admission?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">
+                            Candidates must have a minimum 3-year bachelor’s degree with at least 50% marks from a
+                            recognized university.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item bg-white border border-gray-200 rounded-[5px] shadow-sm">
+                    <div class="faq-header flex justify-between items-center p-6 cursor-pointer">
+                        <h4 class="faq-title font-heading font-bold text-[17px] text-brand-dark transition-colors">How
+                            do I apply for the programme?</h4>
+                        <div
+                            class="faq-icon w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all duration-300 shrink-0">
+                            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content px-6">
+                        <p class="pb-6 pt-2 text-[15px] text-gray-600 border-t border-gray-100 leading-relaxed">You can
+                            apply online by filling out the application form, submitting required documents, and
+                            completing the admission process.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. CTA BANNER (Escul Signature Full-Width Callout) -->
+    <section id="apply" class="py-24 bg-brand-orange relative overflow-hidden">
+        <!-- Abstract pattern -->
+        <div class="absolute inset-0 opacity-10"
+            style="background-image: linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000); background-size: 20px 20px; background-position: 0 0, 10px 10px;">
+        </div>
+
+        <div class="relative z-10 max-w-[900px] mx-auto px-4 text-center">
+            <!-- Exact Document Text -->
+            <h2 class="font-heading text-4xl md:text-[54px] font-bold text-white mb-8 leading-[1.1]">
+                Stay relevant. Stay ahead. <br>Stay unstoppable.
+            </h2>
+            <button
+                class="bg-brand-dark text-white px-12 py-[18px] text-lg rounded-[4px] font-bold hover:bg-white hover:text-brand-dark transition-colors shadow-2xl">
+                [Apply Now]
+            </button>
+        </div>
+    </section>
+
+    <!-- 12. FOOTER (Escul Grid) -->
+    <footer class="bg-brand-dark pt-[100px] pb-10 text-white">
+        <div class="max-w-[1200px] mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+                <!-- Col 1: Brand -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div
+                            class="w-12 h-12 bg-brand-purple flex items-center justify-center font-heading font-bold text-2xl text-white rounded-[4px]">
+                            J</div>
+                        <div class="flex flex-col">
+                            <span
+                                class="font-heading font-bold text-2xl tracking-wide text-white leading-none">JAIPURIA</span>
+                            <span class="text-brand-orange text-[10px] font-bold tracking-[0.2em] uppercase mt-1">Online
+                                PGDM</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-[15px] leading-relaxed mb-8">
+                        A Career-Defining Online PGDM Programme for Professionals Who Refuse to Pause Their Growth.
+                    </p>
+                    <div class="flex gap-2">
+                        <a href="#"
+                            class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
+                                data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
+                                data-lucide="twitter" class="w-4 h-4"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded bg-white/5 flex items-center justify-center hover:bg-brand-orange transition-colors"><i
+                                data-lucide="linkedin" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Useful Links -->
+                <div>
+                    <h4
+                        class="font-heading font-bold text-[22px] mb-8 text-white relative inline-block after:content-[''] after:absolute after:-bottom-3 after:left-0 after:w-10 after:h-1 after:bg-brand-orange">
+                        Useful Links</h4>
+                    <ul class="space-y-4 text-[15px] text-gray-400 font-medium">
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center gap-2"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-brand-orange"></i> The Institute</a>
+                        </li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center gap-2"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-brand-orange"></i> Online PGDM</a>
+                        </li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center gap-2"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-brand-orange"></i> Admissions
+                                Process</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center gap-2"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-brand-orange"></i>
+                                Specialisations</a></li>
                     </ul>
                 </div>
 
-                <!-- Admissions -->
+                <!-- Col 3: Support -->
                 <div>
-                    <h4 class="font-bold mb-4 uppercase text-sm tracking-wider text-gray-300">Admissions</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">How to Apply</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Eligibility Criteria</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">Fee Structure & EMI</a></li>
-                        <li><a href="#" class="hover:text-brand-orange transition-colors">FAQs</a></li>
+                    <h4
+                        class="font-heading font-bold text-[22px] mb-8 text-white relative inline-block after:content-[''] after:absolute after:-bottom-3 after:left-0 after:w-10 after:h-1 after:bg-brand-orange">
+                        Support</h4>
+                    <ul class="space-y-4 text-[15px] text-gray-400 font-medium">
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center gap-2"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-brand-orange"></i> Student Login</a>
+                        </li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center gap-2"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-brand-orange"></i> EMI Options</a>
+                        </li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center gap-2"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-brand-orange"></i> FAQ's</a></li>
+                        <li><a href="#" class="hover:text-brand-orange transition-colors flex items-center gap-2"><i
+                                    data-lucide="chevron-right" class="w-4 h-4 text-brand-orange"></i> Contact
+                                Support</a></li>
                     </ul>
                 </div>
 
-                <!-- Contact -->
+                <!-- Col 4: Contact -->
                 <div>
-                    <h4 class="font-bold mb-4 uppercase text-sm tracking-wider text-gray-300">Contact Us</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="map-pin" class="w-4 h-4 shrink-0 text-brand-orange mt-1"></i>
+                    <h4
+                        class="font-heading font-bold text-[22px] mb-8 text-white relative inline-block after:content-[''] after:absolute after:-bottom-3 after:left-0 after:w-10 after:h-1 after:bg-brand-orange">
+                        Contact Info</h4>
+                    <ul class="space-y-5 text-[15px] text-gray-400">
+                        <li class="flex items-start gap-4">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-orange mt-1 shrink-0"></i>
                             <span>Jaipuria Institute of Management, Noida Campus</span>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="phone" class="w-4 h-4 shrink-0 text-brand-orange"></i>
+                        <li class="flex items-center gap-4">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand-orange shrink-0"></i>
                             <span>1800-102-4900</span>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="mail" class="w-4 h-4 shrink-0 text-brand-orange"></i>
+                        <li class="flex items-center gap-4">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand-orange shrink-0"></i>
                             <span>online@jaipuria.ac.in</span>
                         </li>
                     </ul>
@@ -775,12 +1158,13 @@
 
             </div>
 
-            <!-- Copyright line -->
-            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <!-- Copyright -->
+            <div
+                class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[15px] text-gray-500 font-medium">
                 <p>© 2026 Jaipuria Institute of Management. All rights reserved.</p>
-                <div class="flex gap-4">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-brand-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-brand-orange transition-colors">Terms & Conditions</a>
                 </div>
             </div>
         </div>
@@ -788,47 +1172,44 @@
 
     <!-- Scripts -->
     <script>
-        // Initialize Icons
+        // Icons
         lucide.createIcons();
 
-        // Formal Header Scroll styling (Shrinks on scroll)
-        const navbar = document.getElementById('navbar');
+        // Header Style on Scroll
+        const header = document.getElementById('main-header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 40) {
-                navbar.classList.add('py-2');
-                navbar.classList.remove('py-4');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.style.transform = 'translateY(-42px)'; // Hides top bar on scroll (Escul style)
             } else {
-                navbar.classList.add('py-4');
-                navbar.classList.remove('py-2');
+                header.classList.remove('shadow-md');
+                header.style.transform = 'translateY(0)';
             }
         });
 
-        // Mobile Menu Toggle
+        // Mobile Menu
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
         let isMenuOpen = false;
 
         function toggleMenu() {
             isMenuOpen = !isMenuOpen;
-            if(isMenuOpen) {
+            if (isMenuOpen) {
                 mobileMenu.classList.remove('hidden');
-                menuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+                menuBtn.innerHTML = '<i data-lucide="x" class="w-8 h-8"></i>';
             } else {
                 mobileMenu.classList.add('hidden');
-                menuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                menuBtn.innerHTML = '<i data-lucide="menu" class="w-8 h-8"></i>';
             }
             lucide.createIcons();
         }
 
         menuBtn.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if(isMenuOpen) toggleMenu();
-            });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', toggleMenu);
         });
 
-        // FAQ Accordion Script
+        // Accordion (Escul Style)
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const header = item.querySelector('.faq-header');
@@ -839,36 +1220,33 @@
             });
         });
 
-        // Hero Slider Script
-        const slides = document.querySelectorAll('.hero-slide');
-        let currentSlide = 0;
+        // Simplified Background Slider (Keeps Text Always Visible)
+        const bgSlides = document.querySelectorAll('.hero-bg-slide');
+        let currentBgSlide = 0;
         let slideInterval;
 
-        function showSlide(index) {
-            slides[currentSlide].classList.remove('opacity-100');
-            slides[currentSlide].classList.add('opacity-0');
-            currentSlide = index;
-            if(currentSlide >= slides.length) currentSlide = 0;
-            if(currentSlide < 0) currentSlide = slides.length - 1;
-            slides[currentSlide].classList.remove('opacity-0');
-            slides[currentSlide].classList.add('opacity-100');
+        function showBgSlide(index) {
+            bgSlides[currentBgSlide].classList.remove('active');
+            currentBgSlide = index;
+            if (currentBgSlide >= bgSlides.length) currentBgSlide = 0;
+            if (currentBgSlide < 0) currentBgSlide = bgSlides.length - 1;
+            bgSlides[currentBgSlide].classList.add('active');
         }
 
-        function nextSlide() { showSlide(currentSlide + 1); resetInterval(); }
-        function prevSlide() { showSlide(currentSlide - 1); resetInterval(); }
+        function nextBgSlide() { showBgSlide(currentBgSlide + 1); resetInterval(); }
+        function prevBgSlide() { showBgSlide(currentBgSlide - 1); resetInterval(); }
 
         function startInterval() {
-            slideInterval = setInterval(() => { showSlide(currentSlide + 1); }, 6000); // 6 seconds for formal feel
+            slideInterval = setInterval(() => { showBgSlide(currentBgSlide + 1); }, 5000);
         }
 
         function resetInterval() {
             clearInterval(slideInterval);
             startInterval();
         }
-        
-        // Start slider
-        startInterval();
 
+        startInterval();
     </script>
 </body>
+
 </html>

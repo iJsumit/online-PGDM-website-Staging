@@ -10,20 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
    1. MOBILE MENU LOGIC (New & Optimized)
    ========================================== */
 function stickyMenu() {
+
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
 
-    // Sticky navbar
     const navbar = document.getElementById('navbar');
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('fixed', 'top-0', 'left-0', 'z-50', 'shadow-md', 'py-4');
+
+        if (window.scrollY > 200) {
+            navbar.classList.add('fixed', 'top-0', 'left-1/2', '-translate-x-1/2', 'w-full', 'max-w-[1600px]', 'z-50', 'shadow-md', 'py-3');
         } else {
-            navbar.classList.remove('fixed', 'top-0', 'left-0', 'z-50', 'shadow-md', 'py-4');
+            navbar.classList.remove('fixed', 'top-0', 'left-1/2', '-translate-x-1/2', 'w-full', 'max-w-[1600px]', 'z-50', 'shadow-md', 'py-3');
         }
     });
 }
@@ -32,18 +36,71 @@ function stickyMenu() {
     2. HERO SLIDER
 ========================= */
 function initHeroSlider() {
+
     const slides = document.querySelectorAll('.slide');
+    const nextBtn = document.getElementById('heroNext');
+    const prevBtn = document.getElementById('heroPrev');
+
     if (!slides.length) return;
 
     let currentSlide = 0;
+    let sliderInterval;
 
-    function nextSlide() {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
+    slides.forEach((slide, index) => {
+
+        slide.classList.add(
+            'transition-all',
+            'duration-1000'
+        );
+
+        if (index === 0) {
+            slide.classList.add('active', 'opacity-100', 'z-10');
+        } else {
+            slide.classList.add('opacity-0');
+        }
+    });
+
+    function showSlide(index) {
+
+        slides.forEach((slide) => {
+            slide.classList.remove('active', 'opacity-100', 'z-10');
+            slide.classList.add('opacity-0');
+        });
+
+        slides[index].classList.add('active', 'opacity-100', 'z-10');
+        slides[index].classList.remove('opacity-0');
     }
 
-    setInterval(nextSlide, 5000);
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetInterval();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetInterval();
+    });
+
+    function startSlider() {
+        sliderInterval = setInterval(nextSlide, 5000);
+    }
+
+    function resetInterval() {
+        clearInterval(sliderInterval);
+        startSlider();
+    }
+
+    startSlider();
 }
 
 /* =========================
