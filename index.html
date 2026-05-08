@@ -364,47 +364,90 @@
 
                     <!-- RIGHT FORM -->
                     <div class="relative max-w-[360px] lg:max-w-[420px] mx-auto lg:mx-0">
-
                         <div
                             class="bg-white/95 backdrop-blur-xl rounded-2xl p-3 md:p-4 shadow-[0_20px_80px_rgba(0,0,0,0.35)] border border-white/20">
-
                             <!-- HEADING -->
-                            <h3 class="text-xl md:text-2xl font-semibold text-center text-brand-purple mb-2 md:mb-3">Get
+                            <h3 class="text-xl md:text-2xl font-semibold text-brand-purple mb-2 pl-2">Get
                                 Your Brochure</h3>
-
                             <!-- FORM -->
                             <form class="space-y-2 md:space-y-3">
                                 <!-- NAME -->
                                 <input type="text" placeholder="Name *"
                                     class="w-full h-10 md:h-10 px-4 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-orange placeholder:text-base">
-
                                 <!-- EMAIL -->
                                 <input type="email" placeholder="Email *"
                                     class="w-full h-11 md:h-10 px-4 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-orange">
-
                                 <!-- PHONE -->
                                 <input type="tel" placeholder="Phone Number *"
                                     class="w-full h-11 md:h-10 px-4 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-orange">
-
                                 <!-- GRADUATION -->
-                                <select
-                                    class="w-full h-11 md:h-10 px-4 rounded-xl border border-gray-200 text-gray-500 text-sm focus:outline-none focus:border-brand-orange">
-
-                                    <option>
+                                <div class="w-full">
+                                    <!-- LABEL -->
+                                    <p class="text-sm font-semibold text-brand-purple mb-2 px-1">
                                         Have You Completed Your Graduation?*
-                                    </option>
+                                    </p>
 
-                                </select>
+                                    <!-- OPTIONS -->
+                                    <div class="flex items-center gap-2">
+
+                                        <!-- YES -->
+                                        <label class="relative cursor-pointer w-[88px]">
+
+                                            <input type="radio" name="graduation" class="peer hidden">
+
+                                            <div
+                                                class="h-9 rounded-xl border border-gray-200 bg-white flex items-center justify-center text-sm font-medium text-gray-600 transition-all duration-300 hover:border-brand-orange peer-checked:bg-brand-orange peer-checked:border-brand-orange peer-checked:text-white">
+
+                                                Yes
+
+                                            </div>
+
+                                        </label>
+
+                                        <!-- NO -->
+                                        <label class="relative cursor-pointer w-[88px]">
+
+                                            <input type="radio" name="graduation" class="peer hidden">
+
+                                            <div
+                                                class="h-9 rounded-xl border border-gray-200 bg-white flex items-center justify-center text-sm font-medium text-gray-600 transition-all duration-300 hover:border-brand-purple peer-checked:bg-brand-purple peer-checked:border-brand-purple peer-checked:text-white">
+
+                                                No
+
+                                            </div>
+
+                                        </label>
+
+                                    </div>
+
+                                </div>
 
                                 <!-- EXPERIENCE -->
-                                <select
-                                    class="w-full h-11 md:h-10 px-4 rounded-xl border border-gray-200 text-gray-500 text-sm focus:outline-none focus:border-brand-orange">
+                                <div class="relative">
 
-                                    <option>
-                                        Work Experience*
-                                    </option>
+                                    <select
+                                        class="w-full h-11 md:h-10 px-4 pr-10 rounded-xl border border-gray-200 bg-white text-gray-700 text-sm appearance-none focus:outline-none focus:border-brand-orange">
 
-                                </select>
+                                        <option value="" disabled selected hidden>
+                                            Work Experience*
+                                        </option>
+
+                                        <option>Fresher</option>
+                                        <option>0 - 2 Years</option>
+                                        <option>2 - 5 Years</option>
+                                        <option>5+ Years</option>
+
+                                    </select>
+
+                                    <!-- CUSTOM ARROW -->
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-400">
+
+                                        <i class="fa-solid fa-chevron-down text-xs"></i>
+
+                                    </div>
+
+                                </div>
 
                                 <!-- CHECKBOX -->
                                 <div class="flex items-start gap-3 pt-1">
@@ -423,7 +466,7 @@
 
                                 <!-- BUTTON -->
                                 <button
-                                    class="w-full h-11 md:h-12 rounded-xl bg-brand-orange hover:bg-brand-orange_hover text-white text-sm md:text-base font-bold transition-all duration-300 shadow-lg">
+                                    class="w-full h-11 md:h-12 rounded-xl bg-brand-orange hover:bg-brand-purple text-white text-sm md:text-base font-bold transition-all duration-300 shadow-lg">
 
                                     Download Brochure
 
