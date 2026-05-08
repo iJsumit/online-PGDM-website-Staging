@@ -218,6 +218,7 @@
 <body class="font-sans text-gray-800 bg-[#EEEEEE] overflow-x-hidden">
     <div class="max-w-[1600px] mx-auto w-full">
 
+        <!-- Header & Navbar -->
         <header class="w-full bg-white">
             <!-- TOP BAR -->
             <div class="w-full border-b border-gray-200 hidden md:block">
@@ -245,7 +246,7 @@
             <div id="navbar" class="w-full bg-white shadow-sm">
                 <div class="max-w-7xl mx-auto px-4">
 
-                    <div class="flex items-center justify-between py-4">
+                    <div class="flex items-center justify-between py-2 md:py-4">
 
                         <!-- MOBILE LOGO -->
                         <div class="md:hidden">
@@ -302,7 +303,8 @@
 
         </header>
 
-        <section class="relative w-full h-[560px] overflow-hidden bg-black">
+        <!-- Hero Slider Section -->
+        <section class="relative w-full h-[680px] md:h-[560px] overflow-hidden bg-black">
 
             <!-- SLIDER -->
             <div id="hero-slider" class="absolute inset-0 w-full h-full">
@@ -310,21 +312,18 @@
                 <!-- SLIDE 1 -->
                 <div class="slide active absolute inset-0 w-full h-full z-10 opacity-100">
                     <img src="images/Slide1.png" class="hero-img w-full h-full object-cover">
-
                     <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/25"></div>
                 </div>
 
                 <!-- SLIDE 2 -->
                 <div class="slide absolute inset-0 w-full h-full opacity-0">
                     <img src="images/Slide2.png" class="hero-img w-full h-full object-cover">
-
                     <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/25"></div>
                 </div>
 
                 <!-- SLIDE 3 -->
                 <div class="slide absolute inset-0 w-full h-full opacity-0">
                     <img src="images/Slide3.png" class="hero-img w-full h-full object-cover">
-
                     <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/25"></div>
                 </div>
 
@@ -332,26 +331,22 @@
 
             <!-- NAVIGATION -->
             <button id="heroPrev"
-                class="absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full border border-white/15 bg-white/10 backdrop-blur-md text-white hover:bg-brand-orange transition-all duration-300">
-
-                <i class="fa-solid fa-angle-left"></i>
+                class="hidden md:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full border border-white/15 bg-white/10 backdrop-blur-md text-white hover:bg-brand-orange hover:border-brand-orange items-center justify-center transition-all duration-300">
+                <i class="fa-solid fa-angle-left text-sm"></i>
             </button>
 
             <button id="heroNext"
-                class="absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full border border-white/15 bg-white/10 backdrop-blur-md text-white hover:bg-brand-orange transition-all duration-300">
-
-                <i class="fa-solid fa-angle-right"></i>
+                class="hidden md:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full border border-white/15 bg-white/10 backdrop-blur-md text-white hover:bg-brand-orange hover:border-brand-orange items-center justify-center transition-all duration-300">
+                <i class="fa-solid fa-angle-right text-sm"></i>
             </button>
 
             <!-- CONTENT -->
             <div class="relative z-20 max-w-7xl mx-auto px-4 h-full flex items-center">
-
                 <div class="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 items-center w-full">
-
                     <!-- LEFT -->
                     <div class="max-w-2xl text-white">
                         <!-- HEADING -->
-                        <div class="mb-5">
+                        <div class="mb-1 md:mb-5">
                             <!-- CAPSULE -->
                             <div
                                 class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/15 bg-white/10 backdrop-blur-md mb-5">
@@ -360,32 +355,40 @@
                                     class="text-sm lg:text-base font-semibold tracking-wide text-white">AICTE-Approved</span>
                             </div>
                             <!-- MAIN HEADING -->
-                            <h1 class="text-4xl font-bold leading-[1.05] max-w-2xl text-white">
+                            <h1 class="text-2xl md:text-4xl font-bold leading-[1.05] max-w-2xl text-white">
                                 <span class="block mb-2">Online PGDM from Jaipuria</span>
                                 <span class="block">Learn Anytime, Advance Faster</span>
                             </h1>
-
-
                         </div>
                     </div>
 
                     <!-- RIGHT FORM -->
-                    <div class="relative">
+                    <div class="relative max-w-[360px] lg:max-w-[420px] mx-auto lg:mx-0">
+
                         <div
-                            class="bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-[0_20px_80px_rgba(0,0,0,0.35)] border border-white/20">
-                            <h3 class="text-3xl font-extrabold text-brand-purple mb-6">Get Your Brochure</h3>
-                            <form class="space-y-4">
+                            class="bg-white/95 backdrop-blur-xl rounded-2xl p-3 md:p-4 shadow-[0_20px_80px_rgba(0,0,0,0.35)] border border-white/20">
+
+                            <!-- HEADING -->
+                            <h3 class="text-xl md:text-2xl font-semibold text-center text-brand-purple mb-2 md:mb-3">Get
+                                Your Brochure</h3>
+
+                            <!-- FORM -->
+                            <form class="space-y-2 md:space-y-3">
+                                <!-- NAME -->
                                 <input type="text" placeholder="Name *"
-                                    class="w-full h-12 px-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-orange">
+                                    class="w-full h-10 md:h-10 px-4 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-orange placeholder:text-base">
 
+                                <!-- EMAIL -->
                                 <input type="email" placeholder="Email *"
-                                    class="w-full h-12 px-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-orange">
+                                    class="w-full h-11 md:h-10 px-4 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-orange">
 
+                                <!-- PHONE -->
                                 <input type="tel" placeholder="Phone Number *"
-                                    class="w-full h-12 px-4 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-orange">
+                                    class="w-full h-11 md:h-10 px-4 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-orange">
 
+                                <!-- GRADUATION -->
                                 <select
-                                    class="w-full h-12 px-4 rounded-xl border border-gray-200 text-gray-500 focus:outline-none focus:border-brand-orange">
+                                    class="w-full h-11 md:h-10 px-4 rounded-xl border border-gray-200 text-gray-500 text-sm focus:outline-none focus:border-brand-orange">
 
                                     <option>
                                         Have You Completed Your Graduation?*
@@ -393,8 +396,9 @@
 
                                 </select>
 
+                                <!-- EXPERIENCE -->
                                 <select
-                                    class="w-full h-12 px-4 rounded-xl border border-gray-200 text-gray-500 focus:outline-none focus:border-brand-orange">
+                                    class="w-full h-11 md:h-10 px-4 rounded-xl border border-gray-200 text-gray-500 text-sm focus:outline-none focus:border-brand-orange">
 
                                     <option>
                                         Work Experience*
@@ -402,21 +406,27 @@
 
                                 </select>
 
+                                <!-- CHECKBOX -->
                                 <div class="flex items-start gap-3 pt-1">
 
-                                    <input type="checkbox" checked class="mt-1 accent-brand-orange">
+                                    <input type="checkbox" checked
+                                        class="mt-1 accent-brand-orange scale-90 md:scale-100">
 
-                                    <p class="text-[11px] leading-relaxed text-gray-500">
+                                    <p class="text-[10px] md:text-[11px] leading-relaxed text-gray-500">
+
                                         I authorize Jaipuria Institute of Management to contact me via Email, SMS &
                                         WhatsApp.
+
                                     </p>
 
                                 </div>
 
+                                <!-- BUTTON -->
                                 <button
-                                    class="w-full h-12 rounded-xl bg-brand-orange hover:bg-brand-orange_hover text-white font-bold transition-all duration-300 shadow-lg">
+                                    class="w-full h-11 md:h-12 rounded-xl bg-brand-orange hover:bg-brand-orange_hover text-white text-sm md:text-base font-bold transition-all duration-300 shadow-lg">
 
                                     Download Brochure
+
                                 </button>
 
                             </form>

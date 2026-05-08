@@ -16,9 +16,9 @@ function stickyMenu() {
     window.addEventListener('scroll', () => {
 
         if (window.scrollY > 200) {
-            navbar.classList.add('fixed', 'top-0', 'left-1/2', '-translate-x-1/2', 'w-full', 'max-w-[1600px]', 'z-50', 'shadow-md', 'py-3');
+            navbar.classList.add('fixed', 'top-0', 'left-1/2', '-translate-x-1/2', 'w-full', 'max-w-[1600px]', 'z-50', 'shadow-md', 'py-2', 'md:py-3');
         } else {
-            navbar.classList.remove('fixed', 'top-0', 'left-1/2', '-translate-x-1/2', 'w-full', 'max-w-[1600px]', 'z-50', 'shadow-md', 'py-3');
+            navbar.classList.remove('fixed', 'top-0', 'left-1/2', '-translate-x-1/2', 'w-full', 'max-w-[1600px]', 'z-50', 'shadow-md', 'py-2', 'md:py-3');
         }
     });
 }
@@ -91,8 +91,6 @@ function initHeroSlider() {
     startSlider();
 }
 
-
-
 function initRecruiters() {
 
     const recruiters = [
@@ -143,7 +141,6 @@ function initRecruiters() {
     createLogos(track2, recruiters.reverse());
 
 }
-
 
 function initFaq() {
 
